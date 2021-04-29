@@ -1,0 +1,15 @@
+.card-footer {
+    background-color: #666666;
+}
+.btn-outline-info1:not(:disabled):not(.disabled):active, .btn-outline-info1:not(:disabled):not(.disabled).active,
+.show > .btn-outline-info1.dropdown-toggle {
+  color: #fff;
+  background-color: #17a2b8;
+  border-color: #17a2b8;
+}
+
+.btn-outline-info{
+    border-color: white;
+    color: white;
+    align-self: center;
+}
