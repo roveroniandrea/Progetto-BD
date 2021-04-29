@@ -1,8 +1,7 @@
-from flask import Flask
+from flask import Flask, render_template, redirect
 from flask_login import LoginManager
 
 from lib.DB_API import loadUser
-from pages.errors.errors import errorsBlueprint
 from pages.home.home import homeBlueprint
 from pages.login.login import loginBlueprint
 
@@ -27,4 +26,14 @@ loginManager.user_loader(load_user)
 
 app.register_blueprint(loginBlueprint)
 app.register_blueprint(homeBlueprint)
-app.register_blueprint(errorsBlueprint)
+
+
+@app.errorhandler(404)
+def notFound(_):
+    return render_template("404.html")
+
+
+@app.errorhandler(401)
+def unhauthorized(_):
+    print("Hola")
+    return redirect('/login')
