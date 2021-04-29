@@ -10,6 +10,7 @@ try:
     Base.metadata.create_all(engine)
     Session = sessionmaker(bind=engine)  # creazione della factory
     """Factory for creating a session to the DB"""
+
 except Exception as e:
     print("Failed to connect to DB: " + str(e))
     quit()
