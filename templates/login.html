@@ -1,0 +1,32 @@
+{% extends "index.html" %}
+
+{% block pagebody %}
+{% include "navbar.html" %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+        </div><!--col-4 vuota-->
+        <div class="col-md-4">
+            <div class="card text-center " id="card-login">
+                <div class="card-body">
+                    <label class="label">Username</label><br>
+                    <input class="form-control" type="text" placeholder="Username"><br>
+                    <label class="label">Password </label><br>
+                    <input class="form-control" type="password" placeholder="Password"><br><br><br><br>
+                    {% if error %}
+                    <p>{{error}}</p>
+                    {% endif %}
+                </div>
+                <!--card-body-->
+                <div class="card-footer ">
+                    <a href="product.html" class="btn btn-outline-info">Login</a>
+                </div>
+                <!--card-body-->
+            </div>
+            <!--card-->
+        </div><!--col-4 input-->
+        <div class="col-sm-4">
+        </div><!--col-4 vuota-->
+    </div><!--row-->
+</div><!--container-->
+{% endblock %}

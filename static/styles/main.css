@@ -1,0 +1,9 @@
+.card-footer {
+    background-color: #666666;
+}
+
+.btn-outline-info{
+    border-color: white;
+    color: white;
+    align-self: center;
+}
