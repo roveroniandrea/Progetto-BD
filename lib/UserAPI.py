@@ -39,7 +39,7 @@ def loadUser(email):
 
 
 def registerUser(email, password):
-    """Adds a new user to the DB, crypting its password"""
+    """Adds a new user to the DB, crypting its password. Returns the user on sucess, None otherwise"""
     h = blake2b()
     user = User()
     user.email = email
@@ -52,8 +52,8 @@ def registerUser(email, password):
         session.add(user)
         session.commit()
         session.close()
-        return True
+        return user
     except SQLAlchemyError as e:
         print("Error inserting " + email + " : " + str(e))
         session.close()
-        return False
+        return None
