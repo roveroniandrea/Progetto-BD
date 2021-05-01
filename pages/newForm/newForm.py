@@ -8,4 +8,11 @@ newFormBlueprint = Blueprint('newForm', __name__)
 @newFormBlueprint.route('/new', methods=['GET'])
 @login_required
 def newForm():
-    return render_template('newForm.html')
+    return render_template('newForm/newForm.html')
+
+
+@newFormBlueprint.route('/new', methods=['POST'])
+@login_required
+def submitNewForm():
+    # TODO: submit form
+    return render_template('newForm/formSubmitted.html')
