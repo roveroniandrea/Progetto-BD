@@ -18,7 +18,7 @@ authBlueprint = Blueprint('auth', __name__)
 
 @authBlueprint.route('/login', methods=['GET'])
 def login():
-    return redirectToHomeIfAuth(lambda: render_template('login.html'))
+    return redirectToHomeIfAuth(lambda: render_template('auth/login.html'))
 
 
 @authBlueprint.route('/login', methods=['POST'])
@@ -27,7 +27,7 @@ def handleLogin():
     if user:
         login_user(user)
         return redirect('/')
-    return render_template('login.html', error="Nessun utente trovato!")
+    return render_template('auth/login.html', error="Nessun utente trovato!")
 
 
 @authBlueprint.route('/logout', methods=['POST'])
@@ -39,7 +39,7 @@ def handleLogout():
 
 @authBlueprint.route('/register', methods=['GET'])
 def register():
-    return redirectToHomeIfAuth(lambda: render_template('register.html'))
+    return redirectToHomeIfAuth(lambda: render_template('auth/register.html'))
 
 
 @authBlueprint.route('/register', methods=['POST'])
@@ -48,4 +48,4 @@ def handleRegister():
     if user:
         login_user(user)
         return redirect('/')
-    return render_template('register.html', error="L'utente esiste già")
+    return render_template('auth/register.html', error="L'utente esiste già")
