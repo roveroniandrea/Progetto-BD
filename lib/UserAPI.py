@@ -41,21 +41,21 @@ def loadUser(email):
 
 
 def registerUser(email, password):
-    """Adds a new user to the DB, crypting its password. Returns the user on sucess, None otherwise"""
+    """Adds a new user to the DB, crypting its password. Returns True on success"""
     h = blake2b()
+    session = Session()
     user = User()
     user.email = email
     user.salt = os.urandom(blake2b.SALT_SIZE)
     h.update(user.salt)
     h.update(password.encode())
     user.digest = h.hexdigest()
-    session = Session()
     try:
         session.add(user)
         session.commit()
         session.close()
-        return user
+        return True
     except SQLAlchemyError as e:
         print("Error inserting " + email + " : " + str(e))
         session.close()
-        return None
+        return False

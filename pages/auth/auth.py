@@ -44,8 +44,8 @@ def register():
 
 @authBlueprint.route('/register', methods=['POST'])
 def handleRegister():
-    user = registerUser(request.form['email'], request.form['password'])
-    if user:
+    if registerUser(request.form['email'], request.form['password']):
+        user = validateUser(request.form['email'], request.form['password'])
         login_user(user)
         return redirect('/')
     return render_template('auth/register.html', error="L'utente esiste già")
