@@ -2,16 +2,19 @@
 {% block navbar %}
 
 <nav class="navbar navbar-light bg-light shadow-sm p-3 mb-5 bg-body rounded">
-  <div class="container-fluid">
+  <div class="container-fluid navbar-div">
     <a class="navbar-brand" href="/">
       <img src="/static/image/outline_lock_black_24dp.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
       Progetto Basi
     </a>
     <span class="navbar-text">
       {% if current_user.is_authenticated %}
-        <a href="/logout" class="btn btn-primary">Sign out</a>
+      <form method="post" action="/logout">
+         <button type="submit" class="btn btn-outline-secondary">Sign out</button>
+      </form>
       {% endif %}
     </span>
   </div>
 </nav>
+
 {% endblock %}

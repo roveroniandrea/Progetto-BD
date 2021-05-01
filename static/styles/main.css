@@ -11,3 +11,7 @@
 #error{
     color: red;
 }
+
+.navbar-div{
+    min-height: 54px;
+}
