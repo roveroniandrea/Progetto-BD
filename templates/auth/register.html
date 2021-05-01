@@ -9,8 +9,7 @@
         let card = document.getElementById("card-body");
 
         if (password === confirmed_password) {
-            let form = document.getElementById("form-registration");
-            form.submit();
+            return true;
         } else {
             let error_p = document.getElementById("error");
             if (!error_p) {
@@ -19,9 +18,10 @@
                 error_p.appendChild(text);
                 error_p.id = "error";
                 card.appendChild(error_p);
-            }else{
-                error_p.textContent="Le password non corrispondono";
+            } else {
+                error_p.textContent = "Le password non corrispondono";
             }
+            return false;
         }
     }
 </script>
@@ -31,8 +31,8 @@
         </div><!--col-4 vuota-->
         <div class="col-md-4">
             <div class="card text-center " id="card-login">
-                <div class="card-body" id="card-body">
-                    <form action="/register" method="post" id="form-registration">
+                <form action="/register" method="post" id="form-registration" onsubmit="return control_password()">
+                    <div class="card-body" id="card-body">
                         <h2>Crea il tuo account!</h2><br><br>
                         <label class="label">Email</label><br>
                         <input name="email" class="form-control" type="email" placeholder="Email" required><br>
@@ -45,12 +45,12 @@
                         {% if error %}
                         <p id="error">{{error}}</p>
                         {% endif %}
-                    </form>
-                </div>
-                <!--card-body-->
-                <div class="card-footer ">
-                    <button onclick="control_password()" class="btn btn-outline-info">Sign Up</button>
-                </div>
+                    </div>
+                    <!--card-body-->
+                    <div class="card-footer ">
+                        <button type="submit" class="btn btn-outline-info">Sign Up</button>
+                    </div>
+                </form>
                 <!--card-body-->
             </div>
             <!--card-->
