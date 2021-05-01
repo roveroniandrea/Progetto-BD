@@ -1,11 +1,30 @@
 
 {% block navbar %}
+
 <nav class="navbar navbar-light bg-light shadow-sm p-3 mb-5 bg-body rounded">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">
       <img src="/static/image/outline_lock_black_24dp.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
       Progetto Basi
     </a>
+    <span class="navbar-text">
+      {% if current_user.is_authenticated %}
+        <a href="/" class="btn btn-primary">Sign out</a>
+      {% else %}
+        <a id="button_login" href="/login" class="btn btn-primary">Login</a>
+        <a id="button_signup" href="/register" class="btn btn-primary">Sign up</a>
+      {% endif %}
+    </span>
   </div>
 </nav>
+
+<script>
+  function hideButtonsInLogin(){
+    if (window.location.pathname === "/login" || window.location.pathname === "/register"){
+      document.getElementById('button_login').hidden=true;
+      document.getElementById('button_signup').hidden=true;
+    }
+  }
+  hideButtonsInLogin();
+</script>
 {% endblock %}
