@@ -4,6 +4,7 @@ from flask_login import LoginManager
 from lib.UserAPI import loadUser
 from pages.home.home import homeBlueprint
 from pages.auth.auth import authBlueprint
+from pages.newForm.newForm import newFormBlueprint
 
 app = Flask(__name__)
 """The running app"""
@@ -26,6 +27,7 @@ loginManager.user_loader(load_user)
 
 app.register_blueprint(authBlueprint)
 app.register_blueprint(homeBlueprint)
+app.register_blueprint(newFormBlueprint)
 
 
 @app.errorhandler(404)
