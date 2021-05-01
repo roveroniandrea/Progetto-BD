@@ -14,6 +14,8 @@ def validateUser(email, password):
     user = None
     try:
         user = session.query(User).filter_by(email=email).one()
+    except SQLAlchemyError as e:
+        print("Error validating user: " + str(e))
     finally:
         session.close()
         if user:

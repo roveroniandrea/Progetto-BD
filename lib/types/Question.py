@@ -1,12 +1,12 @@
-from enum import Enum
+import enum
 
-from sqlalchemy import Column, Integer, ForeignKey, String, Boolean, ARRAY
+from sqlalchemy import Column, Integer, ForeignKey, String, Boolean, ARRAY, Enum
 from sqlalchemy.orm import relationship
 
 from lib.initDB import Base
 
 
-class QuestionTypeEnum(Enum):
+class QuestionTypeEnum(enum.Enum):
     text = 1
     single = 2
     multi = 3
@@ -20,7 +20,7 @@ class Question(Base):
     id = Column(Integer, primary_key=True)
     question = Column(String)
     required = Column(Boolean)
-    type = Column(Enum(QuestionTypeEnum))
+    type = Column(Enum(QuestionTypeEnum), default=QuestionTypeEnum.text)
     option = Column(ARRAY(String))
     form = Column(Integer, ForeignKey('forms.id'))
 
