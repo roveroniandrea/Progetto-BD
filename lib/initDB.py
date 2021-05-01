@@ -7,6 +7,8 @@ try:
     Base = declarative_base()
     """All DB types classes must extend this class"""
 
+    from lib.types import Form, Question, User
+
     Base.metadata.create_all(engine)
     Session = sessionmaker(bind=engine)  # creazione della factory
     """Factory for creating a session to the DB"""
