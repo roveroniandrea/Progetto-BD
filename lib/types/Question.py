@@ -12,6 +12,10 @@ class QuestionTypeEnum(enum.Enum):
     multi = 3
     date = 4
 
+    def __repr__(self):
+        """Used to print the QuestionTypeEnum class"""
+        return "QuestionTypeEnum"
+
 
 class Question(Base):
     """Type definition of the Questions table in DB"""
@@ -26,3 +30,7 @@ class Question(Base):
 
     formRel = relationship('Form', back_populates='questionsRel')
     """1:M relationship to the forms table"""
+
+    def __repr__(self):
+        """Used to print the Question object"""
+        return "Question: {id: '%s', question: '%s', required: '%s', type: '%s', option: '%s', form: '%s'}" % (self.id, self.question, self.required, self.type, self.option, self.form)
