@@ -16,6 +16,9 @@ class User(UserMixin, Base):
     ownedFormsRel = relationship("Form", back_populates="ownerUserRel")
     """1:M relationship to the forms table"""
 
+    accessesRel = relationship('Access', back_populates='userRel', lazy='dynamic')
+    """1:M relationship with accesses table"""
+
     def get_id(self):
         """Used by flask_login to identify the user. Returns the email aka the Primary Key"""
         return self.email

@@ -34,7 +34,7 @@ def handleLogin():
 @login_required
 def handleLogout():
     logout_user()
-    return redirect('/auth')
+    return redirect('/')
 
 
 @authBlueprint.route('/register', methods=['GET'])
