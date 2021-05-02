@@ -33,4 +33,5 @@ class Question(Base):
 
     def __repr__(self):
         """Used to print the Question object"""
-        return "Question: {id: '%s', question: '%s', required: '%s', type: '%s', option: '%s', form: '%s'}" % (self.id, self.question, self.required, self.type, self.option, self.form)
+        return "Question: {id: '%s', question: '%s', required: '%s', type: '%s', option: '%s', form: '%s'}" % (
+        self.id, self.question, self.required, self.type, self.option, self.form)
