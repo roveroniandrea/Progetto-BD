@@ -8,9 +8,9 @@ class Access(Base):
     """Type definition for the accesses table in DB"""
 
     __tablename__ = 'accesses'
-    user = Column(String, ForeignKey('users.email'))
-    form = Column(Integer, ForeignKey('forms.id'))
-    access_id = Column(Integer, primary_key=True)
+    user = Column(String, ForeignKey('users.email'), primary_key=True)
+    form = Column(Integer, ForeignKey('forms.id'), primary_key=True)
+    access_id = Column(Integer)
 
     userRel = relationship('User', back_populates='accessesRel')
     """1:M relationship with users table"""
