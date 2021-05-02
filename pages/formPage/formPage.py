@@ -9,7 +9,7 @@ formPageBlueprint = Blueprint('formPage', __name__)
 
 @formPageBlueprint.route('/q/<int:form_id>', methods=['GET'])
 @login_required
-def newForm(form_id):
+def accessForm(form_id):
     session = Session()
     user = session.merge(current_user)
     try:
@@ -27,3 +27,10 @@ def newForm(form_id):
         # TODO: revisione questionario
         session.close()
         return "TODO revisione"
+
+
+@formPageBlueprint.route('/q/<int:form_id>', methods=['POST'])
+@login_required
+def submitAnswer(form_id):
+    # TODO: submit risposte
+    return "TODO: submit"
