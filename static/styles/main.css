@@ -1,25 +1,24 @@
+
 .card-footer {
     background-color: #666666;
 }
 
-.rating {
-	font-weight: bold;
-	border-radius: 3px;
-	color: white;
-	display: inline-block;
-	padding: 5px;
+.progress{
+    margin-top: 3px;
+    height: 4px;
 }
 
-.weakPassword {
-	background-color: #EF1111;
+.bg-danger {
+	width: 33%;
 }
 
-.moderatePassword {
-	background-color: #FFC700;
+.bg-warning {
+	width: 66%;
 }
 
-.strongPassword {
-	background-color: #22BA3E;
+.bg-success {
+    background-color: #12cd12 !important;
+	width: 100%;
 }
 
 .btn-outline-info{
