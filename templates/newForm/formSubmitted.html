@@ -1,7 +1,11 @@
 {% extends "index.html" %}
 
 {% block pagebody %}
-    {% include "navbar.html" %}
+{% include "navbar.html" %}
+    {% if error %}
+    <h1>Errore, form non creato!</h1>
+    {% else %}
     <h1>Form submitted!</h1>
+    {% endif %}
     <a href="/">Torna alla home</a>
 {% endblock %}
