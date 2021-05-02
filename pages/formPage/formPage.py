@@ -15,10 +15,15 @@ def newForm(form_id):
     try:
         access = user.accessesRel.filter_by(form=form_id).one()
     except SQLAlchemyError:
+        session.close()
         return "Non autorizzato"
 
     if access.access_id is None:
-        return "OK"
+        # Risposta al questionario
+        template = render_template("formPage/answerForm.html", form=access.formRel)
+        session.close()
+        return template
     else:
         # TODO: revisione questionario
+        session.close()
         return "TODO revisione"

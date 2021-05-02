@@ -1,0 +1,15 @@
+{% extends "index.html" %}
+
+{% block pagebody %}
+{% include "navbar.html" %}
+<div class="container">
+    <h1>Rispondi a: {{form.title}}</h1>
+    <p>By {{form.owner}}</p>
+
+    {% for question in form.questionsRel %}
+    <h3>Domanda #{{loop.index}}:</h3>
+    <p>{{question.question}}</p>
+    <p>{{question.__repr__()}}</p>
+    {% endfor %}
+</div>
+{% endblock %}

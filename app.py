@@ -2,7 +2,7 @@ from flask import Flask, render_template, redirect
 from flask_login import LoginManager
 
 from lib.UserAPI import loadUser
-from pages.form.formPage import formPageBlueprint
+from pages.formPage.formPage import formPageBlueprint
 from pages.home.home import homeBlueprint
 from pages.auth.auth import authBlueprint
 from pages.newForm.newForm import newFormBlueprint
