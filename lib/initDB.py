@@ -7,7 +7,7 @@ try:
     Base = declarative_base()
     """All DB types classes must extend this class"""
 
-    from lib.types import Form, Question, User
+    from lib.types import Form, Question, User, Access
 
     Base.metadata.create_all(engine)
     Session = sessionmaker(bind=engine)  # creazione della factory

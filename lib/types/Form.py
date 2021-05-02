@@ -16,6 +16,9 @@ class Form(Base):
     questionsRel = relationship('Question', back_populates='formRel')
     """1:M relationship to the questions table"""
 
+    accessesRel = relationship('Access', back_populates='formRel')
+    """1:M relationship with accesses table"""
+
     def __repr__(self):
         """Used to print the Form object"""
         return "Form: {id: '%s', title: '%s', owner: '%s'}" % (self.id, self.title, self.owner)
