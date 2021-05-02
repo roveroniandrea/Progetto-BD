@@ -25,6 +25,7 @@
         }
     }
 </script>
+
 <div class="container">
     <div class="row">
         <div class="col-sm-4">
@@ -41,11 +42,14 @@
                         <label class="label">Email</label><br>
                         <input name="email" class="form-control" type="email" placeholder="Email" required><br>
                         <label class="label">Password</label><br>
+
                         <input name="password" id="first_password" class="form-control" type="password"
                                placeholder="Password" required><br>
                         <label class="label">Conferma Password</label><br>
                         <input name="confirmed_password" id="second_password" class="form-control" type="password"
-                               placeholder="Password" required><br><br>
+                               placeholder="Password" required><br>
+
+                        <div class="rating"></div>
                         {% if error %}
                         <p id="error">{{error}}</p>
                         {% endif %}
@@ -63,5 +67,75 @@
         </div><!--col-4 vuota-->
     </div><!--row-->
 </div><!--container-->
+
+<script>
+        let password = document.getElementById("first_password");
+        password.addEventListener('keyup', function(){
+        var passwordArray = password.value.split('');
+        var totalScore = 0;
+
+        var rating = {
+            number: 0,
+            lowercase: 0,
+            uppercase: 0,
+            specialChar: 0,
+            total: 0
+        }
+
+        let validation = {
+            isNumber: function(val){
+                var pattern = /^\d+$/;
+                return pattern.test(val);
+            },
+            isLowercase: function(val){
+                var pattern = /[a-z]/;
+                return pattern.test(val);
+            },
+            isUppercase: function(val){
+                var pattern = /[A-Z]/;
+                return pattern.test(val);
+            },
+            isSpecialChar: function(val){
+                var pattern = /^[!@#\$%\^\&*\)\(+=._-]+$/g;
+                return pattern.test(val);
+            }
+        }
+
+        for (var i=0; i<passwordArray.length; i++){
+            if (validation.isNumber(passwordArray[i])){
+                rating.number = 1;
+            } else if (validation.isLowercase(passwordArray[i])){
+                rating.lowercase = 1;
+            } else if (validation.isUppercase(passwordArray[i])){
+                rating.uppercase = 1;
+            } else if (validation.isSpecialChar(passwordArray[i])){
+                rating.specialChar = 1;
+            }
+        }
+
+        function assessTotalScore(){
+            var ratingElement = document.querySelector(".rating");
+            rating.total = rating.number + rating.lowercase + rating.uppercase + rating.specialChar;
+
+            if (rating.total === 1){
+                ratingElement.innerHTML = "Password Debole";
+                ratingElement.classList.remove("moderatePassword", "strongPassword");
+                ratingElement.classList.add("weakPassword");
+            } else if (rating.total === 2){
+                ratingElement.innerHTML = "Password Sicura";
+                ratingElement.classList.remove("weakPassword", "strongPassword");
+                ratingElement.classList.add("moderatePassword");
+            } else if (rating.total === 3){
+                ratingElement.innerHTML = "Password Forte";
+                ratingElement.classList.remove("weakPassword", "moderatePassword");
+                ratingElement.classList.add("strongPassword");
+            }
+        }
+
+        assessTotalScore();
+    });
+</script>
+
 {% endblock %}
+
 
