@@ -2,6 +2,26 @@
     background-color: #666666;
 }
 
+.rating {
+	font-weight: bold;
+	border-radius: 3px;
+	color: white;
+	display: inline-block;
+	padding: 5px;
+}
+
+.weakPassword {
+	background-color: #EF1111;
+}
+
+.moderatePassword {
+	background-color: #FFC700;
+}
+
+.strongPassword {
+	background-color: #22BA3E;
+}
+
 .btn-outline-info{
     border-color: white;
     color: white;
