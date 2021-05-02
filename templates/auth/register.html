@@ -14,23 +14,25 @@
                         <span>
                             Sei già un utente?
                             <a href="/login">Accedi</a>
-                        </span><br><br><br>
+                        </span>
+                        <br>
+                        <br>
+                        <br>
                         <label class="label">Email</label><br>
                         <input name="email" class="form-control" type="email" placeholder="Email" required><br>
                         <label class="label">Password</label><br>
                         <input name="password" id="first_password" class="form-control" type="password"
                                placeholder="Password" required>
-
-
                         <div class="progress">
-
                             <div class="progress-bar" role="progressbar" ></div>
                         </div>
                         <br>
 
-                        <label class="label">Conferma Password</label><br>
+                        <label class="label">Conferma Password</label>
+                        <br>
                         <input name="confirmed_password" id="second_password" class="form-control" type="password"
-                               placeholder="Password" required><br>
+                               placeholder="Password" required>
+                        <br>
                         {% if error %}
                         <p id="error">{{error}}</p>
                         {% endif %}
