@@ -1,9 +1,34 @@
 {% extends "index.html" %}
 
 {% block pagebody %}
-    {% include "navbar.html" %}
-    <div class="container">
-        <h1>Welcome back!</h1>
-        <a id="btn_newform" href="/new" class="btn btn-primary">create new form</a>
-    </div>
+{% include "navbar.html" %}
+<div class="container">
+    <h1>Welcome back!</h1>
+    <a id="btn_newform" href="/new" class="btn btn-primary">create new form</a>
+
+    <p>I miei form:</p>
+    <ul>
+        {% for form in my_forms %}
+        <li>{{ form.title }}</li>
+        {% endfor %}
+    </ul>
+
+    <p>Form da rispondere:</p>
+    <ul>
+        {% for form in unanswered_forms %}
+        <li>
+            <a href="/q/{{form.id}}">{{ form.title }} (creato da {{form.owner}})</a>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <p>Form completati:</p>
+    <ul>
+        {% for form in answered_forms %}
+        <li>
+            <a href="/q/{{form.id}}">{{ form.title }} (creato da {{form.owner}})</a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
 {% endblock %}
