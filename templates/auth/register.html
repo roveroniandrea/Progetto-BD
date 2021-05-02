@@ -66,14 +66,14 @@
             return false;
         }
     }
-        
+
 
     let password = document.getElementById("first_password");
     password.addEventListener('keyup', function () {
-        var passwordArray = password.value.split('');
-        var totalScore = 0;
+        let passwordArray = password.value.split('');
+        let totalScore = 0;
 
-        var rating = {
+        let rating = {
             number: 0,
             lowercase: 0,
             uppercase: 0,
@@ -83,24 +83,24 @@
 
         let validation = {
             isNumber: function (val) {
-                var pattern = /^\d+$/;
+                let pattern = /^\d+$/;
                 return pattern.test(val);
             },
             isLowercase: function (val) {
-                var pattern = /[a-z]/;
+                let pattern = /[a-z]/;
                 return pattern.test(val);
             },
             isUppercase: function (val) {
-                var pattern = /[A-Z]/;
+                let pattern = /[A-Z]/;
                 return pattern.test(val);
             },
             isSpecialChar: function (val) {
-                var pattern = /^[!@#\$%\^\&*\)\(+=._-]+$/g;
+                let pattern = /^[!@#\$%\^\&*\)\(+=._-]+$/g;
                 return pattern.test(val);
             }
         }
 
-        for (var i = 0; i < passwordArray.length; i++) {
+        for (let i = 0; i < passwordArray.length; i++) {
             if (validation.isNumber(passwordArray[i])) {
                 rating.number = 1;
             } else if (validation.isLowercase(passwordArray[i])) {
@@ -113,7 +113,7 @@
         }
 
         function assessTotalScore() {
-            var ratingElement = document.querySelector(".rating");
+            let ratingElement = document.querySelector(".rating");
             rating.total = rating.number + rating.lowercase + rating.uppercase + rating.specialChar;
 
             if (rating.total === 1) {
