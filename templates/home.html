@@ -2,10 +2,12 @@
 
 {% block pagebody %}
 {% include "navbar.html" %}
+
 <div class="container">
+
     <div class="row">
         <div class="col-lg">
-            <h1>Welcome back!</h1>
+            <h1>Welcome back {{user.email}}!</h1>
         </div>
     </div>
     <br>
@@ -14,65 +16,94 @@
             <a id="btn_newform" href="/new" class="btn btn-primary">Crea form</a>
         </div>
     </div>
-    <br>
-    <br>
-    <div class="row">
-        <div class="col-sm-3">
-            <h4>I tuoi form:</h4>
-        </div>
-    </div>
-    <div class="row">
-        {% for form in my_forms %}
-        <div class="col-sm-3">
-            <div class="card form-card" onclick="location.href='/q/{{form.id}}'">
-                <div class="card-body">
-                    <h5 class="card-title">{{form.title}}</h5>
-                </div>
-            </div>
-        </div>
-        {% endfor %}
-    </div>
-    <br>
-    <br>
-    <div class="row">
-        <div class="col-lg">
-            <h4>Form da rispondere:</h4>
-        </div>
-    </div>
-    <div class="row">
-        {% for form in unanswered_forms %}
-        <div class="col-sm-3">
-            <div class="card form-card" onclick="location.href='/q/{{form.id}}'">
-                <div class="card-body">
-                    <h5 class="card-title">{{form.title}}</h5>
-                    <p class="card-text">Creato da {{form.owner}}</p>
-                </div>
-            </div>
-        </div>
-        {% endfor %}
-    </div>
-    <br>
-    <br>
-    <div class="row">
-        <div class="col-lg">
-            <h4>Form completati:</h4>
-        </div>
-    </div>
-    <div class="row">
-        {% for form in answered_forms %}
-        <div class="col-sm-3">
-            <div class="card form-card" onclick="location.href='/q/{{form.id}}'">
-                <div class="card-body">
-                    <h5 class="card-title">{{form.title}}</h5>
-                    <p class="card-text">Creato da {{form.owner}}</p>
-                </div>
-            </div>
-        </div>
-        {% endfor %}
 
+    <br>
+    <br>
+    <div class="row">
+        <div class="card section-card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <br>
+                        <h4>Tuoi form:</h4>
+                        <br>
+                    </div>
+                </div>
+                <div class="row">
+                    {% for form in my_forms %}
+                    <div class="col-sm-3">
+                        <div class="card form-card" onclick="location.href='/q/{{form.id}}'">
+                            <div class="card-body">
+                                <h5 class="card-title">{{form.title}}</h5>
+                                <p class="card-text">Proprietario: {{form.owner}}</p>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="row ">
+        <div class="card section-card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg">
+                        <br>
+                        <h4>Form da rispondere:</h4>
+                        <br>
+                    </div>
+                </div>
+                <div class="row">
+                    {% for form in unanswered_forms %}
+                    <div class="col-sm-3">
+                        <div class="card form-card" onclick="location.href='/q/{{form.id}}'">
+                            <div class="card-body">
+                                <h5 class="card-title">{{form.title}}</h5>
+                                <p class="card-text">Proprietario: {{form.owner}}</p>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                    {% endfor %}
+                </div>
 
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+        <div class="card section-card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg">
+                        <br>
+                        <h4>Form completati:</h4>
+                        <br>
+                    </div>
+                </div>
+                <div class="row">
+                    {% for form in answered_forms %}
+                    <div class="col-sm-3">
+                        <div class="card form-card" onclick="location.href='/q/{{form.id}}'">
+                            <div class="card-body">
+                                <h5 class="card-title">{{form.title}}</h5>
+                                <p class="card-text">Proprietario: {{form.owner}}</p>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
     </div>
 
 
 </div>
+
 {% endblock %}
