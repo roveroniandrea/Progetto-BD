@@ -25,7 +25,7 @@ class Question(Base):
     question = Column(String)
     required = Column(Boolean)
     type = Column(Enum(QuestionTypeEnum), default=QuestionTypeEnum.text)
-    option = Column(ARRAY(String))
+    options = Column(ARRAY(String))
     form = Column(Integer, ForeignKey('forms.id'))
 
     formRel = relationship('Form', back_populates='questionsRel')
