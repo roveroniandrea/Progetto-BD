@@ -1,7 +1,15 @@
-from sqlalchemy import Column, String, ForeignKey, Integer
+from sqlalchemy import Column, String, ForeignKey, Integer, Sequence
 from sqlalchemy.orm import relationship
 
 from lib.initDB import Base
+
+access_id_sequence = Sequence('accesses_access_id_seq')
+"""Sequence for access_id column of table accesses"""
+
+
+def generateNextAccessId():
+    """Returns the next value in the accesses_access_id_seq sequence"""
+    return access_id_sequence.next_value()
 
 
 class Access(Base):

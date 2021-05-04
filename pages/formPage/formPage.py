@@ -1,8 +1,15 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request
 from flask_login import login_required, current_user
 from sqlalchemy.exc import SQLAlchemyError
 
 from lib.initDB import Session
+from lib.types.Access import generateNextAccessId
+from lib.types.Form import Form
+from lib.types.answers.Answer import Answer
+from lib.types.answers.DateAnswer import DateAnswer
+from lib.types.answers.MultipleAnswer import MultipleAnswer
+from lib.types.answers.OpenAnswer import OpenAnswer
+from lib.types.answers.SingleAnswer import SingleAnswer
 
 formPageBlueprint = Blueprint('formPage', __name__)
 
@@ -32,5 +39,41 @@ def accessForm(form_id):
 @formPageBlueprint.route('/q/<int:form_id>', methods=['POST'])
 @login_required
 def submitAnswer(form_id):
-    # TODO: submit risposte
-    return "TODO: submit"
+    session = Session()
+
+    # request.form = json.loads(
+    #    "{\"answers\":[{\"id\":3,\"type\":\"text\",\"answer\":\"lorem ipsum\"},{\"id\":4,\"type\":\"single\",\"answer\":\"Opt1\"}]}")
+
+    try:
+        form = session.query(Form).filter_by(id=form_id).one()
+        access = form.accessesRel.filter_by(user=current_user.email).one()
+        access.access_id = generateNextAccessId()
+
+        for submitted_answer in request.form['answers']:
+            question = form.questionsRel.filter_by(id=submitted_answer['id']).one()
+            answer = Answer()
+            answer.accessRel = access
+            answer.questionRel = question
+            answer_type = submitted_answer['type']
+
+            if answer_type == 'text':
+                typed_answer = OpenAnswer()
+            elif answer_type == 'single':
+                typed_answer = SingleAnswer()
+            elif answer_type == 'multiple':
+                typed_answer = MultipleAnswer()
+            elif answer_type == 'date':
+                typed_answer = DateAnswer()
+            else:
+                raise Exception('Answer type not valid')
+
+            typed_answer.answerRel = answer
+            typed_answer.answer = submitted_answer['answer']
+
+        session.commit()
+        session.close()
+        return "Risposte salvate"
+    except BaseException as e:
+        session.close()
+        print("Error submit answers: " + str(e))
+        return "Errore submit"

@@ -13,10 +13,10 @@ class Form(Base):
 
     ownerUserRel = relationship('User', back_populates='ownedFormsRel')
     """1:M relationship to the users table"""
-    questionsRel = relationship('Question', back_populates='formRel')
+    questionsRel = relationship('Question', back_populates='formRel', lazy='dynamic')
     """1:M relationship to the questions table"""
 
-    accessesRel = relationship('Access', back_populates='formRel')
+    accessesRel = relationship('Access', back_populates='formRel', lazy='dynamic')
     """1:M relationship with accesses table"""
 
     def __repr__(self):
