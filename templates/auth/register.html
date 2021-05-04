@@ -14,18 +14,25 @@
                         <span>
                             Sei già un utente?
                             <a href="/login">Accedi</a>
-                        </span><br><br><br>
+                        </span>
+                        <br>
+                        <br>
+                        <br>
                         <label class="label">Email</label><br>
                         <input name="email" class="form-control" type="email" placeholder="Email" required><br>
                         <label class="label">Password</label><br>
-
                         <input name="password" id="first_password" class="form-control" type="password"
-                               placeholder="Password" required><br>
-                        <label class="label">Conferma Password</label><br>
-                        <input name="confirmed_password" id="second_password" class="form-control" type="password"
-                               placeholder="Password" required><br>
+                               placeholder="Password" required>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" ></div>
+                        </div>
+                        <br>
 
-                        <div class="rating"></div>
+                        <label class="label">Conferma Password</label>
+                        <br>
+                        <input name="confirmed_password" id="second_password" class="form-control" type="password"
+                               placeholder="Password" required>
+                        <br>
                         {% if error %}
                         <p id="error">{{error}}</p>
                         {% endif %}
@@ -71,7 +78,7 @@
     let password = document.getElementById("first_password");
     password.addEventListener('keyup', function () {
         let passwordArray = password.value.split('');
-        let totalScore = 0;
+
 
         let rating = {
             number: 0,
@@ -113,21 +120,20 @@
         }
 
         function assessTotalScore() {
-            let ratingElement = document.querySelector(".rating");
+            let ratingElement = document.querySelector(".progress-bar");
             rating.total = rating.number + rating.lowercase + rating.uppercase + rating.specialChar;
 
             if (rating.total === 1) {
-                ratingElement.innerHTML = "Password Debole";
-                ratingElement.classList.remove("moderatePassword", "strongPassword");
-                ratingElement.classList.add("weakPassword");
+                ratingElement.classList.add("bg-danger");
+                ratingElement.classList.remove("bg-warning", "bg-success");
+
             } else if (rating.total === 2) {
-                ratingElement.innerHTML = "Password Sicura";
-                ratingElement.classList.remove("weakPassword", "strongPassword");
-                ratingElement.classList.add("moderatePassword");
+                ratingElement.classList.add("bg-warning");
+                ratingElement.classList.remove("bg-danger", "bg-success");
+
             } else if (rating.total === 3) {
-                ratingElement.innerHTML = "Password Forte";
-                ratingElement.classList.remove("weakPassword", "moderatePassword");
-                ratingElement.classList.add("strongPassword");
+                ratingElement.classList.add("bg-success");
+                ratingElement.classList.remove("bg-warning", "bg-danger");
             }
         }
 

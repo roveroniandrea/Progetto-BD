@@ -25,4 +25,4 @@ def home():
             answered_forms.append(form)
     session.close()
     return render_template('home.html', my_forms=my_forms, answered_forms=answered_forms,
-                           unanswered_forms=unanswered_forms)
+                           unanswered_forms=unanswered_forms, user=current_user)

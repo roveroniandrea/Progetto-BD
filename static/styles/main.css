@@ -1,37 +1,63 @@
+
 .card-footer {
     background-color: #666666;
 }
 
-.rating {
-	font-weight: bold;
-	border-radius: 3px;
-	color: white;
-	display: inline-block;
-	padding: 5px;
+.progress {
+    margin-top: 3px;
+    height: 4px;
 }
 
-.weakPassword {
-	background-color: #EF1111;
+.bg-danger {
+    width: 33%;
 }
 
-.moderatePassword {
-	background-color: #FFC700;
+.bg-warning {
+    width: 66%;
 }
 
-.strongPassword {
-	background-color: #22BA3E;
+.bg-success {
+    background-color: #12cd12 !important;
+    width: 100%;
 }
 
-.btn-outline-info{
+.btn-outline-info {
     border-color: white;
     color: white;
     align-self: center;
 }
 
-#error{
+#error {
     color: red;
 }
 
-.navbar-div{
+.navbar-div {
     min-height: 54px;
+}
+
+.form-card{
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+.form-card:hover {
+    border-color: #0D6EFD;
+}
+
+.section-card {
+    border-radius: 30px;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2), 0 1px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.shadowed-nav {
+    background-color: white;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2), 0 1px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.btn-more{
+    background-color: white;
+}
+
+.btn-more:hover{
+    background-color: #d4d4d4;
 }
