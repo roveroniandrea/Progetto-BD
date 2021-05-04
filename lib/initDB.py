@@ -8,6 +8,7 @@ try:
     """All DB types classes must extend this class"""
 
     from lib.types import Form, Question, User, Access
+    from lib.types.answers import Answer, DateAnswer, MultipleAnswer, OpenAnswer, SingleAnswer
 
     Base.metadata.create_all(engine)
     Session = sessionmaker(bind=engine)  # creazione della factory

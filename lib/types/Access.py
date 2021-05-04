@@ -18,6 +18,9 @@ class Access(Base):
     formRel = relationship('Form', back_populates='accessesRel')
     """1:M relationship with forms table"""
 
+    answersRel = relationship('Answer', back_populates='accessRel')
+    """1:M relationship with answers table"""
+
     def __repr__(self):
         """Used to print the Access object"""
         return "Access: {user: '%s', form: '%s', access_id: '%s'}" % (self.user, self.form, self.access_id)
