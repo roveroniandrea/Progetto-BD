@@ -20,7 +20,7 @@ def newForm():
 @login_required
 def submitNewForm():
     # Test inserimento in json
-    # request.form = json.loads("{\"title\":\"ennesima prova inserimento\",\"questions\":[{\"question\":\"Domanda 1\",\"required\":true,\"option\":[],\"type\":\"text\"},{\"question\":\"Domanda 2\",\"required\":true,\"option\":[\"Opt1\",\"Opt2\",\"Opt3\"],\"type\":\"single\"}],\"accesses\":[\"1@gmail.com\"]}")
+    # request.form = json.loads("{\"title\":\"ennesima prova inserimento\",\"questions\":[{\"question\":\"Domanda 1\",\"required\":true,\"option\":[],\"type\":\"text\"},{\"question\":\"Domanda 2\",\"required\":true,\"options\":[\"Opt1\",\"Opt2\",\"Opt3\"],\"type\":\"single\"}],\"accesses\":[\"1@gmail.com\"]}")
 
     session = Session()
     try:
@@ -33,9 +33,9 @@ def submitNewForm():
         for submitted_question in request.form['questions']:
             question = Question()
             question.formRel = form
-            question.question = submitted_question['question']
+            question.questions = submitted_question['question']
             question.type = submitted_question['type']
-            question.option = submitted_question['option']
+            question.options = submitted_question['options']
             question.required = submitted_question['required']
 
         access = Access()
