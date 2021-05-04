@@ -1,10 +1,53 @@
 {% extends "index.html" %}
 
 {% block pagebody %}
-    {% include "navbar.html" %}
-    <h1>New form</h1>
-
+{% include "navbar.html" %}
+<h1>New form</h1>
+<div id="container">
     <form action="/new" method="post">
         <button type="submit">Simula submit</button>
     </form>
+
+    <div id="radio_div" class="form-check">
+        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+        <input name="input" id="input_radio_1" class="form-control form-input" type="text" placeholder="Domanda"
+               required>
+
+        <button id="new_radio" onclick="deleteQuestion()">remove form</button>
+        <input class="color-input" />
+
+    </div>
+</div>
+
+
+<script>
+
+    var hueb = new Huebee('.color-input', {
+        // options
+        setBGColor: true,
+        saturations: 2,
+    });
+
+    function deleteQuestion() {
+        let question = document.getElementById("radio_div");
+        question.remove();
+    };
+    /*
+    document.getElementById('new_radio').onclick = function () {
+        let radiobox = document.getElementById("flexRadioDefault1");
+        let input = document.getElementById("input_radio_" + count_input);
+        console.log(input.id);
+        count_input++;
+
+        let new_input = input.cloneNode(true);
+        new_input.id = "input_radio_"+ count_input;
+
+        let newline = document.createElement('br');
+        let container = document.getElementById('container');
+
+        container.appendChild(radiobox.cloneNode(true));
+        container.appendChild(new_input);
+        container.appendChild(newline);*/
+</script>
+
 {% endblock %}
