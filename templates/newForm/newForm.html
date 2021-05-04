@@ -1,10 +1,319 @@
 {% extends "index.html" %}
 
 {% block pagebody %}
-    {% include "navbar.html" %}
-    <h1>New form</h1>
+{% include "navbar.html" %}
+
+
+<div class="container">
+    <div class="row row-form">
+        <div class="col-lg">
+            <h1>Creazione del nuovo form</h1>
+        </div>
+    </div>
+
+    <br>
+    <br>
+
+    <div class="row">
+        <div class="col-sm-2">
+        </div>
+        <div class="col-sm-8">
+            <div class="card section-card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm">
+                            <input name="title" class="form-control form-input form-title" type="text"
+                                   placeholder="Form senza titolo"
+                                   required>
+                        </div>
+                        <div class="col-sm col-palette">
+                            <button type="button" class="btn btn-palette rounded-circle btn-tooltip"
+                                    data-bs-placement="bottom" title="Personalizza Tema" id="persTema"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#staticBackdrop"><img src="/static/image/palette_black_24dp.svg">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+        </div>
+    </div>
+
+
+    <div class="row row-form" id="box_question_1">
+        <div class="col-sm-2">
+        </div>
+        <div class="col-lg-8">
+            <div class="card section-card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg">
+                            <input name="title" class="form-control form-input form-question" type="text"
+                                   placeholder="Domanda"
+                                   required><br>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg">
+                            <input name="title" class="form-control form-input" type="date" placeholder="Domanda"
+                                   required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <button type="button" id="question_1" onclick="delete_question(this.id)"
+                    class="btn btn-delete-question rounded-circle btn-tooltip"
+                    data-bs-placement="bottom" title="Add Option"><img
+                    src="/static/image/close_black_24dp.svg">
+            </button>
+        </div>
+    </div>
+
+    <div class="row row-form" id="box_question_2">
+        <div class="col-sm-2">
+        </div>
+        <div class="col-lg-8">
+            <div class="card section-card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg">
+                            <input name="title" class="form-control form-input form-question" type="text"
+                                   placeholder="Domanda"
+                                   required><br>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg">
+                            <textarea name="title" class="form-control form-input" type="date" placeholder="Risposta"
+                                      required></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <button type="button" id="question_2" onclick="delete_question(this.id)"
+                    class="btn btn-delete-question rounded-circle btn-tooltip"
+                    data-bs-placement="bottom" title="Add Option"><img
+                    src="/static/image/close_black_24dp.svg">
+            </button>
+        </div>
+    </div>
+
+    <div class="row row-form" id="box_question_3">
+        <div class="col-sm-2">
+        </div>
+        <div class="col-lg-8">
+            <div class="card section-card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-10">
+                            <input name="title" class="form-control form-input form-question" type="text"
+                                   placeholder="Domanda"
+                                   required><br>
+                        </div>
+                        <div class="col-md-2 col-add-option">
+                            <button type="button" class="btn btn-add-option rounded-circle btn-tooltip"
+                                    data-bs-placement="bottom" title="Add Option" id="new_radio"><img
+                                    src="/static/image/add_black_24dp.svg">
+                            </button>
+
+                        </div>
+                    </div>
+
+                    <div id="radio_div" class="form-check">
+                        <div class="row">
+                            <div class="col-sm-1 ">
+                                <input class="form-check-input radio-option" type="radio" name="flexRadioDefault"
+                                       id="flexRadioDefault_1" disabled>
+                            </div>
+                            <div class="col-sm-8">
+                                <input name="input" id="input_radio_1" class="form-control form-input"
+                                       type="text"
+                                       placeholder="Opzione" required>
+                            </div>
+                            <div class="col-sm-3 col-add-option">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <button type="button" id="question_3" onclick="delete_question(this.id)"
+                    class="btn btn-delete-question rounded-circle btn-tooltip"
+                    data-bs-placement="bottom" title="Add Option"><img
+                    src="/static/image/close_black_24dp.svg">
+            </button>
+        </div>
+    </div>
+
+    <div class="row row-form" id="box_question_4">
+        <div class="col-sm-2">
+        </div>
+        <div class="col-lg-8">
+            <div class="card section-card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-10">
+                            <input name="title" class="form-control form-input form-question" type="text"
+                                   placeholder="Domanda"
+                                   required><br>
+                        </div>
+                        <div class="col-md-2 col-add-option">
+                            <button type="button" class="btn btn-add-option rounded-circle btn-tooltip"
+                                    data-bs-placement="bottom" title="Add Option" id="new_check"><img
+                                    src="/static/image/add_black_24dp.svg">
+                            </button>
+
+                        </div>
+                    </div>
+
+                    <div id="check_div" class="form-check">
+                        <div class="row">
+                            <div class="col-sm-1 ">
+                                <input class="form-check-input radio-option" type="check" name="flexRadioDefault"
+                                       id="flexCheckDefault_1" disabled>
+                            </div>
+                            <div class="col-sm-8">
+                                <input name="input" id="input_check_1" class="form-control form-input"
+                                       type="text"
+                                       placeholder="Opzione" required>
+                            </div>
+                            <div class="col-sm-3 col-add-option">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <button type="button" id="question_4" onclick="delete_question(this.id)"
+                    class="btn btn-delete-question rounded-circle btn-tooltip"
+                    data-bs-placement="bottom" title="Add Option"><img
+                    src="/static/image/close_black_24dp.svg">
+            </button>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+         aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Seleziona il colore</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <md-color-picker color-margin="4" colors-per-row="5" color-size="50" default-tint="300"
+                                     fixedMinHeight="true" palette="material-full" use-spectrum-picker="true"
+                                     value="#FFFFFF" id="picker">
+                        <md-color-picker>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Salva</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <form action="/new" method="post">
         <button type="submit">Simula submit</button>
     </form>
+</div>
+<script>
+    var picker = document.getElementById('picker') // get the color picker element
+    function colorChanged(event) {
+        var color = event.detail[0] // get the color
+        picker.value = color // set the value of the picker to the selected color
+
+        document.body.style.backgroundColor = color;
+
+    }
+
+    picker.addEventListener('change', colorChanged) // add the event to the picker element
+
+
+    let count_input = 1;
+
+    document.getElementById('new_radio').onclick = function () {
+        count_input++;
+        let new_radio = `<div class="row row-option" id="row_option_radio_${count_input}">
+                            <div class="col-sm-1 col-radio">
+                                <input class="form-check-input radio-option" type="radio" name="flexRadioDefault"
+                                       id="flexRadioDefault_${count_input}" disabled>
+                            </div>
+                            <div class="col-sm-8">
+                                <input name="input" id="input_radio_${count_input}" class="form-control form-input"
+                                       type="text"
+                                       placeholder="Opzione" required>
+                            </div>
+                            <div class="col-sm-3 col-add-option">
+                                <button type="button" class="btn btn-delete rounded-circle btn-tooltip"
+                                        data-bs-placement="bottom" title="Delete Option" id="radio_${count_input}" onclick="delete_option(this.id)">
+                                    <img src="/static/image/close_black_24dp.svg">
+                                </button>
+
+                            </div>
+                        </div>`;
+
+
+        let container = document.getElementById('radio_div');
+        container.innerHTML += new_radio;
+
+        document.getElementById("input_radio_" + count_input).focus();
+
+    };
+
+
+    document.getElementById('new_check').onclick = function () {
+        count_input++;
+        let new_radio = `<div class="row row-option" id="row_option_check_${count_input}">
+                            <div class="col-sm-1 col-radio">
+                                <input class="form-check-input radio-option" type="check" name="flexRadioDefault"
+                                       id="flexCheckDefault_${count_input}" disabled>
+                            </div>
+                            <div class="col-sm-8">
+                                <input name="input" id="input_radio_${count_input}" class="form-control form-input"
+                                       type="text"
+                                       placeholder="Opzione" required>
+                            </div>
+                            <div class="col-sm-3 col-add-option">
+                                <button type="button" class="btn btn-delete rounded-circle btn-tooltip"
+                                        data-bs-placement="bottom" title="Delete Option" id="check_${count_input}" onclick="delete_option(this.id)">
+                                    <img src="/static/image/close_black_24dp.svg">
+                                </button>
+
+                            </div>
+                        </div>`;
+
+
+        let container = document.getElementById('check_div');
+        container.innerHTML += new_radio;
+
+        document.getElementById("input_check_" + count_input).focus();
+
+    };
+
+
+    function delete_option(id) {
+        console.log(id);
+        let row = document.getElementById("row_option_" + id);
+        row.remove();
+    }
+
+    function delete_question(id) {
+        console.log(id);
+        let row = document.getElementById("box_" + id);
+        row.remove();
+    }
+
+
+</script>
 {% endblock %}
