@@ -1,8 +1,11 @@
+let count_check_input = 0;
+let count_question = 0
+let count_radio_input = 0;
+
 //ADD newRadioOption
-let count_radio_input = 1;
-function newRadioOption() {
-        count_radio_input++;
-        let new_radio = `<div class="row row-option" id="row_option_radio_${count_radio_input}">
+function newRadioOption(question_number) {
+    count_radio_input++;
+    let new_radio = `<div class="row row-option" id="row_option_radio_${count_radio_input}">
                             <div class="col-sm-1 col-radio">
                                 <input class="form-check-input radio-option" type="radio" name="flexRadioDefault"
                                        id="flexRadioDefault_${count_radio_input}" disabled>
@@ -21,15 +24,15 @@ function newRadioOption() {
                             </div>
                         </div>`;
 
-        let container = document.getElementById('radio_div');
-        container.innerHTML += new_radio;
-        document.getElementById("input_radio_" + count_radio_input).focus();
+    let container = document.getElementById('radio_div_'+question_number);
+    container.innerHTML += new_radio;
+    document.getElementById("input_radio_" + count_radio_input).focus();
 }
 
-let count_check_input = 1;
-function newCheckOption() {
-        count_check_input++;
-        let new_check = `<div class="row row-option" id="row_option_check_${count_check_input}">
+
+function newCheckOption(question_number) {
+    count_check_input++;
+    let new_check = `<div class="row row-option" id="row_option_check_${count_check_input}">
                             <div class="col-sm-1 col-radio">
                                 <input class="form-check-input radio-option" type="check" name="flexRadioDefault"
                                        id="flexCheckDefault_${count_check_input}" disabled>
@@ -48,13 +51,12 @@ function newCheckOption() {
                             </div>
                         </div>`;
 
-        let container = document.getElementById('check_div');
-        container.innerHTML += new_check;
-        document.getElementById("input_check_" + count_check_input).focus();
+    let container = document.getElementById('check_div_'+question_number);
+    container.innerHTML += new_check;
+    document.getElementById("input_check_" + count_check_input).focus();
 }
 
 //NEW QUESTION
-let count_question=1
 function newQuestion(type) {
     let newQuestionRow;
     let boxForm = document.getElementById("boxForm");
@@ -96,6 +98,7 @@ function newQuestion(type) {
 
             break;
         case 'single':
+            count_radio_input++;
             newQuestionRow = `<div class="row row-form" id="box_question_${count_question}" data-question-type="${type}">
                                 <div class="col-sm-2">
                                 </div>
@@ -110,21 +113,21 @@ function newQuestion(type) {
                                                 </div>
                                                 <div class="col-md-2 col-add-option">
                                                     <button type="button" class="btn btn-add-option rounded-circle btn-tooltip"
-                                                            data-bs-placement="bottom" onclick="newRadioOption()" title="Add Option" id="new_radio"><img
+                                                            data-bs-placement="bottom" value="${count_question}" onclick="newRadioOption(this.value)" title="Add Option" id="new_radio"><img
                                                             src="/static/image/add_black_24dp.svg">
                                                     </button>
                             
                                                 </div>
                                             </div>
                             
-                                            <div id="radio_div" class="form-check" data-option="">
+                                            <div id="radio_div_${count_question}" class="form-check" data-option="">
                                                 <div class="row">
                                                     <div class="col-sm-1 ">
                                                         <input class="form-check-input radio-option" type="radio" name="flexRadioDefault"
-                                                               id="flexRadioDefault_${count_question}" disabled>
+                                                               id="flexRadioDefault_${count_radio_input}" disabled>
                                                     </div>
                                                     <div class="col-sm-8">
-                                                        <input name="option" id="input_radio_${count_question}" class="form-control form-input"
+                                                        <input name="option" id="input_radio_${count_radio_input}" class="form-control form-input"
                                                                type="text"
                                                                placeholder="Opzione" required>
                                                     </div>
@@ -148,7 +151,7 @@ function newQuestion(type) {
             boxForm.innerHTML += newQuestionRow;
             break;
         case 'multi':
-
+            count_check_input++;
             newQuestionRow = `<div class="row row-form" id="box_question_${count_question}" data-question-type="${type}">
                                 <div class="col-sm-2">
                                 </div>
@@ -163,21 +166,21 @@ function newQuestion(type) {
                                                 </div>
                                                 <div class="col-md-2 col-add-option">
                                                     <button type="button" class="btn btn-add-option rounded-circle btn-tooltip"
-                                                            data-bs-placement="bottom" onclick="newCheckOption()" title="Add Option" id="new_check"><img
+                                                            data-bs-placement="bottom" value="${count_question}" onclick="newCheckOption(this.value)" title="Add Option" id="new_check"><img
                                                             src="/static/image/add_black_24dp.svg">
                                                     </button>
                     
                                                 </div>
                                             </div>
                     
-                                            <div id="check_div" class="form-check" data-option="">
+                                            <div id="check_div_${count_question}" class="form-check" data-option="">
                                                 <div class="row">
                                                     <div class="col-sm-1 ">
                                                         <input class="form-check-input radio-option" type="check" name="flexRadioDefault"
-                                                               id="flexCheckDefault_${count_question}" disabled>
+                                                               id="flexCheckDefault_${count_check_input}" disabled>
                                                     </div>
                                                     <div class="col-sm-8">
-                                                        <input name="option" id="input_check_${count_question}" class="form-control form-input"
+                                                        <input name="option" id="input_check_${count_check_input}" class="form-control form-input"
                                                                type="text"
                                                                placeholder="Opzione" required>
                                                     </div>
