@@ -2,10 +2,16 @@ let count_check_input = 0;
 let count_question = 0
 let count_radio_input = 0;
 
+/**
+ * Returns the id of the container of the options. Used to add new options to a single/multi question
+ */
 function getOptionContainerId(question_number, isRadio) {
     return `${isRadio ? 'radio' : 'check'}_div_${question_number}`;
 }
 
+/**
+ * Adds a new option (checkbox/radio) to a question
+ */
 function addRadioCheckOption(question_number, isRadio) {
     if (isRadio)
         count_radio_input++;
@@ -39,7 +45,10 @@ function addRadioCheckOption(question_number, isRadio) {
     document.querySelector(`#${inputId}`).focus();
 }
 
-//NEW QUESTION
+
+/**
+ * Adds a new question to the form
+ */
 function newQuestion(type) {
     let rowId = `box_question_${count_question}`;
     let boxForm = document.querySelector('#boxForm');
@@ -186,7 +195,9 @@ function newQuestion(type) {
 }
 
 
-//DELETE ELEMENT
+/**
+ * Removes a generic element
+ */
 function delete_element(id) {
     let row = document.querySelector(`#${id}`);
     row.remove();
