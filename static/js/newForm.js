@@ -5,6 +5,8 @@ let count_radio_input = 0;
 //ADD newRadioOption
 function newRadioOption(question_number) {
     count_radio_input++;
+    let new_div = document.createElement("div");
+
     let new_radio = `<div class="row row-option" id="row_option_radio_${count_radio_input}">
                             <div class="col-sm-1 col-radio">
                                 <input class="form-check-input radio-option" type="radio" name="flexRadioDefault"
@@ -24,14 +26,18 @@ function newRadioOption(question_number) {
                             </div>
                         </div>`;
 
-    let container = document.getElementById('radio_div_'+question_number);
-    container.innerHTML += new_radio;
+    new_div.innerHTML = new_radio;
+
+    let container = document.getElementById('radio_div_' + question_number);
+    container.appendChild(new_div);
     document.getElementById("input_radio_" + count_radio_input).focus();
 }
 
 
 function newCheckOption(question_number) {
     count_check_input++;
+
+    let new_div = document.createElement("div");
     let new_check = `<div class="row row-option" id="row_option_check_${count_check_input}">
                             <div class="col-sm-1 col-radio">
                                 <input class="form-check-input radio-option" type="check" name="flexRadioDefault"
@@ -51,8 +57,9 @@ function newCheckOption(question_number) {
                             </div>
                         </div>`;
 
-    let container = document.getElementById('check_div_'+question_number);
-    container.innerHTML += new_check;
+    new_div.innerHTML = new_check;
+    let container = document.getElementById('check_div_' + question_number);
+    container.appendChild(new_div);
     document.getElementById("input_check_" + count_check_input).focus();
 }
 
@@ -60,6 +67,7 @@ function newCheckOption(question_number) {
 function newQuestion(type) {
     let newQuestionRow;
     let boxForm = document.getElementById("boxForm");
+    let new_div = document.createElement("div");
 
     switch (type) {
         case 'text':
@@ -92,10 +100,6 @@ function newQuestion(type) {
                                     </button>
                                 </div>
                             </div>`;
-
-            boxForm.innerHTML += newQuestionRow;
-
-
             break;
         case 'single':
             count_radio_input++;
@@ -146,9 +150,6 @@ function newQuestion(type) {
                                     </button>
                                 </div>
                             </div>`;
-
-
-            boxForm.innerHTML += newQuestionRow;
             break;
         case 'multi':
             count_check_input++;
@@ -199,8 +200,6 @@ function newQuestion(type) {
                                     </button>
                                 </div>
                             </div>`;
-
-            boxForm.innerHTML += newQuestionRow;
             break;
 
         case 'date':
@@ -234,12 +233,13 @@ function newQuestion(type) {
                                 </div>
                             </div>`;
 
-
-            boxForm.innerHTML += newQuestionRow;
             break;
         default:
             alert("Errore tipo di domanda inesistente")
     }
+    new_div.innerHTML = newQuestionRow;
+    boxForm.appendChild(new_div);
+
     count_question++;
 }
 
