@@ -53,17 +53,11 @@
             </div>
         </div>
     </div>
-
-
-    <button type="submit">Simula submit</button>
 </div>
 
 <script>
-    let dropdownElementList = [].slice.call(document.querySelectorAll('.dropdown-toggle'))
-    let dropdownList = dropdownElementList.map(function (dropdownToggleEl) {
-        return new bootstrap.Dropdown(dropdownToggleEl)
-    })
-
-
+    for (let el of document.querySelectorAll('.dropdown-toggle')) {
+        new bootstrap.Dropdown(el)
+    }
 </script>
 {% endblock %}
