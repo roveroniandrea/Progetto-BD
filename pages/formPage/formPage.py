@@ -60,7 +60,7 @@ def submitAnswer(form_id):
                 typed_answer = OpenAnswer()
             elif answer_type == 'single':
                 typed_answer = SingleAnswer()
-            elif answer_type == 'multiple':
+            elif answer_type == 'multi':
                 typed_answer = MultipleAnswer()
             elif answer_type == 'date':
                 typed_answer = DateAnswer()
