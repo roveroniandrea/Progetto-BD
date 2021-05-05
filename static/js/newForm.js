@@ -2,7 +2,7 @@ let count_check_input = 0;
 let count_question = 0
 let count_radio_input = 0;
 
-function getOptionContainerId(question_number, isRadio){
+function getOptionContainerId(question_number, isRadio) {
     return `${isRadio ? 'radio' : 'check'}_div_${question_number}`;
 }
 
@@ -45,6 +45,7 @@ function newQuestion(type) {
     let boxForm = document.querySelector('#boxForm');
     let new_div = document.createElement('div');
     let middleHTML = '';
+    let requiredQuestionCheckboxId = `required_q_${count_question}`;
 
     let questionTitleInputId = `input_title_${rowId}`;
 
@@ -61,6 +62,16 @@ function newQuestion(type) {
                                     <div class="card section-card">
                                         <div class="card-body">
                                             ${middle}
+                                            <div class="row">
+                                                <div class="col-lg">
+                                                    <div class="form-check" data-required="">
+                                                      <input class="form-check-input" type="checkbox" value="" id="${requiredQuestionCheckboxId}">
+                                                      <label class="form-check-label" for="${requiredQuestionCheckboxId}">
+                                                        Domanda obbligatoria
+                                                      </label>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
