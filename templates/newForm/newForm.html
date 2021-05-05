@@ -2,12 +2,62 @@
 
 {% block pagebody %}
 {% include "navbar.html" %}
-<h1>New form</h1>
-<div id="container">
-    <form action="/new" method="post">
-        <button type="submit">Simula submit</button>
-    </form>
+
+<div class="container" id="boxForm">
+
+
+    <!--Title row-->
+    <div class="row">
+        <div class="col-sm-2">
+        </div>
+        <div class="col-sm-8">
+            <div class="card section-card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm">
+                            <input name="title" class="form-control form-input form-title" type="text"
+                                   placeholder="Form senza titolo"
+                                   required>
+                        </div>
+                        <div class="col-sm col-palette">
+                            <button type="button" class="btn btn-palette rounded-circle btn-tooltip" id="persTema"
+                            ><img src="/static/image/palette_black_24dp.svg">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                    New Question
+                </button>
+
+                <ul class="dropdown-menu">
+                    <li>
+                        <button class="dropdown-item" onclick="newQuestion(this.value)" value="text">Aperta</button>
+                    </li>
+                    <li>
+                        <button class="dropdown-item" onclick="newQuestion(this.value)" value="single">Singola</button>
+                    </li>
+                    <li>
+                        <button class="dropdown-item" onclick="newQuestion(this.value)" value="multi">Multipla</button>
+                    </li>
+                    <li>
+                        <button class="dropdown-item" onclick="newQuestion(this.value)" value="date">date</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
 </div>
 
+<script>
+    for (let el of document.querySelectorAll('.dropdown-toggle')) {
+        new bootstrap.Dropdown(el)
+    }
+</script>
 {% endblock %}

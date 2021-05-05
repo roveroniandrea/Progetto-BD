@@ -1,8 +1,18 @@
+.btn-outline-info {
+    border-color: white;
+    color: white;
+    align-self: center;
+}
 
+#error {
+    color: red;
+}
 .card-footer {
     background-color: #666666;
 }
+/*---------------------------------------------------*/
 
+/*Password metter*/
 .progress {
     margin-top: 3px;
     height: 4px;
@@ -21,21 +31,16 @@
     width: 100%;
 }
 
-.btn-outline-info {
-    border-color: white;
-    color: white;
-    align-self: center;
-}
 
-#error {
-    color: red;
-}
+
+
 
 .navbar-div {
     min-height: 54px;
 }
 
-.form-card{
+
+.form-card {
     border-radius: 30px;
     cursor: pointer;
 }
@@ -54,10 +59,83 @@
     box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2), 0 1px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.btn-more{
+.btn-delete-question{
     background-color: white;
+    height: 50px;
+    width: 50px;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2), 0 1px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.btn-more:hover{
-    background-color: #d4d4d4;
+.btn-delete-question:hover {
+    background-color: #eaeaea;
+}
+
+.btn-palette {
+    background-color: white;
+    height: 50px;
+    width: 50px;
+}
+
+.btn-delete {
+    background-color: white;
+    height: 50px;
+    width: 50px;
+    margin-top: -10px;
+}
+
+.btn-delete:hover {
+    background-color: #eaeaea;
+}
+
+.btn-delete:hover {
+    background-color: #eaeaea;
+}
+
+.btn-add-option {
+    background-color: white;
+    height: 50px;
+    width: 50px;
+}
+
+.btn-add-option:hover {
+    background-color: #eaeaea;
+}
+
+.btn-palette:hover {
+    background-color: #eaeaea;
+}
+
+.col-palette {
+    text-align: right;
+}
+
+.col-add-option {
+    text-align: right;
+}
+
+.radio-option {
+    float: right !important;
+    margin-top: 10px;
+}
+
+.row-form {
+    padding-top: 20px;
+}
+
+.form-input {
+    border: transparent;
+}
+
+.form-title {
+    font-weight: bold;
+    font-size: x-large;
+}
+
+.form-question {
+    font-weight: bold;
+    font-size: large;
+}
+
+.row-option {
+    margin-top: 10px;
 }
