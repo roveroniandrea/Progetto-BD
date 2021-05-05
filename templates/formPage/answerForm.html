@@ -11,5 +11,9 @@
     <p>{{question.question}}</p>
     <p>{{question.__repr__()}}</p>
     {% endfor %}
+
+    <form action="/q/{{form.id}}" method="post">
+        <button type="submit">Simula submit</button>
+    </form>
 </div>
 {% endblock %}

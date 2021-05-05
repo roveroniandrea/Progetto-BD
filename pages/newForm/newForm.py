@@ -29,6 +29,7 @@ def submitNewForm():
         form.ownerUserRel = user
         form.owner = user.email
         form.title = request.form['title']
+        form.color = request.form['color']
         session.add(form)
         for submitted_question in request.form['questions']:
             question = Question()
