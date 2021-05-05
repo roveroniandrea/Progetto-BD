@@ -80,13 +80,25 @@ function newQuestion(type) {
                                             <div class="row">
                                                 <div class="col-lg">
                                                     <input data-question="" class="form-control form-input form-question" type="text"
-                                                           placeholder="Domanda" required><br>
+                                                           placeholder="Domanda" required>
+                                                           <br>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg">
                                                 <textarea class="form-control form-input" type="text" placeholder="Risposta"
                                                           disabled></textarea>
+                                                          <br>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg">
+                                                    <div class="form-check" data-required="">
+                                                      <input class="form-check-input" type="checkbox" value="" id="required_q_${count_question}">
+                                                      <label class="form-check-label" for="required_q_${count_question}">
+                                                        Domanda obbligatoria
+                                                      </label>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -113,7 +125,8 @@ function newQuestion(type) {
                                                 <div class="col-lg-10">
                                                     <input data-question="" class="form-control form-input form-question" type="text"
                                                            placeholder="Domanda"
-                                                           required><br>
+                                                           required>
+                                                           <br>
                                                 </div>
                                                 <div class="col-md-2 col-add-option">
                                                     <button type="button" class="btn btn-add-option rounded-circle btn-tooltip"
@@ -129,6 +142,7 @@ function newQuestion(type) {
                                                     <div class="col-sm-1 ">
                                                         <input class="form-check-input radio-option" type="radio" name="flexRadioDefault"
                                                                id="flexRadioDefault_${count_radio_input}" disabled>
+                                                               
                                                     </div>
                                                     <div class="col-sm-8">
                                                         <input name="option" id="input_radio_${count_radio_input}" class="form-control form-input"
@@ -136,6 +150,18 @@ function newQuestion(type) {
                                                                placeholder="Opzione" required>
                                                     </div>
                                                     <div class="col-sm-3 col-add-option">
+                                                    </div>
+                                                    
+                                                </div>
+                                                <br>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg">
+                                                    <div class="form-check" data-required="">
+                                                      <input class="form-check-input" type="checkbox" value="" id="required_q_${count_question}">
+                                                      <label class="form-check-label" for="required_q_${count_question}">
+                                                        Domanda obbligatoria
+                                                      </label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -163,7 +189,8 @@ function newQuestion(type) {
                                                 <div class="col-lg-10">
                                                     <input data-question="" class="form-control form-input form-question" type="text"
                                                            placeholder="Domanda"
-                                                           required><br>
+                                                           required>
+                                                           <br>
                                                 </div>
                                                 <div class="col-md-2 col-add-option">
                                                     <button type="button" class="btn btn-add-option rounded-circle btn-tooltip"
@@ -179,6 +206,7 @@ function newQuestion(type) {
                                                     <div class="col-sm-1 ">
                                                         <input class="form-check-input radio-option" type="check" name="flexRadioDefault"
                                                                id="flexCheckDefault_${count_check_input}" disabled>
+                                                               
                                                     </div>
                                                     <div class="col-sm-8">
                                                         <input name="option" id="input_check_${count_check_input}" class="form-control form-input"
@@ -186,6 +214,17 @@ function newQuestion(type) {
                                                                placeholder="Opzione" required>
                                                     </div>
                                                     <div class="col-sm-3 col-add-option">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-lg">
+                                                    <div class="form-check" data-required="">
+                                                      <input class="form-check-input" type="checkbox" value="" id="required_q_${count_question}">
+                                                      <label class="form-check-label" for="required_q_${count_question}">
+                                                        Domanda obbligatoria
+                                                      </label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -213,12 +252,24 @@ function newQuestion(type) {
                                                 <div class="col-lg">
                                                     <input data-question="" class="form-control form-input form-question" type="text"
                                                            placeholder="Domanda"
-                                                           required><br>
+                                                           required>
+                                                           <br>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg">
                                                     <input class="form-control form-input" type="date" placeholder="Domanda" disabled>
+                                                    <br>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg">
+                                                    <div class="form-check" data-required="">
+                                                      <input class="form-check-input" type="checkbox" value="" id="required_q_${count_question}">
+                                                      <label class="form-check-label" for="required_q_${count_question}">
+                                                        Domanda obbligatoria
+                                                      </label>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
