@@ -1,8 +1,18 @@
+.btn-outline-info {
+    border-color: white;
+    color: white;
+    align-self: center;
+}
 
+#error {
+    color: red;
+}
 .card-footer {
     background-color: #666666;
 }
+/*---------------------------------------------------*/
 
+/*Password metter*/
 .progress {
     margin-top: 3px;
     height: 4px;
@@ -21,15 +31,9 @@
     width: 100%;
 }
 
-.btn-outline-info {
-    border-color: white;
-    color: white;
-    align-self: center;
-}
 
-#error {
-    color: red;
-}
+
+
 
 .navbar-div {
     min-height: 54px;
