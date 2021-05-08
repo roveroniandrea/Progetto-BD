@@ -38,17 +38,17 @@ function addRadioCheckOption(question_number, isRadio) {
     else
         count_check_input++;
 
-    let idSuffix = isRadio ? `radio_${count_radio_input}` : `check_${count_check_input}`;
-    let inputId = `input_${idSuffix}`;
+    const idSuffix = isRadio ? `radio_${count_radio_input}` : `check_${count_check_input}`;
+    const inputId = `input_${idSuffix}`;
 
-    let new_div = document.createElement('div');
+    const new_div = document.createElement('div');
     new_div.classList.add('row', 'row-option');
     new_div.id = `row_option_${idSuffix}`;
 
 
     new_div.innerHTML = getOptionHTML(isRadio, inputId, new_div.id);
 
-    let container = document.querySelector(`#${getOptionContainerId(question_number, isRadio)}`);
+    const container = document.querySelector(`#${getOptionContainerId(question_number, isRadio)}`);
     container.appendChild(new_div);
     document.querySelector(`#${inputId}`).focus();
 }
@@ -58,21 +58,21 @@ function addRadioCheckOption(question_number, isRadio) {
  * Adds a new question to the form
  */
 function newQuestion(type) {
-    let rowId = `box_question_${count_question}`;
-    let boxForm = document.querySelector('#boxForm');
-    let new_div = document.createElement('div');
+    const rowId = `box_question_${count_question}`;
+    const boxForm = document.querySelector('#boxForm');
+    const new_div = document.createElement('div');
     let middleHTML = '';
-    let requiredQuestionCheckboxId = `required_q_${count_question}`;
+    const requiredQuestionCheckboxId = `required_q_${count_question}`;
 
-    let questionTitleInputId = `input_title_${rowId}`;
+    const questionTitleInputId = `input_title_${rowId}`;
 
-    let questionTitleInputHTML = `
+    const questionTitleInputHTML = `
         <div class="col-lg">
             <input data-question="" class="form-control form-input form-question" type="text"
                    placeholder="Domanda" required id="${questionTitleInputId}"><br>
         </div>`;
 
-    let assembleNewQuestionHTML = (middle) => `
+    const assembleNewQuestionHTML = (middle) => `
                                 <div class="col-sm-2">
                                 </div>
                                 <div class="col-lg-8">
@@ -187,7 +187,7 @@ function newQuestion(type) {
  * Removes a generic element
  */
 function delete_element(id) {
-    let row = document.querySelector(`#${id}`);
+    const row = document.querySelector(`#${id}`);
     row.remove();
 }
 
