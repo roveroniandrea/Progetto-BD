@@ -3,7 +3,7 @@
 {% block pagebody %}
 {% include "navbar.html" %}
 
-<form onsubmit="return submitForm()">
+<form onsubmit="return submitForm()" id="newForm">
     <div class="container" id="boxForm">
         <!--Title row-->
         <div class="row">
@@ -59,7 +59,8 @@
 </form>
 <script>
     for (let el of document.querySelectorAll('.dropdown-toggle')) {
-        new bootstrap.Dropdown(el)
+        new bootstrap.Dropdown(el);
     }
 </script>
+<script src="/static/js/newForm.js"></script>
 {% endblock %}

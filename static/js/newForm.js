@@ -2,6 +2,26 @@ let count_check_input = 0;
 let count_question = 0
 let count_radio_input = 0;
 
+/** If true, the user is asked if he wants to leave the page*/
+let askLeaveConfirmation = false;
+
+// Checking if the user enters some data
+document.querySelector('#newForm').addEventListener('change', () => {
+    askLeaveConfirmation = true;
+});
+
+// Asking the user id wants to navigate away and losing his changes
+window.onbeforeunload = (e) => {
+    if (askLeaveConfirmation) {
+        console.log('prevented');
+        e.preventDefault();
+        e.returnValue = '';
+    }
+    else{
+        delete e['returnValue'];
+    }
+}
+
 /**
  * Returns the id of the container of the options. Used to add new options to a single/multi question
  */
@@ -215,6 +235,9 @@ function submitForm() {
         }
     });
 
+    //Don't ask leave confirmation
+    askLeaveConfirmation = false;
+
     //Creting the fake form
     const fakeForm = document.createElement('form');
     fakeForm.action = '/new';
@@ -227,5 +250,4 @@ function submitForm() {
     fakeForm.submit();
     //This form should not submit
     return false;
-
 }
