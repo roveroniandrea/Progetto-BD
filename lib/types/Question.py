@@ -12,6 +12,17 @@ class QuestionTypeEnum(enum.Enum):
     multi = 3
     date = 4
 
+    def asString(self):
+        """Used by the client to check which type has the question"""
+        if self == QuestionTypeEnum.text:
+            return 'text'
+        if self == QuestionTypeEnum.single:
+            return 'single'
+        if self == QuestionTypeEnum.multi:
+            return 'multi'
+        if self == QuestionTypeEnum.date:
+            return 'date'
+
     def __repr__(self):
         """Used to print the QuestionTypeEnum class"""
         return "QuestionTypeEnum"
@@ -31,7 +42,7 @@ class Question(Base):
     formRel = relationship('Form', back_populates='questionsRel')
     """1:M relationship to the forms table"""
 
-    answersRel = relationship('Answer', back_populates='questionRel')
+    answersRel = relationship('Answer', back_populates='questionRel', lazy='dynamic')
     """1:M relationship with answers table"""
 
     def __repr__(self):
