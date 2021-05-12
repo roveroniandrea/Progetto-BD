@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, redirect
 from flask_login import login_required, current_user
 from sqlalchemy.exc import SQLAlchemyError
 
@@ -79,7 +79,7 @@ def submitAnswer(form_id):
         return "Errore submit"
 
 
-@formPageBlueprint.route('/d/<int:form_id>', methods=['POST'])
+@formPageBlueprint.route('/q/<int:form_id>/delete', methods=['POST'])
 @login_required
 def deleteForm(form_id):
     session = Session()
@@ -104,7 +104,8 @@ def deleteForm(form_id):
 
             session.commit()
             session.close()
-            return "Form Deleted"
+            #print("form deleted")
+            return redirect('/')
         else:
             session.close()
             return "Unauthorized Access"
