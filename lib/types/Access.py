@@ -26,7 +26,7 @@ class Access(Base):
     formRel = relationship('Form', back_populates='accessesRel')
     """1:M relationship with forms table"""
 
-    answersRel = relationship('Answer', back_populates='accessRel')
+    answersRel = relationship('Answer', back_populates='accessRel', lazy="dynamic")
     """1:M relationship with answers table"""
 
     def __repr__(self):
