@@ -106,6 +106,7 @@ def deleteForm(form_id):
             session.close()
             return "Form Deleted"
         else:
+            session.close()
             return "Unauthorized Access"
     except SQLAlchemyError as e:
         session.close()
