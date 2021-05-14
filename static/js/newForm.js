@@ -2,12 +2,52 @@ let count_check_input = 0;
 let count_question = 0
 let count_radio_input = 0;
 
+/** If true, the user is asked if he wants to leave the page*/
+let askLeaveConfirmation = false;
+
+// Checking if the user enters some data
+document.querySelector('#newForm').addEventListener('change', () => {
+    askLeaveConfirmation = true;
+});
+
+// Asking the user id wants to navigate away and losing his changes
+window.onbeforeunload = (e) => {
+    if (askLeaveConfirmation) {
+        console.log('prevented');
+        e.preventDefault();
+        e.returnValue = '';
+    }
+    else{
+        delete e['returnValue'];
+    }
+}
+
 /**
  * Returns the id of the container of the options. Used to add new options to a single/multi question
  */
 function getOptionContainerId(question_number, isRadio) {
     return `${isRadio ? 'radio' : 'check'}_div_${question_number}`;
 }
+
+/**
+ * Returns the HTML to create an option row. It can be a radio or chackbox, have an optional id and an optional remove button
+ */
+function getOptionHTML(isRadio, inputId, removeId) {
+    return `
+            <div class="col-sm-1 col-radio">
+                <input class="form-check-input radio-option" type="${isRadio ? 'radio' : 'check'}" disabled>
+            </div>
+            <div class="col-sm-8">
+                <input class="form-control form-input" type="text" placeholder="Opzione" required id="${inputId || undefined}" data-options-option="">
+            </div>
+            <div class="col-sm-3 col-add-option">
+                ${removeId ? `<button type="button" class="btn btn-delete rounded-circle btn-tooltip"
+                        data-bs-placement="bottom" title="Delete Option" onclick="delete_element('${removeId}')">
+                        <img src="/static/image/close_black_24dp.svg" alt="">
+                </button>` : ''}
+            </div>`
+}
+
 
 /**
  * Adds a new option (checkbox/radio) to a question
@@ -18,29 +58,17 @@ function addRadioCheckOption(question_number, isRadio) {
     else
         count_check_input++;
 
-    let idSuffix = isRadio ? `radio_${count_radio_input}` : `check_${count_check_input}`;
-    let inputId = `input_${idSuffix}`;
+    const idSuffix = isRadio ? `radio_${count_radio_input}` : `check_${count_check_input}`;
+    const inputId = `input_${idSuffix}`;
 
-    let new_div = document.createElement('div');
+    const new_div = document.createElement('div');
     new_div.classList.add('row', 'row-option');
     new_div.id = `row_option_${idSuffix}`;
 
 
-    new_div.innerHTML = `
-            <div class="col-sm-1 col-radio">
-                <input class="form-check-input radio-option" type="${isRadio ? 'radio' : 'check'}" disabled>
-            </div>
-            <div class="col-sm-8">
-                <input class="form-control form-input" type="text" placeholder="Opzione" required id="${inputId}">
-            </div>
-            <div class="col-sm-3 col-add-option">
-                <button type="button" class="btn btn-delete rounded-circle btn-tooltip"
-                        data-bs-placement="bottom" title="Delete Option" onclick="delete_element('${new_div.id}')">
-                        <img src="/static/image/close_black_24dp.svg" alt="">
-                </button>
-            </div>`;
+    new_div.innerHTML = getOptionHTML(isRadio, inputId, new_div.id);
 
-    let container = document.querySelector(`#${getOptionContainerId(question_number, isRadio)}`);
+    const container = document.querySelector(`#${getOptionContainerId(question_number, isRadio)}`);
     container.appendChild(new_div);
     document.querySelector(`#${inputId}`).focus();
 }
@@ -50,21 +78,21 @@ function addRadioCheckOption(question_number, isRadio) {
  * Adds a new question to the form
  */
 function newQuestion(type) {
-    let rowId = `box_question_${count_question}`;
-    let boxForm = document.querySelector('#boxForm');
-    let new_div = document.createElement('div');
+    const rowId = `box_question_${count_question}`;
+    const boxForm = document.querySelector('#boxForm');
+    const new_div = document.createElement('div');
     let middleHTML = '';
-    let requiredQuestionCheckboxId = `required_q_${count_question}`;
+    const requiredQuestionCheckboxId = `required_q_${count_question}`;
 
-    let questionTitleInputId = `input_title_${rowId}`;
+    const questionTitleInputId = `input_title_${rowId}`;
 
-    let questionTitleInputHTML = `
+    const questionTitleInputHTML = `
         <div class="col-lg">
             <input data-question="" class="form-control form-input form-question" type="text"
                    placeholder="Domanda" required id="${questionTitleInputId}"><br>
         </div>`;
 
-    let assembleNewQuestionHTML = (middle) => `
+    const assembleNewQuestionHTML = (middle) => `
                                 <div class="col-sm-2">
                                 </div>
                                 <div class="col-lg-8">
@@ -73,8 +101,8 @@ function newQuestion(type) {
                                             ${middle}
                                             <div class="row">
                                                 <div class="col-lg">
-                                                    <div class="form-check" data-required="">
-                                                      <input class="form-check-input" type="checkbox" value="" id="${requiredQuestionCheckboxId}">
+                                                    <div class="form-check">
+                                                      <input class="form-check-input" type="checkbox" value="" id="${requiredQuestionCheckboxId}" data-required="">
                                                       <label class="form-check-label" for="${requiredQuestionCheckboxId}">
                                                         Domanda obbligatoria
                                                       </label>
@@ -117,26 +145,16 @@ function newQuestion(type) {
                     ${questionTitleInputHTML}
                     <div class="col-md-2 col-add-option">
                         <button type="button" class="btn btn-add-option rounded-circle btn-tooltip"
-                                data-bs-placement="bottom" value="${count_question}" onclick="addRadioCheckOption(this.value, true)" title="Add Option" id="new_radio"><img
+                                data-bs-placement="bottom" value="${count_question}" onclick="addRadioCheckOption(this.value, true)" title="Add Option"><img
                                 src="/static/image/add_black_24dp.svg" alt="">
                         </button>
     
                     </div>
                 </div>
     
-                <div id="${getOptionContainerId(count_question, true)}" class="form-check" data-option="">
+                <div id="${getOptionContainerId(count_question, true)}" class="form-check" data-options="">
                     <div class="row">
-                        <div class="col-sm-1 ">
-                            <input class="form-check-input radio-option" type="radio" name="flexRadioDefault"
-                                   id="flexRadioDefault_${count_radio_input}" disabled>
-                        </div>
-                        <div class="col-sm-8">
-                            <input name="option" id="input_radio_${count_radio_input}" class="form-control form-input"
-                                   type="text"
-                                   placeholder="Opzione" required>
-                        </div>
-                        <div class="col-sm-3 col-add-option">
-                        </div>
+                        ${getOptionHTML(true)}
                     </div>
                 </div>`;
             break;
@@ -147,26 +165,16 @@ function newQuestion(type) {
                     ${questionTitleInputHTML}
                     <div class="col-md-2 col-add-option">
                         <button type="button" class="btn btn-add-option rounded-circle btn-tooltip"
-                                data-bs-placement="bottom" value="${count_question}" onclick="addRadioCheckOption(this.value, false)" title="Add Option" id="new_check"><img
+                                data-bs-placement="bottom" value="${count_question}" onclick="addRadioCheckOption(this.value, false)" title="Add Option"><img
                                 src="/static/image/add_black_24dp.svg" alt="">
                         </button>
                 
                     </div>
                 </div>
                 
-                <div id="${getOptionContainerId(count_question, false)}" class="form-check" data-option="">
+                <div id="${getOptionContainerId(count_question, false)}" class="form-check" data-options="">
                     <div class="row">
-                        <div class="col-sm-1 ">
-                            <input class="form-check-input radio-option" type="check" name="flexRadioDefault"
-                                   id="flexCheckDefault_${count_check_input}" disabled>
-                        </div>
-                        <div class="col-sm-8">
-                            <input name="option" id="input_check_${count_check_input}" class="form-control form-input"
-                                   type="text"
-                                   placeholder="Opzione" required>
-                        </div>
-                        <div class="col-sm-3 col-add-option">
-                        </div>
+                        ${getOptionHTML(false)}
                     </div>
                 </div>`;
             break;
@@ -199,6 +207,47 @@ function newQuestion(type) {
  * Removes a generic element
  */
 function delete_element(id) {
-    let row = document.querySelector(`#${id}`);
+    const row = document.querySelector(`#${id}`);
     row.remove();
+}
+
+/**
+ * Submits the form. Uses a fake form to send the data and redirecting to the resulting page
+ */
+function submitForm() {
+    const mappedData = {
+        title: document.querySelector('#formTitle').value,
+        questions: [],
+        accesses: [], //TODO (se stesso viene già incluso lato server)
+        color: 'lightcoral' //TODO
+    }
+    const questionsBox = [...document.querySelectorAll('[data-question-type]')];
+
+    mappedData.questions = questionsBox.map(questionBox => {
+        const questionType = questionBox.getAttribute('data-question-type');
+        const options = questionType === 'single' || questionType === 'multi' ?
+            [...questionBox.querySelector('[data-options]').querySelectorAll('[data-options-option]')].map(q => q.value) : null
+        return {
+            options,
+            question: questionBox.querySelector('[data-question]').value,
+            required: questionBox.querySelector('[data-required]').checked,
+            type: questionType,
+        }
+    });
+
+    //Don't ask leave confirmation
+    askLeaveConfirmation = false;
+
+    //Creting the fake form
+    const fakeForm = document.createElement('form');
+    fakeForm.action = '/new';
+    fakeForm.method = 'POST';
+    const fakeInput = document.createElement('input');
+    fakeInput.value = JSON.stringify(mappedData);
+    fakeInput.name = 'data';
+    document.body.appendChild(fakeForm);
+    fakeForm.appendChild(fakeInput);
+    fakeForm.submit();
+    //This form should not submit
+    return false;
 }
