@@ -13,7 +13,7 @@ class User(UserMixin, Base):
     salt = Column(LargeBinary)
     digest = Column(String)
 
-    ownedFormsRel = relationship("Form", back_populates="ownerUserRel")
+    ownedFormsRel = relationship("Form", back_populates="ownerUserRel", lazy='dynamic')
     """1:M relationship to the forms table"""
 
     accessesRel = relationship('Access', back_populates='userRel', lazy='dynamic')

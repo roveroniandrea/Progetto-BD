@@ -18,16 +18,16 @@ class Answer(Base):
     questionRel = relationship('Question', back_populates='answersRel')
     """1:M relationship with questions table"""
 
-    openAnswerRel = relationship('OpenAnswer', back_populates='answerRel')
+    openAnswerRel = relationship('OpenAnswer', back_populates='answerRel', lazy='dynamic')
     """1:1 relationship with open_answers table"""
 
-    singleAnswerRel = relationship('SingleAnswer', back_populates='answerRel')
+    singleAnswerRel = relationship('SingleAnswer', back_populates='answerRel', lazy='dynamic')
     """1:1 relationship with single_answers table"""
 
-    multipleAnswerRel = relationship('MultipleAnswer', back_populates='answerRel')
+    multipleAnswerRel = relationship('MultipleAnswer', back_populates='answerRel', lazy='dynamic')
     """1:1 relationship with multiple_answers table"""
 
-    dateAnswerRel = relationship('DateAnswer', back_populates='answerRel')
+    dateAnswerRel = relationship('DateAnswer', back_populates='answerRel', lazy='dynamic')
     """1:1 relationship with date_answers table"""
 
     def __repr__(self):

@@ -1,0 +1,23 @@
+{% extends "index.html" %}
+
+{% block pagebody %}
+{% include "navbar.html" %}
+    <p>total_accesses: {{total_accesses}}</p>
+    <p>answered_accesses: {{answered_accesses}}</p>
+    {% for question in questions %}
+        <h3>Domanda #{{loop.index}}:</h3>
+        <p>{{question.question}} ({{question.type}})</p>
+        <p>Astenuti: {{question.notAnswered}}</p>
+        {% if question.type == 'single' or question.type == 'multi' %}
+            <ul>
+                {% for opt in question.options %}
+                    <li>{{opt}}: {{question.optionsAnswers[opt]}} voti</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            {% for answer in question.openAnswers %}
+                <p>{{answer}}</p>
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
+{% endblock %}
