@@ -36,6 +36,14 @@
                             <div class="card-body">
                                 <h5 class="card-title">{{form.title}}</h5>
                                 <p class="card-text">Proprietario: {{form.owner}}</p>
+
+                                <form action="/q/{{form.id}}/delete" method='post'>
+                                    <button type="submit" class="btn btn-palette rounded-circle btn-tooltip"
+                                            id="deleteBTN">
+                                        <img src="/static/image/delete_outline_black_24dp.svg">
+                                    </button>
+                                </form>
+
                             </div>
                         </div>
                         <br>
