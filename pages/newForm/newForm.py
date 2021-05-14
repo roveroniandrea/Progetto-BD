@@ -1,3 +1,5 @@
+import json
+
 from flask import Blueprint, render_template, request
 from flask_login import login_required, current_user
 
@@ -19,22 +21,21 @@ def newForm():
 @newFormBlueprint.route('/new', methods=['POST'])
 @login_required
 def submitNewForm():
-    # Test inserimento in json
-    # request.form = json.loads("{\"title\":\"ennesima prova inserimento\",\"questions\":[{\"question\":\"Domanda 1\",\"required\":true,\"option\":[],\"type\":\"text\"},{\"question\":\"Domanda 2\",\"required\":true,\"options\":[\"Opt1\",\"Opt2\",\"Opt3\"],\"type\":\"single\"}],\"accesses\":[\"1@gmail.com\"]}")
-
     session = Session()
+    form_data = json.loads(request.form['data'])
+
     try:
         user = session.merge(current_user)
         form = Form()
         form.ownerUserRel = user
         form.owner = user.email
-        form.title = request.form['title']
-        form.color = request.form['color']
+        form.title = form_data['title']
+        form.color = form_data['color']
         session.add(form)
-        for submitted_question in request.form['questions']:
+        for submitted_question in form_data['questions']:
             question = Question()
             question.formRel = form
-            question.questions = submitted_question['question']
+            question.question = submitted_question['question']
             question.type = submitted_question['type']
             question.options = submitted_question['options']
             question.required = submitted_question['required']
@@ -43,7 +44,7 @@ def submitNewForm():
         access.userRel = user
         access.formRel = form
 
-        for submitted_access in request.form['accesses']:
+        for submitted_access in form_data['accesses']:
             access = Access()
             access.user = submitted_access
             access.formRel = form
