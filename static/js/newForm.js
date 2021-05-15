@@ -50,10 +50,10 @@ function getOptionHTML(isRadio, inputId, removeId) {
                 <input class="form-check-input radio-option" type="${isRadio ? 'radio' : 'check'}" disabled>
             </div>
             <div class="col-sm-8">
-                <input class="form-control form-input" type="text" placeholder="Opzione" required id="${inputId || undefined}" data-options-option="">
+                <input class="form-control form-input-question" type="text" placeholder="Opzione" required id="${inputId || undefined}" data-options-option="">
             </div>
             <div class="col-sm-3 col-add-option">
-                ${removeId ? `<button type="button" class="btn btn-delete rounded-circle btn-tooltip"
+                ${removeId ? `<button type="button" class="btn btn-delete-option rounded-circle btn-tooltip"
                         data-bs-placement="bottom" title="Delete Option" onclick="delete_element('${removeId}')">
                         <img src="/static/image/close_black_24dp.svg" alt="">
                 </button>` : ''}
@@ -100,7 +100,7 @@ function newQuestion(type) {
 
     const questionTitleInputHTML = `
         <div class="col-lg">
-            <input data-question="" class="form-control form-input form-question" type="text"
+            <input data-question="" class="form-control form-input-question form-question" type="text"
                    placeholder="Domanda" required id="${questionTitleInputId}"><br>
         </div>`;
 
@@ -108,7 +108,7 @@ function newQuestion(type) {
                                 <div class="col-sm-2">
                                 </div>
                                 <div class="col-lg-8">
-                                    <div class="card section-card">
+                                    <div class="card newForm-section-question">
                                         <div class="card-body">
                                             ${middle}
                                             <div class="row">
@@ -145,7 +145,7 @@ function newQuestion(type) {
                 </div>
                 <div class="row">
                     <div class="col-lg">
-                    <textarea class="form-control form-input" type="text" placeholder="Risposta"
+                    <textarea class="form-control form-input-question" type="text" placeholder="Risposta"
                               disabled></textarea>
                     </div>
                 </div>`;
@@ -198,7 +198,7 @@ function newQuestion(type) {
                 </div>
                 <div class="row">
                     <div class="col-lg">
-                        <input class="form-control form-input" type="date" placeholder="Domanda" disabled>
+                        <input class="form-control form-input-question" type="date" placeholder="Domanda" disabled>
                     </div>
                 </div>`;
             break;

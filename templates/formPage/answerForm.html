@@ -3,8 +3,29 @@
 {% block pagebody %}
 {% include "navbar.html" %}
 <div class="container">
-    <h1>Rispondi a: {{form.title}}</h1>
-    <p>By {{form.owner}}</p>
+
+
+    <div class="row">
+        <div class="col-sm-2">
+        </div>
+        <div class="col-sm-8">
+            <div class="card section-card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm">
+                            <h1>{{form.title}}</h1>
+                        </div>
+                        <div class="col-sm">
+                            <p>By {{form.owner}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+        </div>
+    </div>
+
 
     {% for question in form.questionsRel %}
     <h3>Domanda #{{loop.index}}:</h3>
