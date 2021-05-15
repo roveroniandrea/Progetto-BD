@@ -2,10 +2,45 @@
 
 {% block pagebody %}
 {% include "navbar.html" %}
+<div class="container">
     {% if error %}
-    <h1>Errore, form non creato!</h1>
+    <div class="row">
+        <div class="col-lg"></div>
+        <div class="col-lg form-submitted-text">
+            <div class="row">
+                <div class="col-lg">
+                    <h1>Errore, form non creato!</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg">
+                    <img src="/static/image/form_submit_error.svg" width="200" height="200">
+                </div>
+            </div>
+        </div>
+        <div class="col-lg"></div>
+
+    </div>
     {% else %}
-    <h1>Form submitted!</h1>
+    
+    <div class="row">
+        <div class="col-lg"></div>
+        <div class="col-lg form-submitted-text">
+            <div class="row">
+                <div class="col-lg">
+                    <h1>Form Submitted!</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg">
+                    <img src="/static/image/form_submitted_success.svg" width="200" height="200">
+                </div>
+            </div>
+        </div>
+        <div class="col-lg"></div>
+
+    </div>
     {% endif %}
     <a href="/">Torna alla home</a>
+</div>
 {% endblock %}

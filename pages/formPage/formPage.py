@@ -105,7 +105,7 @@ def deleteForm(form_id):
 
             session.commit()
             session.close()
-            #print("form deleted")
+            # print("form deleted")
             return redirect('/')
         else:
             session.close()

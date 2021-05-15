@@ -2,6 +2,19 @@ let count_check_input = 0;
 let count_question = 0
 let count_radio_input = 0;
 
+let curr_color = "white";
+let elem = document.querySelector('#persTema');
+
+let hueb = new Huebee(elem, {
+    setText: false,
+    saturations: 2
+});
+
+hueb.on('change', function (color) {
+    curr_color = color;
+    document.body.style.backgroundColor = color;
+});
+
 /** If true, the user is asked if he wants to leave the page*/
 let askLeaveConfirmation = false;
 
@@ -16,8 +29,7 @@ window.onbeforeunload = (e) => {
         console.log('prevented');
         e.preventDefault();
         e.returnValue = '';
-    }
-    else{
+    } else {
         delete e['returnValue'];
     }
 }
@@ -219,7 +231,7 @@ function submitForm() {
         title: document.querySelector('#formTitle').value,
         questions: [],
         accesses: [], //TODO (se stesso viene già incluso lato server)
-        color: 'lightcoral' //TODO
+        color: curr_color
     }
     const questionsBox = [...document.querySelectorAll('[data-question-type]')];
 
