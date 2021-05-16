@@ -1,16 +1,5 @@
-.btn-outline-info {
-    border-color: white;
-    color: white;
-    align-self: center;
-}
-
-#error {
-    color: red;
-}
-.card-footer {
-    background-color: #666666;
-}
 /*---------------------------------------------------*/
+/*login.html*/
 
 /*Password metter*/
 .progress {
@@ -31,18 +20,40 @@
     width: 100%;
 }
 
-.form-submitted-text{
-    text-align: center;
+/*Error text*/
+#error {
+    color: red;
 }
 
+/*Card login footer*/
+.card-login-footer {
+    background-color: #666666;
+}
 
+/*Login button*/
+.btn-btn-login {
+    border-color: white;
+    color: white;
+    align-self: center;
+}
 
+/*---------------------------------------------------*/
+/*navbar.html*/
 
 .navbar-div {
     min-height: 54px;
 }
 
+.shadowed-nav {
+    background-color: white;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2), 0 1px 20px 0 rgba(0, 0, 0, 0.19);
+}
 
+
+/*---------------------------------------------------*/
+/*home.html*/
+
+/*Forms Sections */
 .form-card {
     border-radius: 30px;
     cursor: pointer;
@@ -52,80 +63,33 @@
     border-color: #0D6EFD;
 }
 
-.section-card {
+.forms-section {
     border-radius: 30px;
     box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2), 0 1px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.shadowed-nav {
+.btn-delete-form{
     background-color: white;
+    height: 50px;
+    width: 50px;
+}
+
+/*---------------------------------------------------*/
+/*newForm.html*/
+
+/*Title*/
+.newForm-section-title {
+    border-radius: 30px;
     box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2), 0 1px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.btn-delete-question{
-    background-color: white;
-    height: 50px;
-    width: 50px;
+/*New form section*/
+.newForm-section-question {
+    border-radius: 30px;
     box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2), 0 1px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.btn-delete-question:hover {
-    background-color: #eaeaea;
-}
-
-.btn-palette {
-    background-color: white;
-    height: 50px;
-    width: 50px;
-}
-
-.btn-delete {
-    background-color: white;
-    height: 50px;
-    width: 50px;
-    margin-top: -10px;
-}
-
-.btn-delete:hover {
-    background-color: #eaeaea;
-}
-
-.btn-delete:hover {
-    background-color: #eaeaea;
-}
-
-.btn-add-option {
-    background-color: white;
-    height: 50px;
-    width: 50px;
-}
-
-.btn-add-option:hover {
-    background-color: #eaeaea;
-}
-
-.btn-palette:hover {
-    background-color: #eaeaea;
-}
-
-.col-palette {
-    text-align: right;
-}
-
-.col-add-option {
-    text-align: right;
-}
-
-.radio-option {
-    float: right !important;
-    margin-top: 10px;
-}
-
-.row-form {
-    padding-top: 20px;
-}
-
-.form-input {
+.form-input-question {
     border: transparent;
 }
 
@@ -139,6 +103,77 @@
     font-size: large;
 }
 
+/*Add questions*/
+.row-form {
+    padding-top: 20px;
+}
+
+/*Delete questions*/
+.btn-delete-question{
+    background-color: white;
+    height: 50px;
+    width: 50px;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2), 0 1px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.btn-delete-question:hover {
+    background-color: #eaeaea;
+}
+
+/*Add option*/
+.col-add-option {
+    text-align: right;
+}
+
+.btn-add-option {
+    background-color: white;
+    height: 50px;
+    width: 50px;
+}
+
+.btn-add-option:hover {
+    background-color: #eaeaea;
+}
+
 .row-option {
     margin-top: 10px;
+}
+
+.radio-option {
+    float: right !important;
+    margin-top: 10px;
+}
+
+/*Delete Option*/
+.btn-delete-option {
+    background-color: white;
+    height: 50px;
+    width: 50px;
+    margin-top: -10px;
+}
+
+.btn-delete-option:hover {
+    background-color: #eaeaea;
+}
+
+/*Palette*/
+.col-palette {
+    text-align: right;
+}
+
+.btn-palette {
+    background-color: white;
+    height: 50px;
+    width: 50px;
+}
+
+.btn-palette:hover {
+    background-color: #eaeaea;
+}
+
+/*---------------------------------------------------*/
+/*formSubmitted.html*/
+
+.form-submitted-text{
+    text-align: center;
 }
