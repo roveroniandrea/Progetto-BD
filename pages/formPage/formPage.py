@@ -48,9 +48,8 @@ def submitAnswer(form_id):
         form = session.query(Form).filter_by(id=form_id).one()
         access = form.accessesRel.filter_by(user=current_user.email).one()
         access.access_id = generateNextAccessId()
-        print(request.form['answers'])
+
         for submitted_answer in json.loads(request.form['answers']):
-            print(submitted_answer)
             question = form.questionsRel.filter_by(id=submitted_answer['id']).one()
             answer = Answer()
             answer.accessRel = access
@@ -104,7 +103,6 @@ def deleteForm(form_id):
 
             session.commit()
             session.close()
-            # print("form deleted")
             return redirect('/')
         else:
             session.close()
