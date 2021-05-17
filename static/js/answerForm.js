@@ -37,7 +37,6 @@ function answerForm(formId) {
     fakeInput.name = 'answers';
     document.body.appendChild(fakeForm);
     fakeForm.appendChild(fakeInput);
-    console.log(answers)
     fakeForm.submit();
     //This form should not submit
     return false;
