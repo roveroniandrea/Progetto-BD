@@ -2,8 +2,9 @@
 
 {% block pagebody %}
 {% include "navbar.html" %}
-<div class="container">
-    <form onsubmit="alert('ok')">
+<link rel="stylesheet" href="/static/styles/answerForm.css">
+<form onsubmit="alert('ok')">
+    <div class="container">
         <div class="row">
             <div class="col-sm-2">
             </div>
@@ -11,11 +12,13 @@
                 <div class="card answer-section-title">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-sm">
+                            <div class="col-lg">
                                 <h1>{{form.title}}</h1>
+                                <p>Risposte obbligatorie: <span class="required-answer">*</span></p>
                             </div>
-                            <div class="col-sm form-by-name">
+                            <div class="col-sm-3 form-by-name">
                                 <p>By {{form.owner}}</p>
+
                             </div>
                         </div>
                     </div>
@@ -33,7 +36,11 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-sm">
-                                <h2>{{question.question}}</h2>
+                                <h2>{{question.question}}
+                                    {% if question.required %}
+                                    <span class="required-answer">*</span>
+                                    {% endif %}
+                                </h2>
                             </div>
                         </div>
                         <div class="row">
@@ -41,12 +48,14 @@
                                 <div class="col-lg">
                                     {% if question.type.asString() == 'text' %}
 
-                                    <textarea class="form-control form-input" type="text" {{'required' if question.required}}
-                                              placeholder="Risposta"></textarea>
+                                    <textarea class="form-control form-input" type="text" {{'required' if
+                                    question.required}}
+                                    placeholder="Risposta"></textarea>
 
                                     {% elif question.type.asString() == 'date' %}
 
-                                    <input class="form-control form-input" type="date" {{'required' if question.required}}>
+                                    <input class="form-control form-input" type="date" {{'required' if
+                                    question.required}}>
 
                                     {% elif question.type.asString() == 'multi' or question.type.asString() == 'single'
                                     %}
@@ -55,7 +64,8 @@
                                         <div>
                                             <input class="form-check-input"
                                                    type="{{'radio' if question.type.asString() == 'single' else 'checkbox'}}"
-                                                   id="{{question.id}}_{{loop.index}}" name="{{question.id}}" {{'required' if question.required}}>
+                                                   id="{{question.id}}_{{loop.index}}" name="{{question.id}}" {{'required'
+                                            if question.required}}>
                                             <label class="form-check-label" for="{{question.id}}_{{loop.index}}">
                                                 {{option}}
                                             </label>
@@ -72,12 +82,24 @@
             </div>
             <div class="col-sm-2"></div>
         </div>
-
-
         {% endfor %}
-
-
-        <button type="submit">Simula submit</button>
-    </form>
-</div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-2">
+            </div>
+            <div class="col-sm-8">
+                <div class="row">
+                    <div class="col-lg"></div>
+                    <div class="col-sm-2 col-answer-submit">
+                        <button class="btn btn-primary" type="submit">Submit</button>
+                    </div>
+                    <div class="col-lg"></div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+            </div>
+        </div>
+    </div>
+</form>
 {% endblock %}
