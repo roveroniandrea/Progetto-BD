@@ -74,6 +74,10 @@
     width: 50px;
 }
 
+.btn-delete-form:hover {
+    background-color: #eaeaea;
+}
+
 /*---------------------------------------------------*/
 /*newForm.html*/
 
@@ -171,6 +175,11 @@
     background-color: #eaeaea;
 }
 
+.col-form-submit{
+    padding-top: 20px;
+    text-align: center;
+}
+
 /*---------------------------------------------------*/
 /*formSubmitted.html*/
 
@@ -193,4 +202,21 @@
     box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2), 0 1px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+.required-answer{
+    color: red;
+}
 
+.col-answer-submit{
+    padding-top: 20px;
+    text-align: center;
+}
+
+.btn-stats-form{
+    background-color: white;
+    height: 50px;
+    width: 50px;
+}
+
+.btn-stats-form:hover {
+    background-color: #eaeaea;
+}
