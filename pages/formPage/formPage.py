@@ -136,15 +136,15 @@ def showFormStats(form_id):
                 'notAnswered': answered_accesses - question.answersRel.count()
             }
             if question.type == QuestionTypeEnum.text:
-                question_entry['openAnswers'] = map(lambda q: q.openAnswerRel.one().answer, question.answersRel.all())
+                question_entry['openAnswers'] = map(lambda a: a.openAnswerRel.one().answer, question.answersRel.all())
             if question.type == QuestionTypeEnum.date:
-                question_entry['openAnswers'] = map(lambda q: q.dateAnswerRel.one().answer, question.answersRel.all())
+                question_entry['openAnswers'] = map(lambda a: a.dateAnswerRel.one().answer, question.answersRel.all())
             if question.type == QuestionTypeEnum.single:
                 for opt in question.options:
-                    question_entry['optionsAnswers'][opt] = len(list(filter(lambda q: q.singleAnswerRel.one().answer == opt, question.answersRel.all())))
+                    question_entry['optionsAnswers'][opt] = len(list(filter(lambda a: a.singleAnswerRel.one().answer == opt, question.answersRel.all())))
             if question.type == QuestionTypeEnum.multi:
                 for opt in question.options:
-                    question_entry['optionsAnswers'][opt] = len(list(filter(lambda q: q.singleAnswerRel.one().answer.contains(opt), question.answersRel.all())))
+                    question_entry['optionsAnswers'][opt] = len(list(filter(lambda a: opt in a.multipleAnswerRel.one().answer, question.answersRel.all())))
 
             questions.append(question_entry)
 
