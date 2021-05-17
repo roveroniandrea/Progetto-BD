@@ -2,12 +2,14 @@
 
 {% block pagebody %}
 {% include "navbar.html" %}
+<link rel="stylesheet" href="/static/styles/register.css">
+
 <div class="container">
     <div class="row">
         <div class="col-sm-4">
         </div><!--col-4 vuota-->
         <div class="col-md-4">
-            <div class="card text-center " id="card-login">
+            <div class="card text-center ">
                 <form action="/register" method="post" id="form-registration" onsubmit="return control_password()">
                     <div class="card-body" id="card-body">
                         <h2>Crea il tuo account!</h2>
@@ -38,8 +40,8 @@
                         {% endif %}
                     </div>
                     <!--card-body-->
-                    <div class="card-footer ">
-                        <button type="submit" class="btn btn-outline-info">Sign Up</button>
+                    <div class="card-footer card-register-body">
+                        <button type="submit" class="btn btn-btn-register">Sign Up</button>
                     </div>
                 </form>
                 <!--card-body-->
