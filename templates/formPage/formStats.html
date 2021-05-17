@@ -88,11 +88,11 @@
 
 </div>
 
-<script type="text/javascript">
+<script>
     google.charts.load('current', {'packages': ['corechart']});
     google.charts.setOnLoadCallback(drawChart);
 
-    (()=>document.body.style.backgroundColor="{{form.color}}")()
+    document.body.style.backgroundColor="{{form.color}}"
 
     function drawChart() {
         const qs = {{questions |tojson | safe}}
@@ -104,8 +104,8 @@
 
         qs.forEach((q,index) => {
             if(q.options){
-                let data = google.visualization.arrayToDataTable([ ['Accessi', 'Valori'],['Astenuti', q.notAnswered ], ...q.options.map(opt => [opt, q.optionsAnswers[opt]]) ]);
-                let chart = new google.visualization.PieChart(document.getElementById('piechart_'+ (index+1) ));
+                const data = google.visualization.arrayToDataTable([ ['Accessi', 'Valori'],['Astenuti', q.notAnswered ], ...q.options.map(opt => [opt, q.optionsAnswers[opt]]) ]);
+                const chart = new google.visualization.PieChart(document.getElementById('piechart_'+ (index+1) ));
                 chart.draw(data);
             }
         })
