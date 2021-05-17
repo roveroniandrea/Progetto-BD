@@ -2,21 +2,27 @@ let count_check_input = 0;
 let count_question = 0
 let count_radio_input = 0;
 
+/** Current color of the form */
 let curr_color = "white";
-let elem = document.querySelector('#persTema');
-
-let hueb = new Huebee(elem, {
-    setText: false,
-    saturations: 2
-});
-
-hueb.on('change', function (color) {
-    curr_color = color;
-    document.body.style.backgroundColor = color;
-});
 
 /** If true, the user is asked if he wants to leave the page*/
 let askLeaveConfirmation = false;
+
+//Hiding some varables not used in other places
+(() => {
+    const formColorElem = document.querySelector('#formColor');
+
+    const huebFormColorElem = new Huebee(formColorElem, {
+        setText: false,
+        saturations: 2
+    });
+
+    huebFormColorElem.on('change', function (color) {
+        curr_color = color;
+        document.body.style.backgroundColor = color;
+    });
+})()
+
 
 // Checking if the user enters some data
 document.querySelector('#newForm').addEventListener('change', () => {

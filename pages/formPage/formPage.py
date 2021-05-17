@@ -1,3 +1,5 @@
+import json
+
 from flask import Blueprint, render_template, request, redirect
 from flask_login import login_required, current_user
 from sqlalchemy.exc import SQLAlchemyError
@@ -42,28 +44,24 @@ def accessForm(form_id):
 def submitAnswer(form_id):
     session = Session()
 
-    # request.form = json.loads(
-    #    "{\"answers\":[{\"id\":4,\"type\":\"text\",\"answer\":\"lorem ipsum\"},{\"id\":3,\"type\":\"single\",\"answer\":\"Opt1\"}]}")
-
     try:
         form = session.query(Form).filter_by(id=form_id).one()
         access = form.accessesRel.filter_by(user=current_user.email).one()
         access.access_id = generateNextAccessId()
 
-        for submitted_answer in request.form['answers']:
+        for submitted_answer in json.loads(request.form['answers']):
             question = form.questionsRel.filter_by(id=submitted_answer['id']).one()
             answer = Answer()
             answer.accessRel = access
             answer.questionRel = question
-            answer_type = submitted_answer['type']
 
-            if answer_type == 'text':
+            if question.type == QuestionTypeEnum.text:
                 typed_answer = OpenAnswer()
-            elif answer_type == 'single':
+            elif question.type == QuestionTypeEnum.single:
                 typed_answer = SingleAnswer()
-            elif answer_type == 'multi':
+            elif question.type == QuestionTypeEnum.multi:
                 typed_answer = MultipleAnswer()
-            elif answer_type == 'date':
+            elif question.type == QuestionTypeEnum.date:
                 typed_answer = DateAnswer()
             else:
                 raise Exception('Answer type not valid')
@@ -105,7 +103,6 @@ def deleteForm(form_id):
 
             session.commit()
             session.close()
-            # print("form deleted")
             return redirect('/')
         else:
             session.close()
@@ -137,15 +134,15 @@ def showFormStats(form_id):
                 'notAnswered': answered_accesses - question.answersRel.count()
             }
             if question.type == QuestionTypeEnum.text:
-                question_entry['openAnswers'] = map(lambda q: q.openAnswerRel.one().answer, question.answersRel.all())
+                question_entry['openAnswers'] = map(lambda a: a.openAnswerRel.one().answer, question.answersRel.all())
             if question.type == QuestionTypeEnum.date:
-                question_entry['openAnswers'] = map(lambda q: q.dateAnswerRel.one().answer, question.answersRel.all())
+                question_entry['openAnswers'] = map(lambda a: a.dateAnswerRel.one().answer, question.answersRel.all())
             if question.type == QuestionTypeEnum.single:
                 for opt in question.options:
-                    question_entry['optionsAnswers'][opt] = len(list(filter(lambda q: q.singleAnswerRel.one().answer == opt, question.answersRel.all())))
+                    question_entry['optionsAnswers'][opt] = len(list(filter(lambda a: a.singleAnswerRel.one().answer == opt, question.answersRel.all())))
             if question.type == QuestionTypeEnum.multi:
                 for opt in question.options:
-                    question_entry['optionsAnswers'][opt] = len(list(filter(lambda q: q.singleAnswerRel.one().answer.contains(opt), question.answersRel.all())))
+                    question_entry['optionsAnswers'][opt] = len(list(filter(lambda a: opt in a.multipleAnswerRel.one().answer, question.answersRel.all())))
 
             questions.append(question_entry)
 
