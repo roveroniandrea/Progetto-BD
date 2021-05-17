@@ -8,10 +8,11 @@ let curr_color = "white";
 /** If true, the user is asked if he wants to leave the page*/
 let askLeaveConfirmation = false;
 
+//Hiding some varables not used in other places
 (() => {
-    let formColorElem = document.querySelector('#formColor');
+    const formColorElem = document.querySelector('#formColor');
 
-    let huebFormColorElem = new Huebee(formColorElem, {
+    const huebFormColorElem = new Huebee(formColorElem, {
         setText: false,
         saturations: 2
     });
