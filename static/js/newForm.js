@@ -3,14 +3,14 @@ let count_question = 0
 let count_radio_input = 0;
 
 let curr_color = "white";
-let elem = document.querySelector('#persTema');
+let formColorElem = document.querySelector('#formColor');
 
-let hueb = new Huebee(elem, {
+let huebFormColorElem = new Huebee(formColorElem, {
     setText: false,
     saturations: 2
 });
 
-hueb.on('change', function (color) {
+huebFormColorElem.on('change', function (color) {
     curr_color = color;
     document.body.style.backgroundColor = color;
 });

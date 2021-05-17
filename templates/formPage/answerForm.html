@@ -2,7 +2,7 @@
 
 {% block pagebody %}
 {% include "navbar.html" %}
-<form onsubmit="alert('ok')">
+<form onsubmit="return answerForm('{{form.id}}')">
     <div class="container">
         <div class="row">
             <div class="col-sm-2">
@@ -27,7 +27,7 @@
         </div>
 
         {% for question in form.questionsRel %}
-        <div class="row row-answer-form">
+        <div class="row row-answer-form" data-answer-id="{{question.id}}" data-answer-type="{{question.type.asString()}}">
             <div class="col-sm-2">
             </div>
             <div class="col-sm-8">
@@ -49,22 +49,22 @@
 
                                     <textarea class="form-control form-input" type="text" {{'required' if
                                     question.required}}
-                                    placeholder="Risposta"></textarea>
+                                    placeholder="Risposta" data-answer-value></textarea>
 
                                     {% elif question.type.asString() == 'date' %}
 
                                     <input class="form-control form-input" type="date" {{'required' if
-                                    question.required}}>
+                                    question.required}} data-answer-value>
 
                                     {% elif question.type.asString() == 'multi' or question.type.asString() == 'single'
                                     %}
-                                    <div class="form-check">
+                                    <div class="form-check" data-answer-value>
                                         {% for option in question.options %}
                                         <div>
                                             <input class="form-check-input"
                                                    type="{{'radio' if question.type.asString() == 'single' else 'checkbox'}}"
                                                    id="{{question.id}}_{{loop.index}}" name="{{question.id}}" {{'required'
-                                            if question.required}}>
+                                            if question.required}} data-option-text="{{option}}">
                                             <label class="form-check-label" for="{{question.id}}_{{loop.index}}">
                                                 {{option}}
                                             </label>
@@ -101,4 +101,5 @@
         </div>
     </div>
 </form>
+<script src="/static/js/answerForm.js"></script>
 {% endblock %}
