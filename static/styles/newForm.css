@@ -30,7 +30,7 @@
 }
 
 /*Delete questions*/
-.btn-delete-question{
+.btn-delete-question {
     background-color: white;
     height: 50px;
     width: 50px;
@@ -59,6 +59,7 @@
 .row-option {
     margin-top: 10px;
 }
+
 
 .radio-option {
     float: right !important;
@@ -92,7 +93,80 @@
     background-color: #eaeaea;
 }
 
-.col-form-submit{
+.col-form-submit {
     padding-top: 20px;
+    text-align: center;
+}
+
+.col-form-add-user {
+    padding-top: 20px;
+    text-align: center;
+}
+
+.section-add-user {
+    border-radius: 30px;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2), 0 1px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.add-user-row {
+    margin-top: 20px;
+}
+
+.btn-add-user {
+    background-color: white;
+    height: 50px;
+    width: 50px;
+}
+
+.btn-add-user:hover {
+    background-color: #eaeaea;
+}
+
+.col-add-user {
+    text-align: right;
+}
+
+.card-user {
+    margin-top: 20px;
+    border-radius: 30px;
+}
+
+
+.chip {
+    display: inline-block;
+    padding: 0 25px;
+    height: 50px;
+    font-size: 18px;
+    line-height: 50px;
+    border-radius: 25px;
+    background-color: #f1f1f1;
+}
+
+.chip img {
+    float: left;
+    margin: 0 10px 0 -25px;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+
+.closebtn {
+    padding-left: 10px;
+    color: #888;
+    font-weight: bold;
+    float: right;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.closebtn:hover {
+    color: #000;
+}
+#error-email-p{
+    color: red;
+}
+
+.error-email{
+    margin-top: 10px;
     text-align: center;
 }

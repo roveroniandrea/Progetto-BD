@@ -2,6 +2,11 @@ let count_check_input = 0;
 let count_question = 0
 let count_radio_input = 0;
 
+/**
+ * Number of user that have access to a form
+ * */
+let user_number = 1;
+
 /** Current color of the form */
 let curr_color = "white";
 
@@ -236,7 +241,7 @@ function submitForm() {
     const mappedData = {
         title: document.querySelector('#formTitle').value,
         questions: [],
-        accesses: [], //TODO (se stesso viene già incluso lato server)
+        accesses: [...document.querySelectorAll('[data-username]')].map(u => u.getAttribute("data-username")),
         color: curr_color
     }
     const questionsBox = [...document.querySelectorAll('[data-question-type]')];
@@ -269,3 +274,28 @@ function submitForm() {
     //This form should not submit
     return false;
 }
+
+/**
+ * Add user access
+**/
+function addUser() {
+
+        let username = document.getElementById('addUserInput');
+        let errorP = document.getElementById('error-email-p');
+
+        if (username.value !== "" && username.value.includes('@')) {
+            user_number++;
+            errorP.innerHTML = ""
+            let container = document.getElementById('userList');
+            let user = document.createElement('div');
+            let chip_user = `<img src="/static/image/account_circle_black_24dp.svg"  width="96" height="96">${username.value}
+                         <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>`;
+            user.classList.add('chip');
+            user.setAttribute('data-username',username.value);
+            user.innerHTML = chip_user;
+            username.value = "";
+            container.appendChild(user);
+        } else {
+            errorP.innerHTML = "Inserisci un'email valida!"
+        }
+    }
