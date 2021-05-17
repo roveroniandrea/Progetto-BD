@@ -34,16 +34,26 @@
                     <div class="col-sm-3">
                         <div class="card form-card" onclick="location.href='/q/{{form.id}}'">
                             <div class="card-body">
-                                <h5 class="card-title">{{form.title}}</h5>
-                                <p class="card-text">Proprietario: {{form.owner}}</p>
-
-                                <form action="/q/{{form.id}}/delete" method='post'>
-                                    <button type="submit" class="btn btn-delete-form rounded-circle btn-tooltip"
-                                            id="deleteBTN">
-                                        <img src="/static/image/delete_outline_black_24dp.svg">
-                                    </button>
-                                </form>
-
+                                <div class="row">
+                                    <div class="col-lg">
+                                        <h5 class="card-title">{{form.title}}</h5>
+                                        <p class="card-text">Da: {{form.owner}}</p>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <form action="/q/{{form.id}}/delete" method='post' onsubmit="return confirm('Eliminare definitivamente il form?')">
+                                            <button type="submit" class="btn btn-delete-form rounded-circle btn-tooltip"
+                                                    id="deleteBTN" title="Cancella il form">
+                                                <img src="/static/image/delete_outline_black_24dp.svg">
+                                            </button>
+                                        </form>
+                                        <form action="/q/{{form.id}}/stats" method='get'>
+                                            <button type="submit" class="btn btn-stats-form rounded-circle btn-tooltip"
+                                                    id="statsBTN" title="Mostra le statistiche">
+                                                <img src="/static/image/equalizer_black_24dp.svg">
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <br>
@@ -71,7 +81,7 @@
                         <div class="card form-card" onclick="location.href='/q/{{form.id}}'">
                             <div class="card-body">
                                 <h5 class="card-title">{{form.title}}</h5>
-                                <p class="card-text">Proprietario: {{form.owner}}</p>
+                                <p class="card-text">Da: {{form.owner}}</p>
                             </div>
                         </div>
                         <br>
@@ -100,7 +110,7 @@
                         <div class="card form-card" onclick="location.href='/q/{{form.id}}'">
                             <div class="card-body">
                                 <h5 class="card-title">{{form.title}}</h5>
-                                <p class="card-text">Proprietario: {{form.owner}}</p>
+                                <p class="card-text">Da: {{form.owner}}</p>
                             </div>
                         </div>
                         <br>
