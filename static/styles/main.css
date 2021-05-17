@@ -177,3 +177,20 @@
 .form-submitted-text{
     text-align: center;
 }
+/*---------------------------------------------------*/
+/*answerForm.html*/
+.answer-section-title{
+    border-radius: 30px;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2), 0 1px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.row-answer-form {
+    padding-top: 20px;
+}
+
+.answer-section{
+    border-radius: 30px;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2), 0 1px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+

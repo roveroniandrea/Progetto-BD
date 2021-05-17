@@ -47,7 +47,7 @@ function getOptionContainerId(question_number, isRadio) {
 function getOptionHTML(isRadio, inputId, removeId) {
     return `
             <div class="col-sm-1 col-radio">
-                <input class="form-check-input radio-option" type="${isRadio ? 'radio' : 'check'}" disabled>
+                <input class="form-check-input radio-option" type="${isRadio ? 'radio' : 'checkbox'}" disabled>
             </div>
             <div class="col-sm-8">
                 <input class="form-control form-input-question" type="text" placeholder="Opzione" required id="${inputId || undefined}" data-options-option="">
