@@ -30,6 +30,7 @@ function answerForm(formId) {
 
     //Craeting the fake form
     const fakeForm = document.createElement('form');
+    fakeForm.style.display = 'none';
     fakeForm.action = `/q/${formId}`;
     fakeForm.method = 'POST';
     const fakeInput = document.createElement('input');

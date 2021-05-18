@@ -258,6 +258,7 @@ function submitForm() {
 
     //Creting the fake form
     const fakeForm = document.createElement('form');
+    fakeForm.style.display = 'none';
     fakeForm.action = '/new';
     fakeForm.method = 'POST';
     const fakeInput = document.createElement('input');
