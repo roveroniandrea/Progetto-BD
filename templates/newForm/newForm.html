@@ -21,7 +21,7 @@
                             <div class="col-sm col-right">
                                 <button type="button" class="color-button btn btn-rounded rounded-circle btn-tooltip"
                                         id="formColor" title="Cambia sfondo"><img
-                                        src="/static/image/palette_black_24dp.svg">
+                                        src="/static/image/palette_black_24dp.svg" alt="">
                                 </button>
                             </div>
                         </div>
@@ -115,14 +115,10 @@
         <div class="col-sm-2">
         </div>
     </div>
-    </div>
-
-
 </form>
-<script>
-    for (let el of document.querySelectorAll('.dropdown-toggle')) {
-        new bootstrap.Dropdown(el);
-    }
-</script>
-<script src="/static/js/newForm.js"></script>
+
+<script src="/static/js/newForm/utils.js"></script>
+<script src="/static/js/newForm/handleQuestions.js"></script>
+<script src="/static/js/newForm/addUser.js"></script>
+<script src="/static/js/newForm/submitAndColor.js"></script>
 {% endblock %}

@@ -1,49 +1,5 @@
 let count_check_input = 0;
-let count_question = 0
 let count_radio_input = 0;
-
-/**
- * Number of user that have access to a form
- * */
-let user_number = 1;
-
-/** Current color of the form */
-let curr_color = "white";
-
-/** If true, the user is asked if he wants to leave the page*/
-let askLeaveConfirmation = false;
-
-//Hiding some varables not used in other places
-(() => {
-    const formColorElem = document.querySelector('#formColor');
-
-    const huebFormColorElem = new Huebee(formColorElem, {
-        setText: false,
-        saturations: 2
-    });
-
-    huebFormColorElem.on('change', function (color) {
-        curr_color = color;
-        document.body.style.backgroundColor = color;
-    });
-})()
-
-
-// Checking if the user enters some data
-document.querySelector('#newForm').addEventListener('change', () => {
-    askLeaveConfirmation = true;
-});
-
-// Asking the user id wants to navigate away and losing his changes
-window.onbeforeunload = (e) => {
-    if (askLeaveConfirmation) {
-        console.log('prevented');
-        e.preventDefault();
-        e.returnValue = '';
-    } else {
-        delete e['returnValue'];
-    }
-}
 
 /**
  * Returns the id of the container of the options. Used to add new options to a single/multi question
@@ -71,7 +27,6 @@ function getOptionHTML(isRadio, inputId, removeId) {
             </div>`
 }
 
-
 /**
  * Adds a new option (checkbox/radio) to a question
  */
@@ -96,26 +51,26 @@ function addRadioCheckOption(question_number, isRadio) {
     document.querySelector(`#${inputId}`).focus();
 }
 
-
-/**
- * Adds a new question to the form
- */
-function newQuestion(type) {
-    const rowId = `box_question_${count_question}`;
+/** Adds a new question to the form */
+const newQuestion = (() => {
     const boxForm = document.querySelector('#boxForm');
-    const new_div = document.createElement('div');
-    let middleHTML = '';
-    const requiredQuestionCheckboxId = `required_q_${count_question}`;
+    let count_question = 0;
 
-    const questionTitleInputId = `input_title_${rowId}`;
+    return (type) => {
+        const rowId = `box_question_${count_question}`;
+        const new_div = document.createElement('div');
+        let middleHTML = '';
+        const requiredQuestionCheckboxId = `required_q_${count_question}`;
+        const questionTitleInputId = `input_title_${rowId}`;
 
-    const questionTitleInputHTML = `
+
+        const questionTitleInputHTML = `
         <div class="col-lg">
             <input data-question="" class="form-control trasparent-input form-question" type="text"
                    placeholder="Domanda" required id="${questionTitleInputId}"><br>
         </div>`;
 
-    const assembleNewQuestionHTML = (middle) => `
+        const assembleNewQuestionHTML = (middle) => `
                                 <div class="col-sm-2">
                                 </div>
                                 <div class="col-lg-8">
@@ -143,14 +98,13 @@ function newQuestion(type) {
                                     </button>
                                 </div>`;
 
-    new_div.classList.add('row', 'row-form');
-    new_div.id = rowId;
-    new_div.setAttribute('data-question-type', type);
+        new_div.classList.add('row', 'row-form');
+        new_div.id = rowId;
+        new_div.setAttribute('data-question-type', type);
 
-
-    switch (type) {
-        case 'text':
-            middleHTML = `
+        switch (type) {
+            case 'text':
+                middleHTML = `
                 <div class="row">
                    ${questionTitleInputHTML}
                 </div>
@@ -160,10 +114,10 @@ function newQuestion(type) {
                               disabled></textarea>
                     </div>
                 </div>`;
-            break;
-        case 'single':
-            count_radio_input++;
-            middleHTML = `
+                break;
+            case 'single':
+                count_radio_input++;
+                middleHTML = `
                 <div class="row">
                     ${questionTitleInputHTML}
                     <div class="col-md-2 col-right">
@@ -180,10 +134,10 @@ function newQuestion(type) {
                         ${getOptionHTML(true)}
                     </div>
                 </div>`;
-            break;
-        case 'multi':
-            count_check_input++;
-            middleHTML = `
+                break;
+            case 'multi':
+                count_check_input++;
+                middleHTML = `
                 <div class="row">
                     ${questionTitleInputHTML}
                     <div class="col-md-2 col-right">
@@ -200,10 +154,10 @@ function newQuestion(type) {
                         ${getOptionHTML(false)}
                     </div>
                 </div>`;
-            break;
+                break;
 
-        case 'date':
-            middleHTML = `
+            case 'date':
+                middleHTML = `
                 <div class="row">
                     ${questionTitleInputHTML}
                 </div>
@@ -212,95 +166,16 @@ function newQuestion(type) {
                         <input class="form-control trasparent-input" type="date" placeholder="Domanda" disabled>
                     </div>
                 </div>`;
-            break;
-        default:
-            alert("Errore tipo di domanda inesistente")
-    }
-
-    new_div.innerHTML = assembleNewQuestionHTML(middleHTML);
-    boxForm.appendChild(new_div);
-
-    document.querySelector(`#${questionTitleInputId}`).focus();
-
-    count_question++;
-}
-
-
-/**
- * Removes a generic element
- */
-function delete_element(id) {
-    const element = document.querySelector(`#${id}`);
-    element.remove();
-}
-
-/**
- * Submits the form. Uses a fake form to send the data and redirecting to the resulting page
- */
-function submitForm() {
-    const mappedData = {
-        title: document.querySelector('#formTitle').value,
-        questions: [],
-        accesses: [...document.querySelectorAll('[data-username]')].map(u => u.getAttribute("data-username")),
-        color: curr_color
-    }
-    const questionsBox = [...document.querySelectorAll('[data-question-type]')];
-
-    mappedData.questions = questionsBox.map(questionBox => {
-        const questionType = questionBox.getAttribute('data-question-type');
-        const options = questionType === 'single' || questionType === 'multi' ?
-            [...questionBox.querySelector('[data-options]').querySelectorAll('[data-options-option]')].map(q => q.value) : null
-        return {
-            options,
-            question: questionBox.querySelector('[data-question]').value,
-            required: questionBox.querySelector('[data-required]').checked,
-            type: questionType,
+                break;
+            default:
+                alert("Errore tipo di domanda inesistente")
         }
-    });
 
-    //Don't ask leave confirmation
-    askLeaveConfirmation = false;
+        new_div.innerHTML = assembleNewQuestionHTML(middleHTML);
+        boxForm.appendChild(new_div);
 
-    //Creting the fake form
-    const fakeForm = document.createElement('form');
-    fakeForm.style.display = 'none';
-    fakeForm.action = '/new';
-    fakeForm.method = 'POST';
-    const fakeInput = document.createElement('input');
-    fakeInput.value = JSON.stringify(mappedData);
-    fakeInput.name = 'data';
-    document.body.appendChild(fakeForm);
-    fakeForm.appendChild(fakeInput);
-    fakeForm.submit();
-    //This form should not submit
-    return false;
-}
+        document.querySelector(`#${questionTitleInputId}`).focus();
 
-/**
- * Add user access
- **/
-function addUser() {
-
-    const username = document.getElementById('addUserInput');
-    const errorP = document.getElementById('error-email-p');
-
-    if (username.value !== "" && username.value.includes('@')) {
-        user_number++;
-        errorP.innerHTML = "";
-        const container = document.getElementById('userList');
-        const user = document.createElement('div');
-        user.id = "userNumber_" + user_number;
-
-        const chip_user = `<img src="/static/image/account_circle_black_24dp.svg"  width="96" height="96" alt="" >${username.value}
-                         <span class="closebtn" onclick="delete_element('${user.id}')">&times;</span>`;
-        user.classList.add('chip');
-        user.setAttribute('data-username', username.value);
-
-        user.innerHTML = chip_user;
-        username.value = "";
-        container.appendChild(user);
-    } else {
-        errorP.innerHTML = "Inserisci un'email valida!";
-    }
-}
-
+        count_question++;
+    };
+})();
