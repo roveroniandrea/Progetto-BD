@@ -32,24 +32,25 @@
                 <div class="row">
                     {% for form in my_forms %}
                     <div class="col-sm-3">
-                        <div class="card form-card" onclick="location.href='/q/{{form.id}}'">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-lg">
-                                        <h5 class="card-title">{{form.title}}</h5>
-                                        <p class="card-text">Da: {{form.owner}}</p>
+                        <div class="card form-card" onclick="myFormsRedirect(event, '{{form.id}}')" data-accept-link>
+                            <div class="card-body" data-accept-link>
+                                <div class="row" data-accept-link>
+                                    <div class="col-lg" data-accept-link>
+                                        <h5 class="card-title" data-accept-link>{{form.title}}</h5>
+                                        <p class="card-text" data-accept-link>Da: {{form.owner}}</p>
                                     </div>
                                     <div class="col-sm-3">
-                                        <form action="/q/{{form.id}}/delete" method='post' onsubmit="return confirm('Eliminare definitivamente il form?')">
+                                        <form action="/q/{{form.id}}/delete" method='post'
+                                              onsubmit="return confirm('Eliminare definitivamente il form?')">
                                             <button type="submit" class="btn btn-delete-form rounded-circle btn-tooltip"
                                                     title="Cancella il form">
-                                                <img src="/static/image/delete_outline_black_24dp.svg">
+                                                <img src="/static/image/delete_outline_black_24dp.svg" alt="">
                                             </button>
                                         </form>
                                         <form action="/q/{{form.id}}/stats" method='get'>
                                             <button type="submit" class="btn btn-stats-form rounded-circle btn-tooltip"
                                                     title="Mostra le statistiche">
-                                                <img src="/static/image/equalizer_black_24dp.svg">
+                                                <img src="/static/image/equalizer_black_24dp.svg" alt="">
                                             </button>
                                         </form>
                                     </div>
@@ -121,5 +122,14 @@
         </div>
     </div>
 </div>
+
+<script>
+    /**Checks if the user should be redirect to the form stats if has not clicked any button on the card*/
+    function myFormsRedirect(event, formId) {
+        if (event.target.hasAttribute('data-accept-link')) {
+            location.href = `/q/${formId}`;
+        }
+    }
+</script>
 
 {% endblock %}
