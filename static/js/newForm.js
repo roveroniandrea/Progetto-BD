@@ -286,7 +286,7 @@ function addUser() {
 
     if (username.value !== "" && username.value.includes('@')) {
         user_number++;
-        errorP.innerHTML = ""
+        errorP.innerHTML = "";
         const container = document.getElementById('userList');
         const user = document.createElement('div');
         user.id = "userNumber_" + user_number;
