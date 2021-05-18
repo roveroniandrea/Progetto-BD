@@ -1,6 +1,6 @@
 import json
 
-from flask import request
+from flask import request, render_template
 from flask_login import current_user
 
 from lib.initDB import Session
@@ -48,4 +48,4 @@ def submitAnswer(form_id):
     except BaseException as e:
         session.close()
         print("Error submit answers: " + str(e))
-        return "Errore submit"
+        return render_template('error.html', error="Errore Submit delle risposte", description="C'è stato un errore nell'invio delle tue risposte. Riprova più tardi")
