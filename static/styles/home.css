@@ -22,3 +22,13 @@
 .btn-delete-form:hover {
     background-color: #eaeaea;
 }
+
+.btn-stats-form{
+    background-color: white;
+    height: 50px;
+    width: 50px;
+}
+
+.btn-stats-form:hover {
+    background-color: #eaeaea;
+}

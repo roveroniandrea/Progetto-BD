@@ -26,9 +26,9 @@ def showFormStats(form_id):
                 'notAnswered': answered_accesses - question.answersRel.count()
             }
             if question.type == QuestionTypeEnum.text:
-                question_entry['openAnswers'] = map(lambda a: a.openAnswerRel.one().answer, question.answersRel.all())
+                question_entry['openAnswers'] = list(map(lambda a: a.openAnswerRel.one().answer, question.answersRel.all()))
             if question.type == QuestionTypeEnum.date:
-                question_entry['openAnswers'] = map(lambda a: a.dateAnswerRel.one().answer, question.answersRel.all())
+                question_entry['openAnswers'] = list(map(lambda a: a.dateAnswerRel.one().answer, question.answersRel.all()))
             if question.type == QuestionTypeEnum.single:
                 for opt in question.options:
                     question_entry['optionsAnswers'][opt] = len(
@@ -41,7 +41,7 @@ def showFormStats(form_id):
             questions.append(question_entry)
 
         return render_template("formPage/formStats.html", total_accesses=total_accesses,
-                               answered_accesses=answered_accesses, questions=questions)
+                               answered_accesses=answered_accesses, questions=questions, form=form)
 
     except SQLAlchemyError as e:
         print("Error showFormStats: " + str(e))

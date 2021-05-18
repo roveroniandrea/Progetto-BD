@@ -2,22 +2,114 @@
 
 {% block pagebody %}
 {% include "navbar.html" %}
-    <p>total_accesses: {{total_accesses}}</p>
-    <p>answered_accesses: {{answered_accesses}}</p>
+
+<link rel="stylesheet" href="/static/styles/formStats.css">
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+            <div class="card stats-section-title">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm">
+                            <h1>Stats of: {{form.title}}</h1>
+                        </div>
+                        <div class="col-sm-3 form-by-name">
+                            <p>By {{form.owner}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2"></div>
+    </div>
+
+    <div class="row row-stats-form">
+        <div class="col-sm-2">
+        </div>
+        <div class="col-sm-8">
+            <div class="card answer-stats-section">
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="col-sm">
+                            <div class="row">
+                                <h1>Accessi al Form</h1>
+                                <div class="col-sm-1"></div>
+                                <div class="col-sm-11">
+                                    <div id="accesses_card"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     {% for question in questions %}
-        <h3>Domanda #{{loop.index}}:</h3>
-        <p>{{question.question}} ({{question.type}})</p>
-        <p>Astenuti: {{question.notAnswered}}</p>
-        {% if question.type == 'single' or question.type == 'multi' %}
-            <ul>
-                {% for opt in question.options %}
-                    <li>{{opt}}: {{question.optionsAnswers[opt]}} voti</li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            {% for answer in question.openAnswers %}
-                <p>{{answer}}</p>
-            {% endfor %}
-        {% endif %}
+    <div class="row row-stats-form">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+            <div class="card answer-stats-section">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm">
+                            <h2>{{question.question}}</h2>
+                        </div>
+                    </div>
+                    {% if question.type == 'single' or question.type == 'multi' %}
+                    <div class="row">
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-11">
+                            <div id="piechart_{{loop.index}}"></div>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="row">
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-11">
+                            <ul>
+                                {% for answer in question.openAnswers %}
+                                    <li>
+                                        <h6>{{answer}}</h6>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
     {% endfor %}
+
+</div>
+
+<script>
+    google.charts.load('current', {'packages': ['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    document.body.style.backgroundColor="{{form.color}}"
+
+    function drawChart() {
+        const qs = {{questions |tojson | safe}}
+        const total_acc = {{total_accesses | safe}}
+        const answered_acc = {{answered_accesses | safe}}
+        const d = google.visualization.arrayToDataTable([ ['Accessi', 'Valori'], ['accessi totali', total_acc], ['accessi con risposta', answered_acc] ])
+        const c = new google.visualization.PieChart(document.getElementById('accesses_card'));
+        c.draw(d);
+
+        qs.forEach((q,index) => {
+            if(q.options){
+                const data = google.visualization.arrayToDataTable([ ['Accessi', 'Valori'],['Astenuti', q.notAnswered ], ...q.options.map(opt => [opt, q.optionsAnswers[opt]]) ]);
+                const chart = new google.visualization.PieChart(document.getElementById('piechart_'+ (index+1) ));
+                chart.draw(data);
+            }
+        })
+
+    }
+</script>
 {% endblock %}
