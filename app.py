@@ -34,8 +34,7 @@ app.register_blueprint(formPageBlueprint)
 
 @app.errorhandler(404)
 def notFound(_):
-    return render_template("404.html")
-
+    return render_template("error.html", error="404 NOT FOUND")
 
 @app.errorhandler(401)
 def unhauthorized(_):

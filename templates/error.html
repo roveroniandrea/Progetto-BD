@@ -1,0 +1,20 @@
+{% extends "index.html" %}
+
+{% block pagebody %}
+<link rel="stylesheet" href="/static/styles/error.css">
+
+<div class="container error-container">
+    <div class="row  d-flex align-items-center justify-content-center">
+		<div class="col-md-12 text-center">
+			<h1 class="big-text">Oops!</h1>
+			<h2 class="small-text">{{error}}</h2>
+
+		</div>
+		<div class="col-md-6  text-center">
+			<p>{{description}}</p>
+			<a href="/" class="button">homepage</a>
+		</div>
+
+	</div>
+</div>
+{% endblock %}
