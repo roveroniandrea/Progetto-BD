@@ -96,9 +96,9 @@
 
     function drawChart() {
         const qs = {{questions |tojson | safe}}
-        const total_acc = {{total_accesses | safe}}
         const answered_acc = {{answered_accesses | safe}}
-        const d = google.visualization.arrayToDataTable([ ['Accessi', 'Valori'], ['accessi totali', total_acc], ['accessi con risposta', answered_acc] ])
+        const unanswered_acc = {{total_accesses | safe}} - answered_acc
+        const d = google.visualization.arrayToDataTable([ ['Accessi', 'Valori'], ['accessi senza risposta', unanswered_acc], ['accessi con risposta', answered_acc] ])
         const c = new google.visualization.PieChart(document.getElementById('accesses_card'));
         c.draw(d);
 
