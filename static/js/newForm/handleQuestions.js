@@ -17,7 +17,7 @@ function getOptionHTML(isRadio, inputId, removeId) {
                 <input class="form-check-input radio-option" type="${isRadio ? 'radio' : 'checkbox'}" disabled>
             </div>
             <div class="col-sm-8">
-                <input class="form-control trasparent-input" type="text" placeholder="Opzione" required id="${inputId || undefined}" data-options-option="">
+                <input class="form-control trasparent-input input-rounded" type="text" placeholder="Opzione" required id="${inputId || undefined}" data-options-option="">
             </div>
             <div class="col-sm-3 col-right">
                 ${removeId ? `<button type="button" class="btn btn-rounded rounded-circle btn-tooltip"
@@ -66,7 +66,7 @@ const newQuestion = (() => {
 
         const questionTitleInputHTML = `
         <div class="col-lg">
-            <input data-question="" class="form-control trasparent-input form-question" type="text"
+            <input data-question="" class="form-control trasparent-input input-rounded form-question" type="text"
                    placeholder="Domanda" required id="${questionTitleInputId}"><br>
         </div>`;
 
@@ -110,7 +110,7 @@ const newQuestion = (() => {
                 </div>
                 <div class="row">
                     <div class="col-lg">
-                    <textarea class="form-control trasparent-input" type="text" placeholder="Risposta"
+                    <textarea class="form-control trasparent-input input-rounded" type="text" placeholder="Risposta"
                               disabled></textarea>
                     </div>
                 </div>`;
@@ -163,7 +163,7 @@ const newQuestion = (() => {
                 </div>
                 <div class="row">
                     <div class="col-lg">
-                        <input class="form-control trasparent-input" type="date" placeholder="Domanda" disabled>
+                        <input class="form-control trasparent-input input-roundedf" type="date" placeholder="Domanda" disabled>
                     </div>
                 </div>`;
                 break;

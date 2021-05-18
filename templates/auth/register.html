@@ -9,7 +9,7 @@
         <div class="col-sm-4">
         </div><!--col-4 vuota-->
         <div class="col-md-4">
-            <div class="card text-center ">
+            <div class="card text-center shadowed-section">
                 <form action="/register" method="post" id="form-registration" onsubmit="return control_password()">
                     <div class="card-body" id="card-body">
                         <h2>Crea il tuo account!</h2>
@@ -21,27 +21,24 @@
                         <br>
                         <br>
                         <label class="label">Email</label><br>
-                        <input name="email" class="form-control" type="email" placeholder="Email" required><br>
+                        <input name="email" class="form-control input-rounded" type="email" placeholder="Email" required><br>
                         <label class="label">Password</label><br>
-                        <input name="password" id="first_password" class="form-control" type="password"
+                        <input name="password" id="first_password" class="form-control input-rounded" type="password"
                                placeholder="Password" required>
-                        <div class="progress">
+                        <div class="progress input-rounded">
                             <div class="progress-bar" role="progressbar" ></div>
                         </div>
                         <br>
 
                         <label class="label">Conferma Password</label>
                         <br>
-                        <input name="confirmed_password" id="second_password" class="form-control" type="password"
+                        <input name="confirmed_password" id="second_password" class="form-control input-rounded" type="password"
                                placeholder="Password" required>
                         <br>
                         {% if error %}
                         <p id="error">{{error}}</p>
                         {% endif %}
-                    </div>
-                    <!--card-body-->
-                    <div class="card-footer card-auth-footer">
-                        <button type="submit" class="btn btn-outline-light">Sign Up</button>
+                        <button type="submit" class="btn button-blue">Sign Up</button>
                     </div>
                 </form>
                 <!--card-body-->

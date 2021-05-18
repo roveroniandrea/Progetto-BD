@@ -4,7 +4,7 @@ const addUser = (() => {
     let user_number = 1;
 
     const username = document.getElementById('addUserInput');
-    const errorP = document.getElementById('error-email-p');
+    const errorP = document.getElementById('error');
     const container = document.getElementById('userList');
 
     return () => {

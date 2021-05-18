@@ -14,7 +14,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-lg-10">
-                                <input name="title" class="form-control trasparent-input form-title" type="text"
+                                <input name="title" class="form-control trasparent-input form-title input-rounded" type="text"
                                        placeholder="Form senza titolo"
                                        required id="formTitle">
                             </div>
@@ -27,24 +27,9 @@
                         </div>
                         <hr>
                         <div class="row">
-                            <div class="col-lg-10">
-                                <input name="title" id="addUserInput" class="form-control trasparent-input"
-                                       type="email"
-                                       placeholder="Aggiungi l'email dell'utente">
-                            </div>
-                            <div class="col-sm col-right">
-                                <a onclick="addUser()" class="btn btn-primary"> Aggiungi</a>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg error-email">
-                                <p id="error"></p>
-                            </div>
-                        </div>
-                        <div class="row">
                             <div class="col-lg">
                                 <div class="card card-user">
-                                    <div class="card-body" id="userList">
+                                    <div class="card-body" >
                                         <div class="row">
                                             <div class="col">
                                                 <h5>Utenti che possono rispondere:</h5>
@@ -52,7 +37,23 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col">
+                                            <div class="col-lg-9">
+                                                <input name="title" id="addUserInput"
+                                                       class="form-control trasparent-input input-rounded"
+                                                       type="email"
+                                                       placeholder="Aggiungi l'email dell'utente">
+                                            </div>
+                                            <div class="col-sm col-right">
+                                                <a onclick="addUser()" class="btn button-blue"> Aggiungi</a>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg error-email">
+                                                <p id="error"></p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col" id="userList">
                                                 <div class="chip">
                                                     <img src="/static/image/account_circle_black_24dp.svg" width="96"
                                                          height="96"> {{current_user.email}}
@@ -69,7 +70,7 @@
             </div>
             <div class="col-sm-2">
                 <div class="btn-group">
-                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
+                    <button type="button" class="btn button-blue dropdown-toggle" data-toggle="dropdown"
                             data-bs-toggle="dropdown"
                             aria-expanded="false">
                         New Question
@@ -107,7 +108,7 @@
             <div class="row">
                 <div class="col-lg"></div>
                 <div class="col-sm-2 col-center-text">
-                    <button class="btn btn-primary" type="submit">Submit</button>
+                    <button class="btn button-blue" type="submit">Submit</button>
                 </div>
                 <div class="col-lg"></div>
             </div>

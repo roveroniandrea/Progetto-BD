@@ -48,13 +48,13 @@
 
                                     {% if question.type.asString() == 'text' %}
 
-                                    <textarea class="form-control form-input" type="text" {{'required' if
+                                    <textarea class="form-control form-input input-rounded" type="text" {{'required' if
                                     question.required}}
                                     placeholder="Risposta" data-answer-value></textarea>
 
                                     {% elif question.type.asString() == 'date' %}
 
-                                    <input class="form-control form-input" type="date" {{'required' if
+                                    <input class="form-control form-input input-rounded" type="date" {{'required' if
                                     question.required}} data-answer-value>
 
                                     {% elif question.type.asString() == 'multi' or question.type.asString() == 'single'
@@ -92,7 +92,7 @@
                 <div class="row">
                     <div class="col-lg"></div>
                     <div class="col-sm-2 col-answer-submit">
-                        <button class="btn btn-primary" type="submit">Submit</button>
+                        <button class="btn button-blue" type="submit">Submit</button>
                     </div>
                     <div class="col-lg"></div>
                 </div>

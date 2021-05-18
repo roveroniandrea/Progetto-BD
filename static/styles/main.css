@@ -20,11 +20,36 @@
 .button-blue:hover,
 .button-blue:focus {
     color: #ffffff;
-    -webkit-box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.1);
-    -moz-box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.1);
-    box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.1);
-    text-decoration: none;
+    border-radius: 30px;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2), 0 1px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
+.button-white {
+    color: #666666;
+    padding: 12px 36px;
+    font-weight: 600;
+    position: relative;
+    display: inline-block;
+    text-transform: uppercase;
+    -webkit-border-radius: 90px;
+    -moz-border-radius: 90px;
+    border-radius: 90px;
+    margin: 2px;
+    border-color: #666666;
+    background-size: 200% auto;
+    flex: 1 1 auto;
+    text-decoration: none;
+
+}
+
+.button-white:hover,
+.button-white:focus {
+    color: #ffffff;
+    border-radius: 30px;
+    background-color: #666666;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2), 0 1px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
 
 /*Error text*/
 #error {
@@ -67,6 +92,10 @@
 .col-center-text {
     padding-top: 20px;
     text-align: center;
+}
+
+.input-rounded{
+    border-radius: 30px;
 }
 
 

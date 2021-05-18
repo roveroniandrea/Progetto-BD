@@ -8,7 +8,7 @@
         <div class="col-sm-4">
         </div><!--col-4 vuota-->
         <div class="col-md-4">
-            <div class="card text-center " id="card-login">
+            <div class="card text-center shadowed-section" id="card-login">
                 <form action="/login" METHOD="post">
                     <div class="card-body">
                         <h2>Ciao!</h2>
@@ -21,20 +21,17 @@
                         <br>
                         <label class="label">Email</label>
                         <br>
-                        <input name="email" class="form-control" type="email" placeholder="Email" required><br>
+                        <input name="email" class="form-control input-rounded" type="email" placeholder="Email" required><br>
                         <label class="label">Password</label>
                         <br>
-                        <input name="password" class="form-control" type="password"
+                        <input name="password" class="form-control input-rounded" type="password"
                                placeholder="Password" required>
                         <br>
                         <br>
                         {% if error %}
                         <p id="error">{{error}}</p>
                         {% endif %}
-                    </div>
-                    <!--card-body-->
-                    <div class="card-footer card-auth-footer">
-                        <button type="submit" class="btn btn-outline-light">Login</button>
+                        <button type="submit" class="btn button-blue">Login</button>
                     </div>
                     <!--card-body-->
                 </form>
