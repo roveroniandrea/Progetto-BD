@@ -230,8 +230,8 @@ function newQuestion(type) {
  * Removes a generic element
  */
 function delete_element(id) {
-    const row = document.querySelector(`#${id}`);
-    row.remove();
+    const element = document.querySelector(`#${id}`);
+    element.remove();
 }
 
 /**
@@ -278,25 +278,29 @@ function submitForm() {
 
 /**
  * Add user access
-**/
+ **/
 function addUser() {
 
-        let username = document.getElementById('addUserInput');
-        let errorP = document.getElementById('error-email-p');
+    let username = document.getElementById('addUserInput');
+    let errorP = document.getElementById('error-email-p');
 
-        if (username.value !== "" && username.value.includes('@')) {
-            user_number++;
-            errorP.innerHTML = ""
-            let container = document.getElementById('userList');
-            let user = document.createElement('div');
-            let chip_user = `<img src="/static/image/account_circle_black_24dp.svg"  width="96" height="96">${username.value}
-                         <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>`;
-            user.classList.add('chip');
-            user.setAttribute('data-username',username.value);
-            user.innerHTML = chip_user;
-            username.value = "";
-            container.appendChild(user);
-        } else {
-            errorP.innerHTML = "Inserisci un'email valida!"
-        }
+    if (username.value !== "" && username.value.includes('@')) {
+        user_number++;
+        errorP.innerHTML = ""
+        let container = document.getElementById('userList');
+        let user = document.createElement('div');
+        user.id = "userNumber_" + user_number;
+
+        let chip_user = `<img src="/static/image/account_circle_black_24dp.svg"  width="96" height="96" alt="" >${username.value}
+                         <span class="closebtn" onclick="delete_element('${user.id}')">&times;</span>`;
+        user.classList.add('chip');
+        user.setAttribute('data-username', username.value);
+
+        user.innerHTML = chip_user;
+        username.value = "";
+        container.appendChild(user);
+    } else {
+        errorP.innerHTML = "Inserisci un'email valida!"
     }
+}
+
