@@ -300,7 +300,7 @@ function addUser() {
         username.value = "";
         container.appendChild(user);
     } else {
-        errorP.innerHTML = "Inserisci un'email valida!"
+        errorP.innerHTML = "Inserisci un'email valida!";
     }
 }
 
