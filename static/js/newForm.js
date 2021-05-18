@@ -2,6 +2,11 @@ let count_check_input = 0;
 let count_question = 0
 let count_radio_input = 0;
 
+/**
+ * Number of user that have access to a form
+ * */
+let user_number = 1;
+
 /** Current color of the form */
 let curr_color = "white";
 
@@ -225,8 +230,8 @@ function newQuestion(type) {
  * Removes a generic element
  */
 function delete_element(id) {
-    const row = document.querySelector(`#${id}`);
-    row.remove();
+    const element = document.querySelector(`#${id}`);
+    element.remove();
 }
 
 /**
@@ -236,7 +241,7 @@ function submitForm() {
     const mappedData = {
         title: document.querySelector('#formTitle').value,
         questions: [],
-        accesses: [], //TODO (se stesso viene già incluso lato server)
+        accesses: [...document.querySelectorAll('[data-username]')].map(u => u.getAttribute("data-username")),
         color: curr_color
     }
     const questionsBox = [...document.querySelectorAll('[data-question-type]')];
@@ -270,3 +275,32 @@ function submitForm() {
     //This form should not submit
     return false;
 }
+
+/**
+ * Add user access
+ **/
+function addUser() {
+
+    const username = document.getElementById('addUserInput');
+    const errorP = document.getElementById('error-email-p');
+
+    if (username.value !== "" && username.value.includes('@')) {
+        user_number++;
+        errorP.innerHTML = "";
+        const container = document.getElementById('userList');
+        const user = document.createElement('div');
+        user.id = "userNumber_" + user_number;
+
+        const chip_user = `<img src="/static/image/account_circle_black_24dp.svg"  width="96" height="96" alt="" >${username.value}
+                         <span class="closebtn" onclick="delete_element('${user.id}')">&times;</span>`;
+        user.classList.add('chip');
+        user.setAttribute('data-username', username.value);
+
+        user.innerHTML = chip_user;
+        username.value = "";
+        container.appendChild(user);
+    } else {
+        errorP.innerHTML = "Inserisci un'email valida!";
+    }
+}
+

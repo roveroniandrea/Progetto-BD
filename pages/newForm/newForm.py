@@ -40,9 +40,9 @@ def submitNewForm():
             question.options = submitted_question['options']
             question.required = submitted_question['required']
 
-        access = Access()
-        access.userRel = user
-        access.formRel = form
+        my_access = Access()
+        my_access.userRel = user
+        my_access.formRel = form
 
         for submitted_access in form_data['accesses']:
             access = Access()
