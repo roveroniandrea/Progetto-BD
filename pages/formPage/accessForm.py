@@ -1,4 +1,4 @@
-from flask import render_template
+from flask import render_template, abort
 from flask_login import current_user
 from sqlalchemy.exc import SQLAlchemyError
 
@@ -12,7 +12,7 @@ def accessForm(form_id):
         access = user.accessesRel.filter_by(form=form_id).one()
     except SQLAlchemyError:
         session.close()
-        return render_template('error.html', error="Unauthorized", description="Potresti non avere i permessi per accedere a questa pagina")
+        return abort(401)
 
     if access.access_id is None:
         # Risposta al questionario
