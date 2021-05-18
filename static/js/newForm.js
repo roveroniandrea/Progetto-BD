@@ -281,17 +281,17 @@ function submitForm() {
  **/
 function addUser() {
 
-    let username = document.getElementById('addUserInput');
-    let errorP = document.getElementById('error-email-p');
+    const username = document.getElementById('addUserInput');
+    const errorP = document.getElementById('error-email-p');
 
     if (username.value !== "" && username.value.includes('@')) {
         user_number++;
         errorP.innerHTML = ""
-        let container = document.getElementById('userList');
-        let user = document.createElement('div');
+        const container = document.getElementById('userList');
+        const user = document.createElement('div');
         user.id = "userNumber_" + user_number;
 
-        let chip_user = `<img src="/static/image/account_circle_black_24dp.svg"  width="96" height="96" alt="" >${username.value}
+        const chip_user = `<img src="/static/image/account_circle_black_24dp.svg"  width="96" height="96" alt="" >${username.value}
                          <span class="closebtn" onclick="delete_element('${user.id}')">&times;</span>`;
         user.classList.add('chip');
         user.setAttribute('data-username', username.value);
