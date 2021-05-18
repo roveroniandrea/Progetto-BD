@@ -9,7 +9,7 @@
             <div class="col-sm-2">
             </div>
             <div class="col-sm-8">
-                <div class="card answer-section-title">
+                <div class="card shadowed-section">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-lg">
@@ -32,7 +32,7 @@
             <div class="col-sm-2">
             </div>
             <div class="col-sm-8">
-                <div class="card answer-section">
+                <div class="card shadowed-section">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-sm">
@@ -45,7 +45,7 @@
                         </div>
                         <div class="row">
                             <div class="col-sm">
-                                <div class="col-lg">
+
                                     {% if question.type.asString() == 'text' %}
 
                                     <textarea class="form-control form-input" type="text" {{'required' if
@@ -74,7 +74,7 @@
                                         {% endfor %}
                                     </div>
                                     {% endif %}
-                                </div>
+
                             </div>
                         </div>
                     </div>

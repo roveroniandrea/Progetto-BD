@@ -1,18 +1,3 @@
-.card-register-body{
-    background-color: #666666;
-}
-
-.btn-btn-register {
-    border-color: white;
-    color: white;
-    align-self: center;
-}
-
-/*Error text*/
-#error {
-    color: red;
-}
-
 /*Password metter*/
 .progress {
     margin-top: 3px;
