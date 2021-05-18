@@ -1,4 +1,4 @@
-from flask import render_template
+from flask import render_template, abort
 from flask_login import current_user
 from sqlalchemy.exc import SQLAlchemyError
 
@@ -46,4 +46,4 @@ def showFormStats(form_id):
     except SQLAlchemyError as e:
         print("Error showFormStats: " + str(e))
         session.close()
-        return "Non autorizzato"
+        return abort(401)

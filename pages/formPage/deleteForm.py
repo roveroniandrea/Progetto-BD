@@ -1,3 +1,4 @@
+from flask import render_template, abort
 from flask_login import current_user
 from sqlalchemy.exc import SQLAlchemyError
 from werkzeug.utils import redirect
@@ -32,8 +33,8 @@ def deleteForm(form_id):
             return redirect('/')
         else:
             session.close()
-            return "Unauthorized Access"
+            return abort(401)
     except SQLAlchemyError as e:
         session.close()
         print("Error DELETE: " + str(e))
-        return "errore cancellazione"
+        return render_template('error.html', error="Errore cancellazione del form", description="C'è stato un errore nella cancellazione del form. Riprova più tardi")
