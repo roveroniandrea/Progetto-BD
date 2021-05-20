@@ -14,56 +14,26 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-lg-10">
-                                <input name="title" class="form-control trasparent-input form-title input-rounded" type="text"
+                                <input name="title" class="form-control trasparent-input form-title input-rounded"
+                                       type="text"
                                        placeholder="Form senza titolo"
                                        required id="formTitle">
                             </div>
                             <div class="col-sm col-right">
+                                <button type="button"
+                                        class="color-button btn btn-rounded rounded-circle btn-tooltip Notification"
+                                        data-bs-toggle="modal" data-bs-target="#addFormVisibilityModal" id="addUser"
+                                        title="Aggiungi Utenti">
+                                    <img src="/static/image/view_user_visible_info_account_profile-512.png" height="24"
+                                         width="24" alt="">
+                                    <span id="span_members" class="badge badge-success">1</span>
+                                </button>
+
                                 <button type="button" class="color-button btn btn-rounded rounded-circle btn-tooltip"
                                         id="formColor" title="Cambia sfondo"><img
                                         src="/static/image/palette_black_24dp.svg" alt="">
                                 </button>
                             </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-lg">
-                                <div class="card card-user">
-                                    <div class="card-body" >
-                                        <div class="row">
-                                            <div class="col">
-                                                <h5>Utenti che possono rispondere:</h5>
-                                                <br>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-9">
-                                                <input name="title" id="addUserInput"
-                                                       class="form-control trasparent-input input-rounded"
-                                                       type="email"
-                                                       placeholder="Aggiungi l'email dell'utente">
-                                            </div>
-                                            <div class="col-sm col-right">
-                                                <a onclick="addUser()" class="btn button-blue"> Aggiungi</a>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg error-email">
-                                                <p id="error"></p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col" id="userList">
-                                                <div class="chip">
-                                                    <img src="/static/image/account_circle_black_24dp.svg" width="96"
-                                                         height="96"> {{current_user.email}}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
                         </div>
                     </div>
                 </div>
@@ -82,7 +52,7 @@
                             </button>
                         </li>
                         <li>
-                            <button class="dropdown-item" type="button"onclick="newQuestion('single')">Singola
+                            <button class="dropdown-item" type="button" onclick="newQuestion('single')">Singola
                             </button>
                         </li>
                         <li>
@@ -99,24 +69,74 @@
         </div>
     </div>
     <div class="container">
-
-    </div>
-    <div class="row">
-        <div class="col-sm-2">
-        </div>
-        <div class="col-sm-8">
-            <div class="row">
-                <div class="col-lg"></div>
-                <div class="col-sm-2 col-center-text">
-                    <button class="btn button-blue" type="submit">Submit</button>
-                </div>
-                <div class="col-lg"></div>
+        <div class="row">
+            <div class="col-sm-2">
             </div>
-        </div>
-        <div class="col-sm-2">
+            <div class="col-sm-8">
+                <div class="row">
+                    <div class="col-lg"></div>
+                    <div class="col-sm-2 col-center-text">
+                        <button class="btn button-blue" type="submit">Submit</button>
+                    </div>
+                    <div class="col-lg"></div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+            </div>
         </div>
     </div>
 </form>
+
+<div class="modal fade" id="addFormVisibilityModal" tabindex="-1" aria-hidden="true" data-backdrop="false">
+    <div class="modal-dialog">
+        <div class="modal-content card card-user">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <h5>Utenti che possono rispondere:</h5>
+                                    <br>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-9">
+                                    <input name="title" id="addUserInput"
+                                           class="form-control trasparent-input input-rounded"
+                                           type="email"
+                                           placeholder="Aggiungi l'email dell'utente">
+                                </div>
+                                <div class="col-sm">
+                                    <br>
+                                    <a onclick="addUser()" class="btn button-blue"> Aggiungi</a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg error-email">
+                                    <p id="error"></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col" id="userList">
+                                    <div class="chip">
+                                        <img src="/static/image/account_circle_black_24dp.svg" width="96"
+                                             height="96"> {{current_user.email}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn button-blue" data-bs-dismiss="modal">Save Changes</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script src="/static/js/newForm/utils.js"></script>
 <script src="/static/js/newForm/handleQuestions.js"></script>
