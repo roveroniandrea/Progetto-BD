@@ -10,7 +10,7 @@ const addUser = (() => {
     const errorP = document.getElementById('error');
     const container = document.getElementById('userList');
 
-    username.addEventListener('keypress', function (e) {
+    username.addEventListener('keydown', function (e) {
         if (e.key === 'Enter') {
             addChip();
         }
