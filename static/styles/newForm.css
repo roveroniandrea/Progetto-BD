@@ -83,7 +83,9 @@
     position: absolute;
     top: -5px;
     right: -5px;
-    border-radius: 30px;
+    border-radius: 30rem;
+    line-height: 1;
+    padding: .375rem .5625rem;
 }
 
 .modal-backdrop {
