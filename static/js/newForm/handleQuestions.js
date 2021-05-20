@@ -14,17 +14,21 @@ function getOptionContainerId(question_number, isRadio) {
 function getOptionHTML(isRadio, inputId, removeId) {
     return `
             <div class="col-sm-1 col-radio">
-                <input class="form-check-input radio-option" type="${isRadio ? 'radio' : 'checkbox'}" disabled>
+                <input class="form-check-input radio-option " type="${isRadio ? 'radio' : 'checkbox'}" disabled>
+                <br>
             </div>
             <div class="col-sm-8">
+                <input class="form-control trasparent-input input-rounded " type="text" placeholder="Opzione" required id="${inputId || undefined}" data-options-option="">
                 <br>
-                <input class="form-control trasparent-input input-rounded" type="text" placeholder="Opzione" required id="${inputId || undefined}" data-options-option="">
             </div>
             <div class="col-sm-3 col-right">
-                ${removeId ? `<button type="button" class="btn btn-rounded rounded-circle btn-tooltip"
+                ${removeId ? `<button type="button" class="btn btn-rounded rounded-circle btn-tooltip margin-delete-button-option"
                         data-bs-placement="bottom" title="Delete Option" onclick="delete_element('${removeId}')">
                         <img src="/static/image/close_black_24dp.svg" alt="">
-                </button>` : ''}
+                </button>` :`<button type="button" hidden class="btn btn-rounded rounded-circle ">
+                        <img src="/static/image/close_black_24dp.svg" alt="">
+                </button>`}
+                <br>
             </div>`
 }
 
