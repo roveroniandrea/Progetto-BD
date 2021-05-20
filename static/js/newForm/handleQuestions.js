@@ -17,6 +17,7 @@ function getOptionHTML(isRadio, inputId, removeId) {
                 <input class="form-check-input radio-option" type="${isRadio ? 'radio' : 'checkbox'}" disabled>
             </div>
             <div class="col-sm-8">
+                <br>
                 <input class="form-control trasparent-input input-rounded" type="text" placeholder="Opzione" required id="${inputId || undefined}" data-options-option="">
             </div>
             <div class="col-sm-3 col-right">
@@ -79,6 +80,7 @@ const newQuestion = (() => {
                                             ${middle}
                                             <div class="row">
                                                 <div class="col-lg">
+                                                    <br>
                                                     <div class="form-check">
                                                       <input class="form-check-input" type="checkbox" value="" id="${requiredQuestionCheckboxId}" data-required="">
                                                       <label class="form-check-label" for="${requiredQuestionCheckboxId}">

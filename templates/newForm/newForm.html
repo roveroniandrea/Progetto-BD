@@ -20,11 +20,13 @@
                                        required id="formTitle">
                             </div>
                             <div class="col-sm col-right">
-                                <button type="button" class="color-button btn btn-rounded rounded-circle btn-tooltip"
-                                        data-bs-toggle="modal" data-bs-target="#addFormVisibilityModal"
-                                        id="addUser" title="Visibilità Form"><img
-                                        src="/static/image/view_user_visible_info_account_profile-512.png" height="24"
-                                        width="24" alt="">
+                                <button type="button"
+                                        class="color-button btn btn-rounded rounded-circle btn-tooltip includer"
+                                        data-bs-toggle="modal" data-bs-target="#addFormVisibilityModal" id="addUser"
+                                        title="Visibilità Form">
+                                    <img src="/static/image/view_user_visible_info_account_profile-512.png" height="24"
+                                         width="24" alt="">
+                                    <span id="span_members" class="badge badge-success">1</span>
                                 </button>
 
                                 <button type="button" class="color-button btn btn-rounded rounded-circle btn-tooltip"
@@ -85,7 +87,7 @@
     </div>
 </form>
 
-<div class="modal fade" id="addFormVisibilityModal" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="addFormVisibilityModal" tabindex="-1" aria-hidden="true" data-backdrop="false">
     <div class="modal-dialog">
         <div class="modal-content card card-user">
             <div class="modal-body">
@@ -128,6 +130,9 @@
 
                 </div>
 
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn button-blue" data-bs-dismiss="modal">Save Changes</button>
             </div>
         </div>
     </div>
