@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy import Column, Integer, String, ForeignKey, Date, func
 from sqlalchemy.orm import relationship
 
 from lib.initDB import Base
@@ -10,6 +10,7 @@ class Form(Base):
     title = Column(String)
     owner = Column(String, ForeignKey('users.email'))
     color = Column(String)
+    creation_date = Column(Date, default=func.current_date())
 
     ownerUserRel = relationship('User', back_populates='ownedFormsRel')
     """1:M relationship to the users table"""
@@ -21,4 +22,4 @@ class Form(Base):
 
     def __repr__(self):
         """Used to print the Form object"""
-        return "Form: {id: '%s', title: '%s', owner: '%s' color: '%s'}" % (self.id, self.title, self.owner, self.color)
+        return "Form: {id: '%s', title: '%s', owner: '%s' color: '%s', date: '%s'  }" % (self.id, self.title, self.owner, self.color, self.creation_date)
