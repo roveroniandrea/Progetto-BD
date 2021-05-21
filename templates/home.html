@@ -35,9 +35,9 @@
                         <div class="card form-card" onclick="myFormsRedirect(event, '{{form.id}}')" data-accept-link>
                             <div class="card-body" data-accept-link>
                                 <div class="row" data-accept-link>
-                                    <div class="col-lg" data-accept-link>
-                                        <h5 class="card-title" data-accept-link>{{form.title}}</h5>
-                                        <p class="card-text" data-accept-link>Da: {{form.owner}}</p>
+                                    <div class="col-lg text-truncate" data-accept-link>
+                                        <h5 class="card-title text-truncate" data-accept-link>{{form.title}}</h5>
+                                        <p class="card-text text-truncate" data-accept-link>Da: {{form.owner}}</p>
                                         <p class="card-text" data-accept-link>Creato il: {{form.creation_date}}</p>
                                     </div>
                                     <div class="col-sm-3">
@@ -81,9 +81,9 @@
                     {% for form in unanswered_forms %}
                     <div class="col-sm-3">
                         <div class="card form-card" onclick="location.href='/q/{{form.id}}'">
-                            <div class="card-body">
-                                <h5 class="card-title">{{form.title}}</h5>
-                                <p class="card-text">Da: {{form.owner}}</p>
+                            <div class="card-body text-truncate">
+                                <h5 class="card-title text-truncate">{{form.title}}</h5>
+                                <p class="card-text text-truncate">Da: {{form.owner}}</p>
                                 <p class="card-text">Creato il: {{form.creation_date}}</p>
                             </div>
                         </div>
@@ -111,9 +111,9 @@
                     {% for form in answered_forms %}
                     <div class="col-sm-3">
                         <div class="card form-card" onclick="location.href='/q/{{form.id}}'">
-                            <div class="card-body">
-                                <h5 class="card-title">{{form.title}}</h5>
-                                <p class="card-text">Da: {{form.owner}}</p>
+                            <div class="card-body text-truncate">
+                                <h5 class="card-title text-truncate">{{form.title}}</h5>
+                                <p class="card-text text-truncate">Da: {{form.owner}}</p>
                                 <p class="card-text">Creato il: {{form.creation_date}}</p>
                             </div>
                         </div>
