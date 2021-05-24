@@ -53,6 +53,14 @@
 
                                             <ul class="dropdown-menu">
                                                 <li>
+                                                    <form action="/q/{{form.id}}/stats" method='get'>
+                                                        <button type="submit"
+                                                                class="btn dropdown-item">
+                                                            Mostra le statistiche
+                                                        </button>
+                                                    </form>
+                                                </li>
+                                                <li>
                                                     <button class="dropdown-item" type="button"
                                                             onclick="setModalAskUsers('{{form.id}}')"
                                                             data-bs-toggle="modal"
@@ -68,14 +76,6 @@
                                                         </button>
                                                     </form>
 
-                                                </li>
-                                                <li>
-                                                    <form action="/q/{{form.id}}/stats" method='get'>
-                                                        <button type="submit"
-                                                                class="btn dropdown-item">
-                                                            Mostra le statistiche
-                                                        </button>
-                                                    </form>
                                                 </li>
                                             </ul>
                                         </div>
