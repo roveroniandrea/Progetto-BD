@@ -20,6 +20,6 @@ def accessForm(form_id):
         session.close()
         return template
     else:
-        # TODO: revisione questionario
+        template = render_template("formPage/reviewAnswer.html", form=access.formRel, accessId=access.access_id)
         session.close()
-        return "TODO revisione"
+        return template
