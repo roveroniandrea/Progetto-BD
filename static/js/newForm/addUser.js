@@ -1,6 +1,6 @@
-/** Called by home.html, resets the chips in the modal, accepting an array of new emails, a bollean if they can be removed, and a callback when a new user is added*/
-let resetModal = null;
-/** Removes a user given it's id*/
+/** Sets if the modal shoud ask the server for the users. Accepts the id of the form to request */
+let setModalAskUsers = null;
+/** Removes a user given its element id*/
 let deleteUser = null;
 
 /** Adds access to another user. Passing an optional value if the user can't be removed**/
@@ -13,8 +13,8 @@ const addUser = (() => {
     const container = document.getElementById('userList');
     const notification = document.getElementById('span_members');
 
-    let usersCanBeRemoved = true;
-    let callbackOnAdd = null;
+    /** If not null, the modal will retrieve the users from the server and sens every new user created */
+    let modalAskForId = null;
 
     // On enter pressed on the input, add the user
     username.addEventListener('keydown', function (e) {
@@ -23,17 +23,27 @@ const addUser = (() => {
         }
     });
 
-    // See resetModal for info
-    resetModal = (newUsers, canBeRemoved, newCallbackOnAdd) => {
-        usersCanBeRemoved = canBeRemoved;
-        callbackOnAdd = null;
+    // See setModalAskUsers for info
+    setModalAskUsers = (formId) => {
+        modalAskForId = null;
+        // Removing old users
         while (user_number > 1) {
             deleteUser(getUserId(user_number));
         }
-        for (let user of newUsers) {
-            addUser(user);
+        if(formId){
+            // Asking server for users
+            const xml = new XMLHttpRequest();
+            xml.open('get', `/q/${formId}/accesses`);
+            xml.onreadystatechange = () => {
+                if (xml.readyState === XMLHttpRequest.DONE) {
+                    for (let user of JSON.parse(xml.response)) {
+                        addChip(user, true);
+                    }
+                }
+                modalAskForId = formId;
+            }
+            xml.send();
         }
-        callbackOnAdd = newCallbackOnAdd;
     }
 
     // See deleteUser for info
@@ -53,7 +63,7 @@ const addUser = (() => {
 
 
     /** Adds a user. If forcedEmail is passed, the field in username input is ignored */
-    let addChip = function (forcedEmail) {
+    let addChip = function (forcedEmail, forceIgnoreServer) {
         const email = forcedEmail || username.value;
         if (email !== "" && email.includes('@')) {
             user_number++;
@@ -62,7 +72,7 @@ const addUser = (() => {
             user.id = getUserId(user_number);
 
             const chip_user = `<img src="/static/image/account_circle_black_24dp.svg"  width="96" height="96" alt="" >${email}
-                         ${usersCanBeRemoved ? `<span class="closebtn" onclick="deleteUser('${user.id}')">&times;</span>` : ''}`;
+                         ${!modalAskForId ? `<span class="closebtn" onclick="deleteUser('${user.id}')">&times;</span>` : ''}`;
             user.classList.add('chip');
             user.setAttribute('data-username', email);
 
@@ -73,8 +83,10 @@ const addUser = (() => {
                 notification.innerText = user_number.toString();
             }
 
-            if (callbackOnAdd) {
-                callbackOnAdd(email);
+            if (modalAskForId && !forceIgnoreServer) {
+                const xml = new XMLHttpRequest();
+                xml.open('post', `/q/${modalAskForId}/accesses/${email}`);
+                xml.send();
             }
         } else {
             errorP.innerHTML = "Inserisci un'email valida!";
