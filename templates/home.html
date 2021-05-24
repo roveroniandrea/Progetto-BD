@@ -41,19 +41,45 @@
                                         <p class="card-text" data-accept-link>Creato il: {{form.creation_date}}</p>
                                     </div>
                                     <div class="col-sm-3">
-                                        <form action="/q/{{form.id}}/delete" method='post'
-                                              onsubmit="return confirm('Eliminare definitivamente il form?')">
-                                            <button type="submit" class="btn btn-rounded rounded-circle btn-tooltip"
-                                                    title="Cancella il form">
-                                                <img src="/static/image/delete_outline_black_24dp.svg" alt="">
+                                        <div class="btn-group">
+                                            <button type="button"
+                                                    class="btn btn-rounded rounded-circle btn-tooltip dropdown-options"
+                                                    title="Opzioni"
+                                                    data-toggle="dropdown"
+                                                    data-bs-toggle="dropdown"
+                                                    aria-expanded="false"><img
+                                                    src="/static/image/more_vert_black_24dp.svg" alt="">
                                             </button>
-                                        </form>
-                                        <form action="/q/{{form.id}}/stats" method='get'>
-                                            <button type="submit" class="btn btn-rounded rounded-circle btn-tooltip"
-                                                    title="Mostra le statistiche">
-                                                <img src="/static/image/equalizer_black_24dp.svg" alt="">
-                                            </button>
-                                        </form>
+
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <form action="/q/{{form.id}}/stats" method='get'>
+                                                        <button type="submit"
+                                                                class="btn dropdown-item">
+                                                            Mostra le statistiche
+                                                        </button>
+                                                    </form>
+                                                </li>
+                                                <li>
+                                                    <button class="dropdown-item" type="button"
+                                                            onclick="setModalAskUsers('{{form.id}}')"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#addFormVisibilityModal"
+                                                            o>Aggiungi utenti
+                                                    </button>
+                                                </li>
+                                                <li>
+                                                    <form action="/q/{{form.id}}/delete" method='post'
+                                                          onsubmit="return confirm('Eliminare definitivamente il form?')">
+                                                        <button type="submit"
+                                                                class="dropdown-item">Elimina form
+                                                        </button>
+                                                    </form>
+
+                                                </li>
+                                            </ul>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -126,6 +152,8 @@
     </div>
 </div>
 
+{% include "newForm/addUser.html" %}
+
 <script>
     /**Checks if the user should be redirect to the form stats if has not clicked any button on the card*/
     function myFormsRedirect(event, formId) {
@@ -133,6 +161,8 @@
             location.href = `/q/${formId}`;
         }
     }
+
+    new bootstrap.Dropdown(document.querySelector('.dropdown-options'));
 </script>
 
 {% endblock %}

@@ -8,6 +8,7 @@ from lib.types.Form import Form
 
 
 def deleteForm(form_id):
+    """Deletes a form given its id. Only if the user is the owner"""
     session = Session()
     try:
         form = session.query(Form).filter_by(id=form_id).one()

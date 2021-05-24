@@ -6,6 +6,7 @@ from lib.initDB import Session
 
 
 def accessForm(form_id):
+    """Returns the page to answer the form or to see the inserted answers"""
     session = Session()
     user = session.merge(current_user)
     try:
@@ -20,6 +21,6 @@ def accessForm(form_id):
         session.close()
         return template
     else:
-        # TODO: revisione questionario
+        template = render_template("formPage/reviewAnswer.html", form=access.formRel, accessId=access.access_id)
         session.close()
-        return "TODO revisione"
+        return template

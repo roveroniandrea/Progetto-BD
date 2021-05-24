@@ -8,6 +8,7 @@ from lib.types.Question import QuestionTypeEnum
 
 
 def showFormStats(form_id):
+    """Returns the stats of a form. Only if the user is the owner"""
     session = Session()
     user = session.merge(current_user)
     try:
