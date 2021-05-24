@@ -18,13 +18,17 @@
                         <div class="col-sm-3">
                             <p>By {{form.owner}}</p>
                             <p>on {{form.creation_date}}</p>
-                            <button onclick=location.href='/q/{{form.id}}/csv'>demoCSV</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-sm-2"></div>
+        <div class="col-sm-2">
+            <br>
+            <button onclick=location.href='/q/{{form.id}}/csv' type="button" class="btn csv-btn-rounded csv-btn-shadowed rounded-circle btn-tooltip">
+                <img src="/static/image/csv.png" width="45" height="45" alt="toCSV">
+            </button>
+        </div>
     </div>
 
     <div class="row row-stats-form">
