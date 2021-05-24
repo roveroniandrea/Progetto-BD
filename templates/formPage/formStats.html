@@ -18,6 +18,7 @@
                         <div class="col-sm-3">
                             <p>By {{form.owner}}</p>
                             <p>on {{form.creation_date}}</p>
+                            <button onclick=location.href='/q/{{form.id}}/csv'>demoCSV</button>
                         </div>
                     </div>
                 </div>
@@ -73,9 +74,9 @@
                         <div class="col-sm-11">
                             <ul>
                                 {% for answer in question.openAnswers %}
-                                    <li>
-                                        <h6>{{answer}}</h6>
-                                    </li>
+                                <li>
+                                    <h6>{{answer}}</h6>
+                                </li>
                                 {% endfor %}
                             </ul>
                         </div>
@@ -93,24 +94,55 @@
     google.charts.load('current', {'packages': ['corechart']});
     google.charts.setOnLoadCallback(drawChart);
 
-    document.body.style.backgroundColor="{{form.color}}"
+    document.body.style.backgroundColor = "{{form.color}}"
 
     function drawChart() {
-        const qs = {{questions |tojson | safe}}
+        const qs = {{questions | tojson | safe}}
         const answered_acc = {{answered_accesses | safe}}
-        const unanswered_acc = {{total_accesses | safe}} - answered_acc
-        const d = google.visualization.arrayToDataTable([ ['Accessi', 'Valori'], ['accessi senza risposta', unanswered_acc], ['accessi con risposta', answered_acc] ])
+        const unanswered_acc = {{total_accesses | safe}}-answered_acc
+
+        const d = google.visualization.arrayToDataTable([['Accessi', 'Valori'], ['accessi senza risposta', unanswered_acc], ['accessi con risposta', answered_acc]])
         const c = new google.visualization.PieChart(document.getElementById('accesses_card'));
         c.draw(d);
 
-        qs.forEach((q,index) => {
-            if(q.options){
-                const data = google.visualization.arrayToDataTable([ ['Accessi', 'Valori'],['Astenuti', q.notAnswered ], ...q.options.map(opt => [opt, q.optionsAnswers[opt]]) ]);
-                const chart = new google.visualization.PieChart(document.getElementById('piechart_'+ (index+1) ));
+        qs.forEach((q, index) => {
+            if (q.options) {
+                const data = google.visualization.arrayToDataTable([['Accessi', 'Valori'], ['Astenuti', q.notAnswered], ...q.options.map(opt => [opt, q.optionsAnswers[opt]])]);
+                const chart = new google.visualization.PieChart(document.getElementById('piechart_' + (index + 1)));
                 chart.draw(data);
             }
         })
 
     }
+    /*function generateCSV() {
+        const qs = {{questions | tojson | safe}}
+        let form_name = {{form.title |tojson |safe}}
+        let total_acc = {{total_accesses | safe}}
+
+        let rows = []
+
+        qs.forEach((q, index) => {
+            if (q.options) {
+                rows[0].push(q.question)
+                for(let i=1;i<total_acc;i++){
+                    rows[i].push()
+                }
+                //rows.push([[index,q.question], ['Astenuti', q.notAnswered], ...q.options.map(opt => [opt, q.optionsAnswers[opt]])]);
+            }
+        })
+
+        console.log(rows);
+
+        let filename = form_name + ".csv"
+        let csvContent = "data:text/csv;charset=utf-8," + rows.map(e => e.join(",")).join("\n");
+        let encodedUri = encodeURI(csvContent);
+
+        let link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", filename);
+        document.body.appendChild(link);
+        link.click();   //auto-download
+    }*/
+
 </script>
 {% endblock %}

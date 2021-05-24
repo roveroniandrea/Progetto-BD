@@ -15,7 +15,7 @@ class Answer(Base):
     accessRel = relationship('Access', back_populates='answersRel')
     """1:M relationship with accesses table"""
 
-    questionRel = relationship('Question', back_populates='answersRel')
+    questionRel = relationship('Question', back_populates='answersRel', lazy="dynamic", uselist=True)
     """1:M relationship with questions table"""
 
     openAnswerRel = relationship('OpenAnswer', back_populates='answerRel', cascade="all, delete-orphan", lazy="dynamic")
