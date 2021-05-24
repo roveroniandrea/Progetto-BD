@@ -27,47 +27,6 @@
     margin-top: 10px;
 }
 
-#addUserInput {
-    margin-top: 6px;
-}
-
-.card-user {
-    margin-top: 20px;
-    border-radius: 30px;
-}
-
-
-.chip {
-    display: inline-block;
-    padding: 0 20px;
-    margin: 5px;
-    height: 40px;
-    font-size: 15px;
-    line-height: 40px;
-    border-radius: 25px;
-    background-color: #f1f1f1;
-}
-
-.chip img {
-    float: left;
-    margin: 0 10px 0 -20px;
-    height: 40px;
-    width: 40px;
-    border-radius: 50%;
-}
-
-.closebtn {
-    padding-left: 10px;
-    color: #888;
-    font-weight: bold;
-    float: right;
-    font-size: 20px;
-    cursor: pointer;
-}
-
-.closebtn:hover {
-    color: #000;
-}
 
 .error-email {
     margin-top: 10px;
@@ -86,14 +45,6 @@
     border-radius: 30rem;
     line-height: 1;
     padding: .375rem .5625rem;
-}
-
-.modal-backdrop {
-  display: none;
-}
-
-.modal {
-  background: rgba(0,0,0,0.5);
 }
 
 
