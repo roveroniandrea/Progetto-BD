@@ -54,6 +54,9 @@
                                                 <img src="/static/image/equalizer_black_24dp.svg" alt="">
                                             </button>
                                         </form>
+                                        <button onclick="setModalAskUsers('{{form.id}}')"
+                                                data-bs-toggle="modal" data-bs-target="#addFormVisibilityModal">Prova
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -125,6 +128,8 @@
         </div>
     </div>
 </div>
+
+{% include "newForm/addUser.html" %}
 
 <script>
     /**Checks if the user should be redirect to the form stats if has not clicked any button on the card*/

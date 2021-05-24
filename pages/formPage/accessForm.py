@@ -6,6 +6,7 @@ from lib.initDB import Session
 
 
 def accessForm(form_id):
+    """Returns the page to answer the form or to see the inserted answers"""
     session = Session()
     user = session.merge(current_user)
     try:

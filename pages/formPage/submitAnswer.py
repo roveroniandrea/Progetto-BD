@@ -15,11 +15,15 @@ from lib.types.answers.SingleAnswer import SingleAnswer
 
 
 def submitAnswer(form_id):
+    """Saves the answers to a form in the db. Checks if the user has access to the form"""
     session = Session()
 
     try:
         form = session.query(Form).filter_by(id=form_id).one()
         access = form.accessesRel.filter_by(user=current_user.email).one()
+        if access.access_id is not None:
+            raise Exception('User has already answered to this form')
+
         access.access_id = generateNextAccessId()
 
         for submitted_answer in json.loads(request.form['answers']):

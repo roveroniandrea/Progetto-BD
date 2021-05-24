@@ -15,12 +15,14 @@ newFormBlueprint = Blueprint('newForm', __name__)
 @newFormBlueprint.route('/new', methods=['GET'])
 @login_required
 def newForm():
+    """Returns the page to create a new form"""
     return render_template('newForm/newForm.html')
 
 
 @newFormBlueprint.route('/new', methods=['POST'])
 @login_required
 def submitNewForm():
+    """Creates a new form"""
     session = Session()
     form_data = json.loads(request.form['data'])
 
