@@ -30,7 +30,7 @@ def submitAnswer(form_id):
             question = form.questionsRel.filter_by(id=submitted_answer['id']).one()
             answer = Answer()
             answer.accessRel = access
-            answer.questionRel = question
+            answer.question = question.id
 
             if question.type == QuestionTypeEnum.text:
                 typed_answer = OpenAnswer()
