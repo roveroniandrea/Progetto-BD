@@ -33,7 +33,11 @@ def defShowFormStats(form_id):
     return showFormStats(form_id)
 
 
+<<<<<<< HEAD
 @formPageBlueprint.route('/q/<int:form_id>/csv', methods=['GET'])
 @login_required
 def defCSVFormStats(form_id):
     return generateCSV(form_id)
+=======
+
+>>>>>>> develop
