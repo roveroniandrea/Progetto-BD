@@ -8,6 +8,7 @@ from lib.types.Access import Access
 
 
 def getFormAccesses(form_id):
+    """Return all the users that have access to that form, except the owner himself"""
     session = Session()
     user = session.merge(current_user)
     try:
@@ -20,6 +21,7 @@ def getFormAccesses(form_id):
 
 
 def addFormAccess(form_id, email):
+    """Adds a user to the accesses of the form"""
     session = Session()
     user = session.merge(current_user)
     try:

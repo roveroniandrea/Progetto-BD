@@ -9,6 +9,7 @@ homeBlueprint = Blueprint('home', __name__)
 
 @homeBlueprint.route('/', methods=['GET'])
 def home():
+    """The home page"""
     if current_user.is_authenticated:
         session = Session()
         user = session.merge(current_user)
