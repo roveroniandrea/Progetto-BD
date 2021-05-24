@@ -1,4 +1,6 @@
+/** Called by home.html, resets the chips in the modal, accepting an array of new emails, a bollean if they can be removed, and a callback when a new user is added*/
 let resetModal = null;
+/** Removes a user given it's id*/
 let deleteUser = null;
 
 /** Adds access to another user. Passing an optional value if the user can't be removed**/
@@ -14,12 +16,14 @@ const addUser = (() => {
     let usersCanBeRemoved = true;
     let callbackOnAdd = null;
 
+    // On enter pressed on the input, add the user
     username.addEventListener('keydown', function (e) {
         if (e.key === 'Enter') {
             addChip();
         }
     });
 
+    // See resetModal for info
     resetModal = (newUsers, canBeRemoved, newCallbackOnAdd) => {
         usersCanBeRemoved = canBeRemoved;
         callbackOnAdd = null;
@@ -32,6 +36,7 @@ const addUser = (() => {
         callbackOnAdd = newCallbackOnAdd;
     }
 
+    // See deleteUser for info
     deleteUser = (id) => {
         user_number--;
         if (notification) {
@@ -41,11 +46,13 @@ const addUser = (() => {
         element.remove();
     }
 
+    /** Returns the id of a user chip given it's user_number */
     const getUserId = (user_number) => {
         return "userNumber_" + user_number;
     }
 
 
+    /** Adds a user. If forcedEmail is passed, the field in username input is ignored */
     let addChip = function (forcedEmail) {
         const email = forcedEmail || username.value;
         if (email !== "" && email.includes('@')) {
