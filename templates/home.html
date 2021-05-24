@@ -54,6 +54,11 @@
                                                 <img src="/static/image/equalizer_black_24dp.svg" alt="">
                                             </button>
                                         </form>
+                                        {% with accesses = form.accessesRel.all() | rejectattr('user', 'equalto', current_user.email) | map(attribute="user") | list() %}
+                                        <button onclick="resetModal({{accesses}}, false, (email) => addNewUserToForm(email, '{{form.id}}'))"
+                                                data-bs-toggle="modal" data-bs-target="#addFormVisibilityModal">Prova
+                                        </button>
+                                        {% endwith %}
                                     </div>
                                 </div>
                             </div>
@@ -126,12 +131,18 @@
     </div>
 </div>
 
+{% include "newForm/addUser.html" %}
+
 <script>
     /**Checks if the user should be redirect to the form stats if has not clicked any button on the card*/
     function myFormsRedirect(event, formId) {
         if (event.target.hasAttribute('data-accept-link')) {
             location.href = `/q/${formId}`;
         }
+    }
+
+    function addNewUserToForm(email, formId) {
+        console.log(`Adding ${email} to ${formId}`);
     }
 </script>
 

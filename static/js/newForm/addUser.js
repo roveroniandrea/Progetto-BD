@@ -1,14 +1,18 @@
-/** Number of user that have access to this form */
-let user_number = 1;
+let resetModal = null;
+let deleteUser = null;
 
-const notification = document.getElementById('span_members');
-
-/** Add user access **/
+/** Adds access to another user. Passing an optional value if the user can't be removed**/
 const addUser = (() => {
+    /** Number of user that have access to this form */
+    let user_number = 1;
 
     const username = document.getElementById('addUserInput');
     const errorP = document.getElementById('error');
     const container = document.getElementById('userList');
+    const notification = document.getElementById('span_members');
+
+    let usersCanBeRemoved = true;
+    let callbackOnAdd = null;
 
     username.addEventListener('keydown', function (e) {
         if (e.key === 'Enter') {
@@ -16,22 +20,55 @@ const addUser = (() => {
         }
     });
 
-    let addChip = function(){
-        if (username.value !== "" && username.value.includes('@')) {
+    resetModal = (newUsers, canBeRemoved, newCallbackOnAdd) => {
+        usersCanBeRemoved = canBeRemoved;
+        callbackOnAdd = null;
+        while (user_number > 1) {
+            deleteUser(getUserId(user_number));
+        }
+        for (let user of newUsers) {
+            addUser(user);
+        }
+        callbackOnAdd = newCallbackOnAdd;
+    }
+
+    deleteUser = (id) => {
+        user_number--;
+        if (notification) {
+            notification.innerText = user_number.toString();
+        }
+        const element = document.querySelector(`#${id}`);
+        element.remove();
+    }
+
+    const getUserId = (user_number) => {
+        return "userNumber_" + user_number;
+    }
+
+
+    let addChip = function (forcedEmail) {
+        const email = forcedEmail || username.value;
+        if (email !== "" && email.includes('@')) {
             user_number++;
             errorP.innerHTML = "";
             const user = document.createElement('div');
-            user.id = "userNumber_" + user_number;
+            user.id = getUserId(user_number);
 
-            const chip_user = `<img src="/static/image/account_circle_black_24dp.svg"  width="96" height="96" alt="" >${username.value}
-                         <span class="closebtn" onclick="deleteUser('${user.id}')">&times;</span>`;
+            const chip_user = `<img src="/static/image/account_circle_black_24dp.svg"  width="96" height="96" alt="" >${email}
+                         ${usersCanBeRemoved ? `<span class="closebtn" onclick="deleteUser('${user.id}')">&times;</span>` : ''}`;
             user.classList.add('chip');
-            user.setAttribute('data-username', username.value);
+            user.setAttribute('data-username', email);
 
             user.innerHTML = chip_user;
             username.value = "";
             container.appendChild(user);
-            notification.innerText = user_number.toString();
+            if (notification) {
+                notification.innerText = user_number.toString();
+            }
+
+            if (callbackOnAdd) {
+                callbackOnAdd(email);
+            }
         } else {
             errorP.innerHTML = "Inserisci un'email valida!";
         }
@@ -39,8 +76,4 @@ const addUser = (() => {
     return addChip;
 })();
 
-function deleteUser(id) {
-    user_number--;
-    notification.innerText = user_number.toString();
-    delete_element(id);
-}
+

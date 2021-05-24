@@ -28,8 +28,9 @@ def home():
         answered_forms.sort(key=lambda f: f.creation_date, reverse=True)
         unanswered_forms.sort(key=lambda f: f.creation_date, reverse=True)
 
-        session.close()
-        return render_template('home.html', my_forms=my_forms, answered_forms=answered_forms,
+        template = render_template('home.html', my_forms=my_forms, answered_forms=answered_forms,
                                unanswered_forms=unanswered_forms, user=current_user)
+        session.close()
+        return template
     else:
         return redirect('/login')
