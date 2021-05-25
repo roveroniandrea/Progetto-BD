@@ -48,7 +48,7 @@ def submitAnswer(form_id):
 
         session.commit()
         session.close()
-        return "Risposte salvate"
+        return render_template('submit_status.html', error=False)
     except BaseException as e:
         session.close()
         print("Error submit answers: " + str(e))

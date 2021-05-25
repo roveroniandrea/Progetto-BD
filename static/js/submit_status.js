@@ -1,4 +1,4 @@
-let count = 5;
+let count = 3;
 let countDownRedirect = setInterval(function () {
     count--;
     document.getElementById('countDown').innerHTML = "Sarai riportato alla home in " + count + " secondi";
