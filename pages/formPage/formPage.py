@@ -2,6 +2,7 @@ from flask import Blueprint
 from flask_login import login_required
 from pages.formPage.accessForm import accessForm
 from pages.formPage.deleteForm import deleteForm
+from pages.formPage.formStats import generateCSV
 from pages.formPage.showFormStats import showFormStats
 from pages.formPage.submitAnswer import submitAnswer
 
@@ -32,4 +33,7 @@ def defShowFormStats(form_id):
     return showFormStats(form_id)
 
 
-
+@formPageBlueprint.route('/q/<int:form_id>/csv', methods=['GET'])
+@login_required
+def defCSVFormStats(form_id):
+    return generateCSV(form_id)

@@ -23,7 +23,12 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-2"></div>
+        <div class="col-sm-2">
+            <br>
+            <button onclick=location.href='/q/{{form.id}}/csv' type="button" class="btn btn-rounded btn-shadowed rounded-circle btn-tooltip " title="Scarica le statistiche in file .csv">
+                <img src="/static/image/file_download_black_24dp.svg" alt="toCSV">
+            </button>
+        </div>
     </div>
 
     <div class="row row-stats-form">
@@ -73,9 +78,9 @@
                         <div class="col-sm-11">
                             <ul>
                                 {% for answer in question.openAnswers %}
-                                    <li>
-                                        <h6>{{answer}}</h6>
-                                    </li>
+                                <li>
+                                    <h6>{{answer}}</h6>
+                                </li>
                                 {% endfor %}
                             </ul>
                         </div>
@@ -93,20 +98,21 @@
     google.charts.load('current', {'packages': ['corechart']});
     google.charts.setOnLoadCallback(drawChart);
 
-    document.body.style.backgroundColor="{{form.color}}"
+    document.body.style.backgroundColor = "{{form.color}}"
 
     function drawChart() {
-        const qs = {{questions |tojson | safe}}
+        const qs = {{questions | tojson | safe}}
         const answered_acc = {{answered_accesses | safe}}
-        const unanswered_acc = {{total_accesses | safe}} - answered_acc
-        const d = google.visualization.arrayToDataTable([ ['Accessi', 'Valori'], ['accessi senza risposta', unanswered_acc], ['accessi con risposta', answered_acc] ])
+        const unanswered_acc = {{total_accesses | safe}}-answered_acc
+
+        const d = google.visualization.arrayToDataTable([['Accessi', 'Valori'], ['accessi senza risposta', unanswered_acc], ['accessi con risposta', answered_acc]])
         const c = new google.visualization.PieChart(document.getElementById('accesses_card'));
         c.draw(d);
 
-        qs.forEach((q,index) => {
-            if(q.options){
-                const data = google.visualization.arrayToDataTable([ ['Accessi', 'Valori'],['Astenuti', q.notAnswered ], ...q.options.map(opt => [opt, q.optionsAnswers[opt]]) ]);
-                const chart = new google.visualization.PieChart(document.getElementById('piechart_'+ (index+1) ));
+        qs.forEach((q, index) => {
+            if (q.options) {
+                const data = google.visualization.arrayToDataTable([['Accessi', 'Valori'], ['Astenuti', q.notAnswered], ...q.options.map(opt => [opt, q.optionsAnswers[opt]])]);
+                const chart = new google.visualization.PieChart(document.getElementById('piechart_' + (index + 1)));
                 chart.draw(data);
             }
         })
