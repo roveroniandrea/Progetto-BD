@@ -31,6 +31,9 @@ app.register_blueprint(homeBlueprint)
 app.register_blueprint(newFormBlueprint)
 app.register_blueprint(formPageBlueprint)
 
+@app.route('/easterEgg', methods=['GET'])
+def easterEgg():
+    return render_template('easter_egg.html')
 
 @app.errorhandler(404)
 def notFound(_):
@@ -39,4 +42,5 @@ def notFound(_):
 @app.errorhandler(401)
 def unhauthorized(_):
     return render_template('error.html', error="401 - UNAUTHORIZED", description="Potresti non avere i permessi per accedere a questa pagina")
+
 
