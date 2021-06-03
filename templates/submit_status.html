@@ -10,7 +10,11 @@
         <div class="col-lg form-submitted-text">
             <div class="row">
                 <div class="col-lg">
+                    {% if submit_form %}
                     <h1>Errore, form non creato!</h1>
+                    {% else %}
+                    <h1>Errore, risposte non salvate!</h1>
+                    {% endif %}
                 </div>
             </div>
             <div class="row">
@@ -29,7 +33,11 @@
         <div class="col-lg form-submitted-text">
             <div class="row">
                 <div class="col-lg">
+                    {% if submit_form %}
                     <h1>Form Submitted!</h1>
+                    {% else %}
+                    <h1>Risposte salvate!</h1>
+                    {% endif %}
                 </div>
             </div>
             <div class="row">
@@ -43,8 +51,8 @@
     </div>
     {% endif %}
     <br>
-    <h5 id="countDown" class="form-submitted-text">Sarai riportato alla home in 5 secondi</h5>
+    <h5 id="countDown" class="form-submitted-text">Sarai riportato alla home in 3 secondi</h5>
 </div>
 
-<script src="/static/js/formSubmitted.js"></script>
+<script src="/static/js/submit_status.js"></script>
 {% endblock %}

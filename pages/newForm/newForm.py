@@ -53,8 +53,8 @@ def submitNewForm():
 
         session.commit()
         session.close()
-        return render_template('newForm/formSubmitted.html', error=False)
+        return render_template('submit_status.html', error=False, submit_form=True)
     except BaseException as e:
         session.close()
         print("Error form submit: " + str(e))
-        return render_template('newForm/formSubmitted.html', error=True)
+        return render_template('submit_status.html', error=True, submit_form=True)
