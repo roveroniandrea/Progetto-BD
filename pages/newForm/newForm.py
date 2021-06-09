@@ -1,4 +1,5 @@
 import json
+import traceback
 
 from flask import Blueprint, render_template, request
 from flask_login import login_required, current_user
@@ -57,4 +58,5 @@ def submitNewForm():
     except BaseException as e:
         session.close()
         print("Error form submit: " + str(e))
+        traceback.print_exc()
         return render_template('submit_status.html', error=True, submit_form=True)
