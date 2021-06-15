@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect
+from flask import Flask, render_template
 from flask_login import LoginManager
 
 from lib.UserAPI import loadUser
@@ -11,6 +11,8 @@ app = Flask(__name__)
 """The running app"""
 
 app.secret_key = 'super_secret_key'
+
+app.config['SESSION_COOKIE_SECURE'] = True
 
 loginManager = LoginManager()
 """The login manager sets the routes of the application"""
