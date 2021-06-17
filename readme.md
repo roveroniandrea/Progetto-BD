@@ -145,3 +145,9 @@ DEFERRABLE
 INITIALLY DEFERRED
 for each row execute function check_at_least_one_question();
 ```
+
+## Ulteriori informazioni
+
+Per generare i file csv con le statistiche, si è utilizzato una libreria python chiamata csv. Tale libreria sembra però non supportare correttamente l'applicazione Excel, motivo per cui è consigliata l'apertura dei file con un altro visualizzatore csv.
+
+Per generare i grafici delle statistiche si è utilizzato,Google Charts per JS. Inoltre, la libreria Huebee JS permette di selezionare il colore di sfondo durante la creazione del questionario.
