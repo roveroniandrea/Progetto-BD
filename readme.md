@@ -34,7 +34,7 @@ Lo schema della base di dati è composto da alcune tabelle:
 
 -   Users(<ins>email</ins>, salt, digest)
 
-    Oltre all'email che identifica univocamente un utente, la tabella contiene anche le informazioni sulla password dell'utente attraverso l'uso di digest e di un corrispondente salt. Si utilizza la funzione di hash **blake2b**. La funzione di generazione del salt è inoltre segnata come crittograficamente sicura.
+    Oltre all'email che identifica univocamente un utente, la tabella contiene anche le informazioni sulla password dell'utente attraverso l'uso di digest e di un corrispondente salt. Si utilizza la funzione di hash **blake2b**. La funzione di generazione del salt è inoltre segnata come crittograficamente sicura. Si veda il paragrafo **"Autenticazione degli utenti"** per altre informazioni
 
 -   Forms(<ins>id</ins>, title, owner\*, color, creation_date)
 
@@ -54,7 +54,7 @@ Lo schema della base di dati è composto da alcune tabelle:
 
 -   Open_answers(<ins>id\*</ins>, answer)
 
-    A differenza della tabella Questions, si è scelto di suddividere le risposte fornite in base al loro tipo, in modo da evitare di convertire il tipo effettivo della risposta con un unico tipo di attributo. Questa tabella e le altre successive contengono quindi i rispettivi tipi di risposte, che puntano tutte alla tabella Answers.
+    A differenza della tabella Questions, si è scelto di suddividere le risposte fornite in base al loro tipo, in modo da evitare di convertire il tipo effettivo della risposta con un unico tipo di attributo. Questa tabella e le successive contengono quindi i rispettivi tipi di risposte, e puntano tutte alla tabella Answers.
 
 -   Multiple_answers(<ins>id\*</ins>, answer)
 -   Single_answers(<ins>id\*</ins>, answer)
@@ -65,6 +65,8 @@ Lo schema della base di dati è composto da alcune tabelle:
 ### Ruoli
 
 Si è definito un ruolo apposito, flask_application, che dispone solamente dei permessi minimi richiesti dall'applicazione. In particolare, tale ruolo ha i permessi di select, insert, write, update, delete sulle tabelle viste prima (solo i permessi necessari per ogni tabella) e sui vari tipi sequenza (utilizzati per assegnare un valore univoco ad alcuni attributi id delle tabelle).
+
+Si è dovuto utilizzare un db locale poichè il piano gratuito di Heroku Postgres non permetteva la creazione di altri utenti nel db, fornendo un unico utente con permessi di admin sullo schema.
 
 ### SQL-injection
 
@@ -125,5 +127,25 @@ L'uso di SQLALchemy permette di astrarre l'applicazione dal tipo di DBMS e imple
 
 Un esempio potrebbe essere la creazione di un questionario: in caso di violazione dei vincoli di integrità (ad esempio una domanda a risposta multipla senza nessuna opzione), l'intera sequenza di operazioni viene annullata.
 
+## Integrità
+
+Abbiamo inserito alcuni check constraint e trigger per assicurare l'integrità dei dati. Alcuni dei vincoli sono:
+
+-   La domanda deve avere delle opzioni tra cui scegliere solo nel caso sia a risposta chiusa. Vincolo realizzato tramite check
+-   Le opzioni di una domanda devono essere distinte tra loro. Vincolo realizzato tramite check.
+-   Alla risposta di un questionario, tutte le domande required devono avere una loro risposta
+-   Un questionario deve avere almeno una domanda
+
+Gli ultimi due vincoli sono stati realizzati tramite trigger DEFERRABLE INITIALLY DEFERRED. Tali trigger vengono eseguiti in seguito al commit della transazioni e possono quindi accedere a tutte le righe aggiunte/modificate. Ad esempio:
+
+```sql
+create constraint trigger tr_check_at_least_one_answer
+after insert on forms
+DEFERRABLE
+INITIALLY DEFERRED
+for each row execute function check_at_least_one_question();
+```
+
 ## TODO:
-Vincoli di integrità (check e trigger) e "ulteriori informazioni"
+
+"ulteriori informazioni"
