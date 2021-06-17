@@ -70,7 +70,7 @@ Si è dovuto utilizzare un db locale poichè il piano gratuito di Heroku Postgre
 
 ### SQL-injection
 
-L'uso di SQLAlchemy ORM offre una protezione automatica dalla SQL injection
+L'uso di SQLAlchemy ORM offre una protezione automatica dalle SQL injection
 
 ### Autenticazione degli utenti
 
@@ -123,7 +123,7 @@ Analizzando la struttura dell'applicazione e le query più frequenti, abbiamo de
 
 ## Astrazione dal DBMS e transazioni
 
-L'uso di SQLALchemy permette di astrarre l'applicazione dal tipo di DBMS e implementa in modo automatico le transazioni. Qualsiasi operazione al DB avviene quindi tramite transazione.
+L'uso di SQLALchemy ORM permette di astrarre l'applicazione dal tipo di DBMS e implementa in modo automatico le transazioni. Qualsiasi operazione al DB avviene quindi tramite transazione.
 
 Un esempio potrebbe essere la creazione di un questionario: in caso di violazione dei vincoli di integrità (ad esempio una domanda a risposta multipla senza nessuna opzione), l'intera sequenza di operazioni viene annullata.
 
@@ -132,7 +132,7 @@ Un esempio potrebbe essere la creazione di un questionario: in caso di violazion
 Abbiamo inserito alcuni check constraint e trigger per assicurare l'integrità dei dati. Alcuni dei vincoli sono:
 
 -   La domanda deve avere delle opzioni tra cui scegliere solo nel caso sia a risposta chiusa. Vincolo realizzato tramite check
--   Le opzioni di una domanda devono essere distinte tra loro. Vincolo realizzato tramite check.
+-   Le opzioni di una domanda devono essere distinte tra loro. Vincolo realizzato tramite check
 -   Alla risposta di un questionario, tutte le domande required devono avere una loro risposta
 -   Un questionario deve avere almeno una domanda
 
@@ -145,7 +145,3 @@ DEFERRABLE
 INITIALLY DEFERRED
 for each row execute function check_at_least_one_question();
 ```
-
-## TODO:
-
-"ulteriori informazioni"
