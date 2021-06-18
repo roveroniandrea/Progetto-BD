@@ -1,0 +1,103 @@
+{% extends "index.html" %}
+
+{% block pagebody %}
+{% include "navbar.html" %}
+<link rel="stylesheet" href="/static/styles/newForm.css">
+<form onsubmit="return submitForm()" id="newForm">
+    <div class="container" id="boxForm">
+        <!--Title row-->
+        <div class="row">
+            <div class="col-sm-2">
+            </div>
+            <div class="col-sm-8">
+                <div class="card shadowed-section">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-10">
+                                <input name="title" class="form-control trasparent-input form-title input-rounded"
+                                       type="text"
+                                       placeholder="Form senza titolo"
+                                       required id="formTitle">
+                            </div>
+                            <div class="col-sm col-right">
+                                <button type="button"
+                                        class="color-button btn btn-rounded rounded-circle btn-tooltip Notification"
+                                        data-bs-toggle="modal" data-bs-target="#addFormVisibilityModal" id="addUser"
+                                        title="Aggiungi Utenti">
+                                    <img src="/static/image/person_add_black_24dp.svg" height="24"
+                                         width="24" alt="">
+                                    <span id="span_members" class="badge badge-success">1</span>
+                                </button>
+
+                                <button type="button" class="color-button btn btn-rounded rounded-circle btn-tooltip"
+                                        id="formColor" title="Cambia sfondo"><img
+                                        src="/static/image/palette_black_24dp.svg" alt="">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="btn-group">
+                    <button type="button" class="btn button-blue dropdown-toggle" data-toggle="dropdown"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                        New Question
+                    </button>
+
+                    <ul class="dropdown-menu">
+                        <li>
+                            <button class="dropdown-item" type="button" onclick="newQuestion('text')">Aperta
+                            </button>
+                        </li>
+                        <li>
+                            <button class="dropdown-item" type="button" onclick="newQuestion('single')">Singola
+                            </button>
+                        </li>
+                        <li>
+                            <button class="dropdown-item" type="button" onclick="newQuestion('multi')">Multipla
+                            </button>
+                        </li>
+                        <li>
+                            <button class="dropdown-item" type="button" onclick="newQuestion('date')">date
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-2">
+            </div>
+            <div class="col-sm-8">
+                <div class="row">
+                    <div class="col-lg"></div>
+                    <div class="col-sm-2 col-center-text">
+                        <button class="btn button-blue" type="submit" id="submitBtn" disabled>Crea questionario</button>
+                    </div>
+                    <div class="col-lg"></div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+            </div>
+        </div>
+    </div>
+</form>
+
+{% include "newForm/addUser.html" %}
+
+<script src="/static/js/newForm/utils.js"></script>
+<script src="/static/js/newForm/handleQuestions.js"></script>
+<script src="/static/js/newForm/submitAndColor.js"></script>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+{% include "footer.html" %}
+{% endblock %}

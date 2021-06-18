@@ -1,0 +1,25 @@
+{% block navbar %}
+
+
+<link rel="stylesheet" href="/static/styles/navbar.css">
+<nav class="navbar navbar-light bg-light shadowed-nav p-3 mb-5  ">
+    <div class="container-fluid navbar-div">
+        <a class="navbar-brand" href="/">
+            <img src="/static/image/logo.ico" alt="" width="30" height="30"
+                 class="d-inline-block align-text-top">
+            Progetto Basi
+        </a>
+        <span class="navbar-text"></span>
+        {% if current_user.is_authenticated %}
+
+
+    <form method="post" action="/logout">
+        <button type="submit" class="btn btn-radius btn-outline-secondary">Sign out</button>
+    </form>
+    {% endif %}
+    </span>
+    </div>
+</nav>
+
+
+{% endblock %}

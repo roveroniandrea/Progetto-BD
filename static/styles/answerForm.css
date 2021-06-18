@@ -1,0 +1,13 @@
+.row-answer-form {
+    padding-top: 20px;
+}
+
+.required-answer{
+    color: red;
+}
+
+.col-answer-submit{
+    padding-top: 20px;
+    text-align: center;
+}
+

@@ -1,0 +1,145 @@
+{% extends "index.html" %}
+
+{% block pagebody %}
+{% include "navbar.html" %}
+<link rel="stylesheet" href="/static/styles/register.css">
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+        </div><!--col-4 vuota-->
+        <div class="col-md-4">
+            <div class="card text-center shadowed-section">
+                <form action="/register" method="post" id="form-registration" onsubmit="return control_password()">
+                    <div class="card-body" id="card-body">
+                        <h2>Crea il tuo account!</h2>
+                        <span>
+                            Sei già un utente?
+                            <a href="/login">Accedi</a>
+                        </span>
+                        <br>
+                        <br>
+                        <br>
+                        <label class="label">Email</label><br>
+                        <input name="email" class="form-control input-rounded" type="email" placeholder="Email" required><br>
+                        <label class="label">Password</label><br>
+                        <input name="password" id="first_password" class="form-control input-rounded" type="password"
+                               placeholder="Password" required>
+                        <div class="progress input-rounded">
+                            <div class="progress-bar" role="progressbar" ></div>
+                        </div>
+                        <br>
+
+                        <label class="label">Conferma Password</label>
+                        <br>
+                        <input name="confirmed_password" id="second_password" class="form-control input-rounded" type="password"
+                               placeholder="Password" required>
+                        <br>
+                        {% if error %}
+                        <p id="error">{{error}}</p>
+                        {% endif %}
+                        <button type="submit" class="btn button-blue">Sign Up</button>
+                    </div>
+                </form>
+                <!--card-body-->
+            </div>
+            <!--card-->
+        </div><!--col-4 input-->
+        <div class="col-sm-4">
+        </div><!--col-4 vuota-->
+    </div><!--row-->
+</div><!--container-->
+
+<script>
+    function control_password() {
+        let password = document.getElementById("first_password").value;
+        let confirmed_password = document.getElementById("second_password").value;
+        let card = document.getElementById("card-body");
+
+        if (password === confirmed_password) {
+            return true;
+        } else {
+            let error_p = document.getElementById("error");
+            if (!error_p) {
+                error_p = document.createElement("p");
+                let text = document.createTextNode("Le password non corrispondono");
+                error_p.appendChild(text);
+                error_p.id = "error";
+                card.appendChild(error_p);
+            } else {
+                error_p.textContent = "Le password non corrispondono";
+            }
+            return false;
+        }
+    }
+
+
+    let password = document.getElementById("first_password");
+    password.addEventListener('keyup', function () {
+        let passwordArray = password.value.split('');
+
+
+        let rating = {
+            number: 0,
+            lowercase: 0,
+            uppercase: 0,
+            specialChar: 0,
+            total: 0
+        }
+
+        let validation = {
+            isNumber: function (val) {
+                let pattern = /^\d+$/;
+                return pattern.test(val);
+            },
+            isLowercase: function (val) {
+                let pattern = /[a-z]/;
+                return pattern.test(val);
+            },
+            isUppercase: function (val) {
+                let pattern = /[A-Z]/;
+                return pattern.test(val);
+            },
+            isSpecialChar: function (val) {
+                let pattern = /^[!@#\$%\^\&*\)\(+=._-]+$/g;
+                return pattern.test(val);
+            }
+        }
+
+        for (let i = 0; i < passwordArray.length; i++) {
+            if (validation.isNumber(passwordArray[i])) {
+                rating.number = 1;
+            } else if (validation.isLowercase(passwordArray[i])) {
+                rating.lowercase = 1;
+            } else if (validation.isUppercase(passwordArray[i])) {
+                rating.uppercase = 1;
+            } else if (validation.isSpecialChar(passwordArray[i])) {
+                rating.specialChar = 1;
+            }
+        }
+
+        function assessTotalScore() {
+            let ratingElement = document.querySelector(".progress-bar");
+            rating.total = rating.number + rating.lowercase + rating.uppercase + rating.specialChar;
+
+            if (rating.total === 1) {
+                ratingElement.classList.add("bg-danger");
+                ratingElement.classList.remove("bg-warning", "bg-success");
+
+            } else if (rating.total === 2) {
+                ratingElement.classList.add("bg-warning");
+                ratingElement.classList.remove("bg-danger", "bg-success");
+
+            } else if (rating.total === 3) {
+                ratingElement.classList.add("bg-success");
+                ratingElement.classList.remove("bg-warning", "bg-danger");
+            }
+        }
+
+        assessTotalScore();
+    });
+</script>
+{% include "footer.html" %}
+{% endblock %}
+
+

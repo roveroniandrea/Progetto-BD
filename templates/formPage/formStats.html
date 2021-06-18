@@ -1,0 +1,123 @@
+{% extends "index.html" %}
+
+{% block pagebody %}
+{% include "navbar.html" %}
+
+<link rel="stylesheet" href="/static/styles/formStats.css">
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+            <div class="card shadowed-section">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm">
+                            <h1>Stats of: {{form.title}}</h1>
+                        </div>
+                        <div class="col-sm-3">
+                            <p>By {{form.owner}}</p>
+                            <p>on {{form.creation_date}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <br>
+            <button onclick=location.href='/q/{{form.id}}/csv' type="button" class="btn btn-rounded btn-shadowed rounded-circle btn-tooltip " title="Scarica le statistiche in file .csv">
+                <img src="/static/image/file_download_black_24dp.svg" alt="toCSV">
+            </button>
+        </div>
+    </div>
+
+    <div class="row row-stats-form">
+        <div class="col-sm-2">
+        </div>
+        <div class="col-sm-8">
+            <div class="card shadowed-section">
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="col-sm">
+                            <div class="row">
+                                <h1>Accessi al Form</h1>
+                                <div class="col-sm-1"></div>
+                                <div class="col-sm-11">
+                                    <div id="accesses_card"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% for question in questions %}
+    <div class="row row-stats-form">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+            <div class="card shadowed-section">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm">
+                            <h2>{{question.question}}</h2>
+                        </div>
+                    </div>
+                    {% if question.type == 'single' or question.type == 'multi' %}
+                    <div class="row">
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-11">
+                            <div id="piechart_{{loop.index}}"></div>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="row">
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-11">
+                            <ul>
+                                {% for answer in question.openAnswers %}
+                                <li>
+                                    <h6>{{answer}}</h6>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
+
+<script>
+    google.charts.load('current', {'packages': ['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    document.body.style.backgroundColor = "{{form.color}}"
+
+    function drawChart() {
+        const qs = {{questions | tojson | safe}}
+        const answered_acc = {{answered_accesses | safe}}
+        const unanswered_acc = {{total_accesses | safe}}-answered_acc
+
+        const d = google.visualization.arrayToDataTable([['Accessi', 'Valori'], ['accessi senza risposta', unanswered_acc], ['accessi con risposta', answered_acc]])
+        const c = new google.visualization.PieChart(document.getElementById('accesses_card'));
+        c.draw(d);
+
+        qs.forEach((q, index) => {
+            if (q.options) {
+                const data = google.visualization.arrayToDataTable([['Accessi', 'Valori'], ['Astenuti', q.notAnswered], ...q.options.map(opt => [opt, q.optionsAnswers[opt]])]);
+                const chart = new google.visualization.PieChart(document.getElementById('piechart_' + (index + 1)));
+                chart.draw(data);
+            }
+        })
+
+    }
+</script>
+{% include "footer.html" %}
+{% endblock %}

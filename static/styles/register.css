@@ -1,0 +1,18 @@
+/*Password metter*/
+.progress {
+    margin-top: 3px;
+    height: 4px;
+}
+
+.bg-danger {
+    width: 33%;
+}
+
+.bg-warning {
+    width: 66%;
+}
+
+.bg-success {
+    background-color: #12cd12 !important;
+    width: 100%;
+}

@@ -1,0 +1,60 @@
+{% extends "index.html" %}
+
+{% block pagebody %}
+{% include "navbar.html" %}
+<link rel="stylesheet" href="/static/styles/formSubmitted.css">
+<div class="container">
+    {% if error %}
+    <div class="row">
+        <div class="col-lg"></div>
+        <div class="col-lg form-submitted-text">
+            <div class="row">
+                <div class="col-lg">
+                    {% if submit_form %}
+                    <h1>Errore, form non creato!</h1>
+                    {% else %}
+                    <h1>Errore, risposte non salvate!</h1>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg">
+                    <img src="/static/image/form_submit_error.svg" width="200" height="200">
+                </div>
+            </div>
+        </div>
+        <div class="col-lg"></div>
+
+    </div>
+    {% else %}
+
+    <div class="row">
+        <div class="col-lg"></div>
+        <div class="col-lg form-submitted-text">
+            <div class="row">
+                <div class="col-lg">
+                    {% if submit_form %}
+                    <h1>Form Submitted!</h1>
+                    {% else %}
+                    <h1>Risposte salvate!</h1>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg">
+                    <img src="/static/image/form_submitted_success.svg" width="200" height="200">
+                </div>
+            </div>
+        </div>
+        <div class="col-lg"></div>
+
+    </div>
+    {% endif %}
+    <br>
+    <h5 id="countDown" class="form-submitted-text">Sarai riportato alla home in 3 secondi</h5>
+</div>
+
+<script src="/static/js/submit_status.js"></script>
+
+{% include "footer.html" %}
+{% endblock %}

@@ -1,2 +1,5 @@
 venv/
+*.pyc
+*.pyo
 .idea/
+static/bootstrap-5.0.0-beta3-dist/

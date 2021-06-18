@@ -1,0 +1,55 @@
+.form-title {
+    font-weight: bold;
+    font-size: x-large;
+}
+
+.form-question {
+    font-weight: bold;
+    font-size: large;
+}
+
+/*Add questions*/
+.row-form {
+    padding-top: 20px;
+}
+
+.first-option {
+    height: 55px;
+}
+
+.btn-delete-option {
+    margin-top: -10px;
+}
+
+
+.radio-option {
+    float: right !important;
+    margin-top: 10px;
+}
+
+
+.error-email {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.Notification {
+    position: relative;
+}
+
+.badge.badge-success {
+    background-image: linear-gradient(to right, #09b3ef 0%, #1e76e2 51%);
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    border-radius: 30rem;
+    line-height: 1;
+    padding: .375rem .5625rem;
+}
+
+
+
+
+.margin-delete-button-option{
+    margin-top: -8px;
+}

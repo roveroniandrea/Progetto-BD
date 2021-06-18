@@ -1,0 +1,11 @@
+/*Forms Sections */
+.form-card {
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+.form-card:hover {
+    border-color: #0D6EFD;
+}
+
+

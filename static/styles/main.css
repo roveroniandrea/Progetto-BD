@@ -1,0 +1,136 @@
+.button-blue {
+    color: #fff;
+    padding: 12px 36px;
+    font-weight: 600;
+    border: none;
+    position: relative;
+    display: inline-block;
+    text-transform: uppercase;
+    -webkit-border-radius: 90px;
+    -moz-border-radius: 90px;
+    border-radius: 90px;
+    margin: 2px;
+    background-image: linear-gradient(to right, #09b3ef 0%, #1e50e2 51%, #09b3ef 100%);
+    background-size: 200% auto;
+    flex: 1 1 auto;
+    text-decoration: none;
+
+}
+
+.button-blue:hover,
+.button-blue:focus {
+    color: #ffffff;
+    border-radius: 30px;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2), 0 1px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.btn-radius{
+    border-radius: 30px;
+}
+
+
+/*Error text*/
+#error {
+    color: red;
+}
+
+.card-auth-footer {
+    background-color: #666666;
+}
+
+.shadowed-section {
+    border-radius: 30px;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2), 0 1px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+.trasparent-input {
+    border: transparent;
+}
+
+.btn-shadowed{
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2), 0 1px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.btn-rounded {
+    background-color: white;
+    height: 50px;
+    width: 50px;
+    margin-top: 5px;
+}
+
+.btn-rounded:hover {
+    background-color: #eaeaea;
+}
+
+.col-right {
+    text-align: right;
+}
+
+.col-center-text {
+    padding-top: 20px;
+    text-align: center;
+}
+
+.input-rounded{
+    border-radius: 20px;
+}
+
+
+.modal-backdrop {
+  display: none;
+}
+
+.modal {
+  background: rgba(0,0,0,0.5);
+}
+
+
+.chip {
+    display: inline-block;
+    padding: 0 20px;
+    margin: 5px;
+    height: 40px;
+    font-size: 15px;
+    line-height: 40px;
+    border-radius: 25px;
+    background-color: #f1f1f1;
+}
+
+.chip img {
+    float: left;
+    margin: 0 10px 0 -20px;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+
+.closebtn {
+    padding-left: 10px;
+    color: #888;
+    font-weight: bold;
+    float: right;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.closebtn:hover {
+    color: #000;
+}
+
+
+#addUserInput {
+    margin-top: 6px;
+}
+
+.card-user {
+    margin-top: 20px;
+    border-radius: 30px;
+    border-color: transparent;
+}
+
+
+
+
+
+
