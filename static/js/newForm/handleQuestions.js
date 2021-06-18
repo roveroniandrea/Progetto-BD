@@ -1,5 +1,6 @@
 let count_check_input = 0;
 let count_radio_input = 0;
+let count_question = 0;
 
 /**
  * Returns the id of the container of the options. Used to add new options to a single/multi question
@@ -25,7 +26,7 @@ function getOptionHTML(isRadio, inputId, removeId) {
                 ${removeId ? `<button type="button" class="btn btn-rounded rounded-circle btn-tooltip margin-delete-button-option"
                         data-bs-placement="bottom" title="Delete Option" onclick="delete_element('${removeId}')">
                         <img src="/static/image/close_black_24dp.svg" alt="">
-                </button>` :`<button type="button" hidden class="btn btn-rounded rounded-circle ">
+                </button>` : `<button type="button" hidden class="btn btn-rounded rounded-circle ">
                         <img src="/static/image/close_black_24dp.svg" alt="">
                 </button>`}
                 <br>
@@ -56,10 +57,19 @@ function addRadioCheckOption(question_number, isRadio) {
     document.querySelector(`#${inputId}`).focus();
 }
 
+/** Disables the submit button if there are no questions to the form*/
+const checkSubmitBtn = (() => {
+    const submitBtn = document.querySelector('#submitBtn');
+    return () => {
+        submitBtn.disabled = count_question <= 0;
+    }
+})();
+
 /** Adds a new question to the form */
 const newQuestion = (() => {
     const boxForm = document.querySelector('#boxForm');
-    let count_question = 0;
+
+    checkSubmitBtn();
 
     return (type) => {
         const rowId = `box_question_${count_question}`;
@@ -97,7 +107,7 @@ const newQuestion = (() => {
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
-                                    <button type="button" onclick="delete_element('${rowId}')"
+                                    <button type="button" onclick="removeQuestion('${rowId}')"
                                             class="btn btn-rounded btn-shadowed rounded-circle btn-tooltip"
                                             data-bs-placement="bottom" title="Add Option"><img
                                             src="/static/image/close_black_24dp.svg" alt="">
@@ -183,5 +193,13 @@ const newQuestion = (() => {
         document.querySelector(`#${questionTitleInputId}`).focus();
 
         count_question++;
+
+        checkSubmitBtn();
     };
 })();
+
+function removeQuestion(questionId) {
+    count_question--;
+    delete_element(questionId);
+    checkSubmitBtn();
+}
