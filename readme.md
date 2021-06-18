@@ -64,7 +64,7 @@ Lo schema della base di dati è composto da alcune tabelle:
 
 ### Ruoli
 
-Si è definito un ruolo apposito, flask_application, che dispone solamente dei permessi minimi richiesti dall'applicazione. In particolare, tale ruolo ha i permessi di select, insert, write, update, delete sulle tabelle viste prima (solo i permessi necessari per ogni tabella) e sui vari tipi sequenza (utilizzati per assegnare un valore univoco ad alcuni attributi id delle tabelle).
+Si è definito un ruolo apposito, flask_application, che dispone solamente dei permessi minimi richiesti dall'applicazione. In particolare, tale ruolo ha i permessi di select, insert, update, delete sulle tabelle viste prima (solo i permessi necessari per ogni tabella) e sui vari tipi sequenza (utilizzati per assegnare un valore univoco ad alcuni attributi id delle tabelle).
 
 Si è dovuto utilizzare un db locale poichè il piano gratuito di Heroku Postgres non permetteva la creazione di altri utenti nel db, fornendo un unico utente con permessi di admin sullo schema.
 
